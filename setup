@@ -1,0 +1,18 @@
+#!/bin/bash
+
+do_backup()
+{
+  tod=$(date +%Y%m%d%H%M%S)
+  [ -f ${1} ] && mv ${1} ${1}.${tod}
+}
+
+if [ -d ${HOME}/.vim ]; then
+    cp -r ${PWD}/vim/* ${HOME}/.vim/
+else
+    cp -r ${PWD}/vim ${HOME}/.vim
+fi
+
+
+# ln -s ${PWD}/vim ${HOME}/.vim
+do_backup ${HOME}/.vimrc
+ln -s ${PWD}/vimrc ${HOME}/.vimrc
