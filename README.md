@@ -1,4 +1,4 @@
-Just dotfiles in this repo
+##Just dotfiles in this repo
 
 To setup
 ```sh
