@@ -16,3 +16,9 @@ fi
 # ln -s ${PWD}/vim ${HOME}/.vim
 do_backup ${HOME}/.vimrc
 ln -s ${PWD}/vimrc ${HOME}/.vimrc
+
+# customized bashrc
+do_backup ${HOME}/.bashrc_customized
+cp bashrc_customized ~/.bashrc_customized
+echo "# customized bashr" >> ~/.bashrc
+echo ". ~/.bashrc_customized" >> ~/.bashrc
