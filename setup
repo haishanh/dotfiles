@@ -6,19 +6,25 @@ do_backup()
   [ -f ${1} ] && mv ${1} ${1}.${tod}
 }
 
+echo "Customizing VIM config ..."
 if [ -d ${HOME}/.vim ]; then
     cp -r ${PWD}/vim/* ${HOME}/.vim/
 else
     cp -r ${PWD}/vim ${HOME}/.vim
 fi
 
-
 # ln -s ${PWD}/vim ${HOME}/.vim
 do_backup ${HOME}/.vimrc
 ln -s ${PWD}/vimrc ${HOME}/.vimrc
 
+echo "Customizing bash config ..."
 # customized bashrc
 do_backup ${HOME}/.bashrc_customized
 cp bashrc_customized ~/.bashrc_customized
 echo "# customized bashr" >> ~/.bashrc
 echo ". ~/.bashrc_customized" >> ~/.bashrc
+# effect immediately
+. ~/.bashrc_customized
+
+
+echo "Done"
