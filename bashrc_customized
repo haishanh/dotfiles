@@ -1,4 +1,7 @@
+# set locale
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 Default="\e[0m"
 DarkGray="\e[0;30m"
