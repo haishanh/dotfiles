@@ -27,5 +27,4 @@ echo ". ~/.bashrc_customized" >> ~/.bashrc
 # effect immediately
 . ~/.bashrc_customized
 
-
 echo "Done"
