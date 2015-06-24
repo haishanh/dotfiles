@@ -1,7 +1,4 @@
-# set locale
-export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
 
 Default="\e[0m"
 DarkGray="\e[0;30m"
@@ -29,4 +26,5 @@ Blue_b="\e[44m"
 Purple_b="\e[45m"
 Turquoise_b="\e[46m"
 LightGray_b="\e[47m"
-export PS1="${Purple}# ${Turquoise}\u ${LightGray}at ${Green}\h ${LightGray}in ${BYellow}\w ${LightGray}[ \t ] \n${Red}\$${Default} "
+#export PS1="\\[${Purple}# \\[${Turquoise}\u \\[${LightGray}at \\[${Green}\h \\[${LightGray}in \\[${BYellow}\w \\[${LightGray}[ \t ] \n\\[${Red}\$\\[${Default} "
+export PS1="\[${Purple}\]# \[${Turquoise}\]\u \[${LightGray}\]at \[${Green}\]\h \[${LightGray}\]in \[${BYellow}\]\w \[${LightGray}\][ \t ]\n\[${Red}\]\$ \[${Default}\]"
