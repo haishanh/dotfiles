@@ -22,7 +22,7 @@ echo "Customizing bash config ..."
 # customized bashrc
 do_backup ${HOME}/.bashrc_customized
 cp bashrc_customized ~/.bashrc_customized
-echo "# customized bashr" >> ~/.bashrc
+echo -e "\n# customized bashr" >> ~/.bashrc
 echo ". ~/.bashrc_customized" >> ~/.bashrc
 # effect immediately
 . ~/.bashrc_customized
