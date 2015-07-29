@@ -1,12 +1,32 @@
 set nocompatible "be improved!
 
+" For regular expression
+set magic
+
+set so=5
+
+set encoding=utf8
+
 " this is for perl script editing
 map <F2> :echo 'Current time is ' . strftime('%c')<CR>
 map <F5> :! perl %<CR>
 "
 " set tags+=/home/haishanh/src/tags
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
 
+Bundle 'gmarik/vundle'
+" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'scrooloose/nerdtree'
+map <F3> :NERDTreeToggle<CR>
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'hdima/python-syntax'
+Bundle 'klen/python-mode'
+let g:pymode_rope=0
 
+call vundle#end()
+
+filetype plugin indent on
 syntax enable
 set t_Co=256
 set background=dark
@@ -54,9 +74,8 @@ colorscheme solarized
 " let g:rehash256 =1
 " colorscheme molokai 
 
-" Google colorscheme
 " set bg=light
-" colorscheme primary
+colorscheme PaperColor-Dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
