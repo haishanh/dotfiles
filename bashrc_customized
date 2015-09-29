@@ -1,5 +1,19 @@
+#!/bin/bash
+
+# proxy
+# PROXY=http://1.1.1.1:8000/
+if [ ! -z ${PROXY} ]; then
+  export http_proxy=${PROXY}
+  export https_proxy=$http_proxy
+  export ftp_proxy=$http_proxy
+  export rsync_proxy=$http_proxy
+  export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+fi
+
+# locale
 export LANG=en_US.UTF-8
 
+# prompt
 Default="\e[0m"
 DarkGray="\e[0;30m"
 BDarkGray="\e[1;30m"

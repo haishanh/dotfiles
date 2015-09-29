@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASHCFG=bashrc_customized
+
 do_backup()
 {
   tod=$(date +%Y%m%d%H%M%S)
@@ -20,11 +22,11 @@ cp vimrc ~/.vimrc
 
 echo "Customizing bash config ..."
 # customized bashrc
-do_backup ${HOME}/.bashrc_customized
-cp bashrc_customized ~/.bashrc_customized
-echo -e "\n# customized bashr" >> ~/.bashrc
-echo ". ~/.bashrc_customized" >> ~/.bashrc
+do_backup ${HOME}/.${BASHCFG}
+cp ${BASHCFG} ~/.${BASHCFG}
+echo -e "\n# customized bashrc" >> ~/.bashrc
+echo ". ~/.${BASHCFG}" >> ~/.bashrc
 # effect immediately
-. ~/.bashrc_customized
+. ~/.${BASHCFG}
 
 echo "Done"
