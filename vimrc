@@ -1,85 +1,152 @@
-set nocompatible "be improved!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" For regular expression
-set magic
-
-set so=5
-
-set encoding=utf8
-
-" this is for perl script editing
-map <F2> :echo 'Current time is ' . strftime('%c')<CR>
-map <F5> :! perl %<CR>
-"
-" set tags+=/home/haishanh/src/tags
-set rtp+=~/.vim/bundle/vundle/
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-Bundle 'gmarik/vundle'
-" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'scrooloose/nerdtree'
-map <F3> :NERDTreeToggle<CR>
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'hdima/python-syntax'
-Bundle 'klen/python-mode'
-let g:pymode_rope=0
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-call vundle#end()
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
 
-filetype plugin indent on
-syntax enable
-set t_Co=256
-set background=dark
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'scrooloose/nerdtree'
+map <C-n> :NERDTreeToggle<CR>
+" close vim if only NERDTree window exit 
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+Plugin 'sjl/gundo.vim'
 
-" always show line status
-set number 
-set ruler
+Plugin 'klen/python-mode'
+let g:pymode_rope = 0
+" Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+" Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-markdown'
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-set laststatus=2 " status line
-set smartcase   " Search strings that are all-lowercase will do a case-insensitive sear    ch
-set incsearch   " Incremental search
-" set cursorline  " Highlight current line This one seems cause the low end machine laggy
-set tabstop=4
-set expandtab
-"shorkey to toggle paste, which won't break the original format
-set pastetoggle=<F9>
-set et
-set backspace=indent,eol,start
-filetype plugin indent on
-set shiftwidth=4
-" use jj to escape INSTER mode 
-inoremap jj <ESC>
-inoremap kk <ESC>
-"set background=dark
-"colorscheme mango
-"colorscheme solarized
-"colorscheme atom
-"colorscheme zen
-"colorscheme osx_like
-"colorscheme Monokai
+" CSS3
+Plugin 'lepture/vim-css'
+" Syntax Highlight for Stylus
+Plugin 'wavded/vim-stylus'
 
-"set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,bytval=0x%B,%n%Y%)\%P
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ %=%-20%Y 
-set statusline=%<%F\ %h%m%r%=%-20.(%l/%L,%c%V%)\ %P\ \ %y
+" swig.js
+Plugin 'blockloop/vim-swigjs'
 
+" Highlight html tags
+Plugin 'valloric/MatchTagAlways'
+let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
+                      \ 'jinja' : 1 } 
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
-" colors blackdust
+"""" COLOR
+set t_Co=256  " this one should be put before colorscheme setting
+syntax on 
+colorscheme dracula 
 
-" below 2 lines for solarized
-let g:solarized_termcolors=256
-colorscheme solarized
+"""" COMMON KEY BINDING
+let mapleader=","  " default is key `\`
+inoremap jk <esc>  " jk is escape
+nnoremap <leader>u :GundoToggle<CR> " toggle gundo
+" save session / vim -S to restore session
+nnoremap <leader>s :mksession<CR>
+set pastetoggle=<F10>
 
-" below 2 lines for molokai
-" let g:rehash256 =1
-" colorscheme molokai 
+"""" SPACE & TAB
+set tabstop=4 " number of visual spaces per TAB
+" set shiftwidth=4
+set softtabstop=4 " number of spaces in tab when editing
+set expandtab " tab to spaces
 
-" set bg=light
-colorscheme PaperColor-Dark
+""" UI
+set number " show line number
+set showcmd " show command in bottom bar
+set wildmenu " visual autocomplete for command menu
+set showmatch " highlight matching brackets
+set colorcolumn=79
+set so=6  " scroll
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+""" SEARCH
+
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set ignorecase " case insensitive matching
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+"""" FOLDING
+set foldenable " enable folding
+set foldlevelstart=10 " open most folds by default
+set foldnestmax=10 " 10 nested fold max
+nnoremap <space> za " space open/close folds
+set foldmethod=indent " fold based on indent level / run `:help foldmethod` for more
+
+"""" MOVE
+"" no skip for wrapped lines
+" nnoremap j gj 
+" nnoremap k gk
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-"
+
+augroup configgroup
+    autocmd!
+    autocmd VimEnter * highlight clear SignColumn
+    autocmd FileType java setlocal noexpandtab
+    autocmd FileType java setlocal list
+    autocmd FileType java setlocal listchars=tab:+\ ,eol:-
+    autocmd FileType java setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType php setlocal expandtab
+    autocmd FileType php setlocal list
+    autocmd FileType php setlocal listchars=tab:+\ ,eol:-
+    autocmd FileType php setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType ruby setlocal shiftwidth=2
+    autocmd FileType ruby setlocal softtabstop=2
+    autocmd FileType ruby setlocal commentstring=#\ %s
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd BufEnter *.cls setlocal filetype=java
+    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
+augroup END
+
+" restore last cursor position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
