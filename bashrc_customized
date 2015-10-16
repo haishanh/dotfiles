@@ -41,4 +41,12 @@ Purple_b="\e[45m"
 Turquoise_b="\e[46m"
 LightGray_b="\e[47m"
 #export PS1="\\[${Purple}# \\[${Turquoise}\u \\[${LightGray}at \\[${Green}\h \\[${LightGray}in \\[${BYellow}\w \\[${LightGray}[ \t ] \n\\[${Red}\$\\[${Default} "
-export PS1="\[${Purple}\]# \[${Turquoise}\]\u \[${LightGray}\]at \[${Green}\]\h \[${LightGray}\]in \[${BYellow}\]\w \[${LightGray}\][ \t ]\n\[${Red}\]\$ \[${Default}\]"
+# export PS1="\[${Purple}\]# \
+export PS1="\
+\[${Blue}\]\u \
+\[${LightGray}\]at \
+\[${Green}\]\h \
+\[${LightGray}\]in \
+\[${Yellow}\]\w \
+\[${LightGray}\][ \t ]
+\[${Red}\]\$ \[${Default}\]"
