@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let mapleader=","  " default is key `\`
+
+set tags+=/home/haishanh/repo/dpdk-2.0.0/tags
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -9,6 +13,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'mango.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -33,6 +39,13 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 Plugin 'sjl/gundo.vim'
 
+Plugin 'godlygeek/tabular'
+nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
+nnoremap <Leader>t= :Tabularize /=<CR>
+vnoremap <Leader>t= :Tabularize /=<CR>
+nnoremap <Leader>t: :Tabularize /:<CR>
+vnoremap <Leader>t: :Tabularize /:<CR>
+
 Plugin 'klen/python-mode'
 let g:pymode_rope = 0
 " Linting
@@ -47,10 +60,17 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 Plugin 'tpope/vim-markdown'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+" JS syntax
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'nathanaelkane/vim-indent-guides'
+
 " CSS3
-Plugin 'lepture/vim-css'
+Plugin 'JulesWang/css.vim'
+Plugin 'genoma/vim-less'
+"Plugin 'lepture/vim-css'
 " Syntax Highlight for Stylus
 Plugin 'wavded/vim-stylus'
+"Plugin 'groenewege/vim-less'
 
 " swig.js
 Plugin 'blockloop/vim-swigjs'
@@ -60,6 +80,13 @@ Plugin 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
                       \ 'jinja' : 1 } 
 
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" Optional:
+Plugin 'honza/vim-snippets'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -67,10 +94,16 @@ filetype plugin indent on    " required
 """" COLOR
 set t_Co=256  " this one should be put before colorscheme setting
 syntax on 
+set background=dark
 colorscheme dracula 
+" colorscheme solarized
+" colorscheme eclipse
+" colorscheme gentooish
+" colorscheme herald
+" colorscheme railscasts
+" colorscheme molokai
 
 """" COMMON KEY BINDING
-let mapleader=","  " default is key `\`
 inoremap jk <esc>  " jk is escape
 nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 " save session / vim -S to restore session
@@ -79,7 +112,7 @@ set pastetoggle=<F10>
 
 """" SPACE & TAB
 set tabstop=4 " number of visual spaces per TAB
-" set shiftwidth=4
+set shiftwidth=4
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tab to spaces
 
@@ -141,9 +174,10 @@ augroup configgroup
     autocmd BufEnter *.cls setlocal filetype=java
     autocmd BufEnter *.zsh-theme setlocal filetype=zsh
     autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.sh setlocal tabstop=2
-    autocmd BufEnter *.sh setlocal shiftwidth=2
-    autocmd BufEnter *.sh setlocal softtabstop=2
+    autocmd BufEnter *.sh setlocal sw=2 ts=2 sts=2
+    autocmd BufEnter *.js setlocal sw=2 ts=2 sts=2
+    autocmd BufEnter *.html setlocal sw=2 ts=2 sts=2
+    autocmd BufEnter *.less setlocal sw=2 ts=2 sts=2
 augroup END
 
 " restore last cursor position
