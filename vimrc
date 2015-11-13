@@ -122,7 +122,7 @@ set showcmd " show command in bottom bar
 set wildmenu " visual autocomplete for command menu
 set showmatch " highlight matching brackets
 set colorcolumn=79
-set so=6  " scroll
+set scrolloff=6  " keep some more lines for scope
 
 """ SEARCH
 
@@ -145,6 +145,21 @@ set foldmethod=indent " fold based on indent level / run `:help foldmethod` for 
 " nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
+
+
+" utf-8 default encoding
+set enc=utf-8
+
+" prefer unix over windows over os9 formats
+set fileformats=unix,dos,mac
+
+" don't bell or blink
+set noerrorbells
+set vb t_vb=
+
+" hide some files and remove help
+let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
+nnoremap <leader>n :Explore<CR>
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
