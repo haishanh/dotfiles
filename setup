@@ -19,12 +19,11 @@ config_vim()
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   else
     echo "Cannot clone Vundle.vim"
-    echo "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
     echo "You may do it manually"
+    echo "  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
   fi
   do_backup ${HOME}/.vimrc
   cp vimrc ~/.vimrc
-
 }
 
 
@@ -35,14 +34,24 @@ config_vim()
 #     cp -r ${PWD}/vim ${HOME}/.vim
 # fi
 
+config_bash()
+{
+  echo "Customizing bash config ..."
+  # customized bashrc
+  do_backup ${HOME}/.${BASHCFG}
+  cp ${BASHCFG} ~/.${BASHCFG}
+  echo -e "\n# customized bashrc" >> ~/.bashrc
+  echo ". ~/.${BASHCFG}" >> ~/.bashrc
+  # effect immediately
+  . ~/.${BASHCFG}
+}
 
-echo "Customizing bash config ..."
-# customized bashrc
-do_backup ${HOME}/.${BASHCFG}
-cp ${BASHCFG} ~/.${BASHCFG}
-echo -e "\n# customized bashrc" >> ~/.bashrc
-echo ". ~/.${BASHCFG}" >> ~/.bashrc
-# effect immediately
-. ~/.${BASHCFG}
+config_git()
+{
+  bash gitconfig.sh global
+}
 
+config_vim
+config_bash
+config_git
 echo "Done"
