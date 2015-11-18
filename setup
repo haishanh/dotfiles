@@ -23,7 +23,7 @@ config_vim()
     echo "  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
   fi
   do_backup ${HOME}/.vimrc
-  cp vimrc ~/.vimrc
+  ln -sf ${PWD}/vimrc ~/.vimrc
 }
 
 
@@ -48,6 +48,7 @@ config_bash()
 
 config_git()
 {
+  echo "git clobal config ..."
   bash gitconfig.sh global
 }
 
