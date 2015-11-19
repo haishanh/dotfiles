@@ -46,6 +46,12 @@ config_bash()
   . ~/.${BASHCFG}
 }
 
+config_tmux()
+{
+  do_backup ~/.tmux.conf
+  ln -sf ${PWD}/tmux.conf ~/.tmux.conf
+}
+
 config_git()
 {
   echo "git clobal config ..."
@@ -54,5 +60,6 @@ config_git()
 
 config_vim
 config_bash
+config_tmux
 config_git
 echo "Done"
