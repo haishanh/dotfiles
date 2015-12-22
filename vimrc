@@ -95,7 +95,7 @@ filetype plugin indent on    " required
 set t_Co=256  " this one should be put before colorscheme setting
 syntax on 
 set background=dark
-colorscheme dracula 
+" colorscheme dracula 
 " colorscheme solarized
 " colorscheme eclipse
 " colorscheme gentooish
