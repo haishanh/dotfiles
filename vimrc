@@ -115,6 +115,7 @@ set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tab to spaces
+set backspace=2 " make backspace work like most other apps
 
 """ UI
 set number " show line number
