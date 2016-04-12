@@ -3,7 +3,7 @@ filetype off                  " required
 
 let mapleader=","  " default is key `\`
 
-set tags+=/home/haishanh/repo/dpdk-2.0.0/tags
+set tags+=/home/haishanh/repo/dpdk-2.2.0/tags
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -34,11 +34,14 @@ Plugin 'mango.vim'
 
 "Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
-map <C-n> :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = 'v'
 " close vim if only NERDTree window exit 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 Plugin 'sjl/gundo.vim'
 
+Plugin 'taglist.vim'
 Plugin 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
 nnoremap <Leader>t= :Tabularize /=<CR>
@@ -84,6 +87,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
+Plugin 'junegunn/seoul256.vim'
+
 " Optional:
 Plugin 'honza/vim-snippets'
 
@@ -92,18 +97,29 @@ filetype plugin indent on    " required
 
 
 """" COLOR
-set t_Co=256  " this one should be put before colorscheme setting
-syntax on 
-set background=dark
+" set t_Co=256  " this one should be put before colorscheme setting
+" syntax enable
+" set background=dark
 " colorscheme dracula 
+"
+"let g:seoul256_background = 233
+"let g:seoul256_light_background = 256
+"colorscheme seoul256
+
+" let g:solarized_termcolors=256
+" let g:solarized_termcolors=1
 " colorscheme solarized
 " colorscheme eclipse
 " colorscheme gentooish
 " colorscheme herald
 " colorscheme railscasts
+"
 " colorscheme molokai
+" let g:rehash256 = 1
 
 """" COMMON KEY BINDING
+map <leader>, :tabn<CR> " switch to next tab
+map <leader>. :tabp<CR> " switch to next tab
 inoremap jk <esc>  " jk is escape
 nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 " save session / vim -S to restore session
@@ -115,7 +131,7 @@ set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tab to spaces
-set backspace=2 " make backspace work like most other apps
+" set backspace=2 " make backspace work like most other apps
 
 """ UI
 set number " show line number
@@ -134,8 +150,8 @@ set ignorecase " case insensitive matching
 nnoremap <leader><space> :nohlsearch<CR>
 
 """" FOLDING
-set foldenable " enable folding
-set foldlevelstart=10 " open most folds by default
+" set foldenable " enable folding
+set foldlevelstart=99 " unfold every fold
 set foldnestmax=10 " 10 nested fold max
 nnoremap <space> za " space open/close folds
 set foldmethod=indent " fold based on indent level / run `:help foldmethod` for more
@@ -171,6 +187,7 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
@@ -190,10 +207,11 @@ augroup configgroup
     autocmd BufEnter *.cls setlocal filetype=java
     autocmd BufEnter *.zsh-theme setlocal filetype=zsh
     autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.c,*.h,*.cpp,*.cxx setlocal sw=2 ts=2 sts=2 " google cpp coding style
     autocmd BufEnter *.sh setlocal sw=2 ts=2 sts=2
     autocmd BufEnter *.js setlocal sw=2 ts=2 sts=2
     autocmd BufEnter *.html setlocal sw=2 ts=2 sts=2
-    autocmd BufEnter *.less setlocal sw=2 ts=2 sts=2
+    autocmd BufEnter *.css,*scss,*.less setlocal sw=2 ts=2 sts=2
 augroup END
 
 " restore last cursor position
