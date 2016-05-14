@@ -16,6 +16,7 @@ git_config()
   git config${global} alias.st status
   git config${global} alias.ci commit 
   git config${global} alias.d diff
+  git config${global} alias.l "log --pretty=oneline --graph --abbrev-commit"
   git config${global} alias.lg1 "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 }
 
