@@ -32,7 +32,7 @@ Plugin 'mango.vim'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
-"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
 map <Leader>f :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '>'
@@ -42,6 +42,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 Plugin 'sjl/gundo.vim'
 
 Plugin 'taglist.vim'
+let Tlist_Compact_Format = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
+nnoremap <Leader>l :TlistToggle<CR>
+
 Plugin 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
 nnoremap <Leader>t= :Tabularize /=<CR>
@@ -89,6 +94,8 @@ Plugin 'garbas/vim-snipmate'
 
 Plugin 'junegunn/seoul256.vim'
 
+Plugin 'pangloss/vim-javascript'
+
 " Optional:
 Plugin 'honza/vim-snippets'
 
@@ -97,14 +104,16 @@ filetype plugin indent on    " required
 
 
 """" COLOR
-" set t_Co=256  " this one should be put before colorscheme setting
+set t_Co=256  " this one should be put before colorscheme setting
 " syntax enable
 " set background=dark
 " colorscheme dracula 
 "
-"let g:seoul256_background = 233
-"let g:seoul256_light_background = 256
-"colorscheme seoul256
+" let g:seoul256_background = 233
+" let g:seoul256_light_background = 256
+" colorscheme seoul256
+colorscheme jellybeans
+" colorscheme seti
 
 " let g:solarized_termcolors=256
 " let g:solarized_termcolors=1
