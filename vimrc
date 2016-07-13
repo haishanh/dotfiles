@@ -33,13 +33,17 @@ Plugin 'mango.vim'
 "Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plugin 'scrooloose/nerdtree'
-map <Leader>f :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = 'v'
-" close vim if only NERDTree window exit 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"  Plugin 'scrooloose/nerdtree'
+"  map <Leader>f :NERDTreeToggle<CR>
+"  let g:NERDTreeDirArrowExpandable = '>'
+"  let g:NERDTreeDirArrowCollapsible = 'v'
+""  close vim if only NERDTree window exit
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 Plugin 'sjl/gundo.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+let g:ctrl_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*.so,*.swp,*.zip,node_modules/*
 
 Plugin 'taglist.vim'
 let Tlist_Compact_Format = 1
@@ -78,7 +82,6 @@ Plugin 'genoma/vim-less'
 "Plugin 'lepture/vim-css'
 " Syntax Highlight for Stylus
 Plugin 'wavded/vim-stylus'
-"Plugin 'groenewege/vim-less'
 
 " swig.js
 Plugin 'blockloop/vim-swigjs'
@@ -86,13 +89,14 @@ Plugin 'blockloop/vim-swigjs'
 " Highlight html tags
 Plugin 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
-                      \ 'jinja' : 1 } 
+                      \ 'jinja' : 1 }
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 Plugin 'junegunn/seoul256.vim'
+Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'pangloss/vim-javascript'
 
@@ -107,7 +111,7 @@ filetype plugin indent on    " required
 set t_Co=256  " this one should be put before colorscheme setting
 " syntax enable
 " set background=dark
-" colorscheme dracula 
+" colorscheme dracula
 "
 " let g:seoul256_background = 233
 " let g:seoul256_light_background = 256
@@ -142,6 +146,9 @@ set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tab to spaces
 " set backspace=2 " make backspace work like most other apps
 
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+
 """ UI
 set number " show line number
 set showcmd " show command in bottom bar
@@ -165,9 +172,18 @@ set foldnestmax=10 " 10 nested fold max
 nnoremap <space> za " space open/close folds
 set foldmethod=indent " fold based on indent level / run `:help foldmethod` for more
 
+"""" SPLIT
+" more natual split
+set splitbelow
+set splitright
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 """" MOVE
 "" no skip for wrapped lines
-" nnoremap j gj 
+" nnoremap j gj
 " nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
@@ -175,6 +191,9 @@ nnoremap gV `[v`]
 
 " utf-8 default encoding
 set enc=utf-8
+
+" Autocomplete with dictionary words when sell check is on
+set complete+=kspell
 
 " prefer unix over windows over os9 formats
 set fileformats=unix,dos,mac
