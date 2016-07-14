@@ -14,7 +14,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'mango.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -32,7 +31,6 @@ Plugin 'mango.vim'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 "  Plugin 'scrooloose/nerdtree'
 "  map <Leader>f :NERDTreeToggle<CR>
 "  let g:NERDTreeDirArrowExpandable = '>'
@@ -51,24 +49,6 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
-"" CSCOPE key mapping
-"" find this C symbol
-nnoremap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-"" find this definition
-nnoremap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-"" find functions calling this function
-nnoremap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-"" find assignments to
-nnoremap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-"" find this egrep pattern
-nnoremap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-"" find this file
-nnoremap <Leader>cf :cs find f <C-R>=expand("<cword>")<CR><CR>
-"" find  files #includeing this file
-nnoremap <Leader>ci :cs find i <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"" find functions called by this function
-nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 Plugin 'godlygeek/tabular'
@@ -80,52 +60,48 @@ vnoremap <Leader>t: :Tabularize /:<CR>
 
 Plugin 'klen/python-mode'
 let g:pymode_rope = 0
-" Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
-" syntax highlighting
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
-" Plugin 'davidhalter/jedi-vim'
+
+" Plugin 'davidhalter/jedi-vim'  " Python autocompletion
+
 Plugin 'tpope/vim-markdown'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" JS syntax
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'pangloss/vim-javascript'          " syntax - JS
+Plugin 'nathanaelkane/vim-indent-guides'  " display indent guide
 
-" CSS3
-Plugin 'JulesWang/css.vim'
-Plugin 'genoma/vim-less'
-"Plugin 'lepture/vim-css'
-" Syntax Highlight for Stylus
-Plugin 'wavded/vim-stylus'
 
-" swig.js
-Plugin 'blockloop/vim-swigjs'
+Plugin 'JulesWang/css.vim'  " syntax Highlight CSS3
+" Plugin 'genoma/vim-less'  " syntax for less - CSS
+" Plugin 'lepture/vim-css'       " syntax for CSS - CSS
+" Plugin 'wavded/vim-stylus'     " syntax for stylus - CSS
+" Plugin 'blockloop/vim-swigjs'  " syntax for swig template - JS
 
 " Highlight html tags
 Plugin 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
                       \ 'jinja' : 1 }
 
+"""""
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
-
-Plugin 'junegunn/seoul256.vim'
-Plugin 'nanotech/jellybeans.vim'
-
-Plugin 'pangloss/vim-javascript'
-
 " Optional:
 Plugin 'honza/vim-snippets'
 
+""" Theme
+Plugin 'mango.vim'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'junegunn/seoul256.vim'
+Plugin 'nanotech/jellybeans.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
-
 
 """" COLOR
 set t_Co=256  " this one should be put before colorscheme setting
@@ -174,7 +150,7 @@ set number " show line number
 set showcmd " show command in bottom bar
 set wildmenu " visual autocomplete for command menu
 set showmatch " highlight matching brackets
-set colorcolumn=79
+set colorcolumn=79 " display a line length limit guiding gutter
 set scrolloff=6  " keep some more lines for scope
 
 """ SEARCH
@@ -208,19 +184,34 @@ nnoremap <C-l> <C-w>l
 " highlight last inserted text
 nnoremap gV `[v`]
 
+"// CSCOPE key mapping
+"// find this C symbol
+nnoremap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+"" find this definition
+nnoremap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+"" find functions calling this function
+nnoremap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+"" find assignments to
+nnoremap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+"" find this egrep pattern
+nnoremap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+"" find this file
+nnoremap <Leader>cf :cs find f <C-R>=expand("<cword>")<CR><CR>
+"" find  files #includeing this file
+nnoremap <Leader>ci :cs find i <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"" find functions called by this function
+nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" utf-8 default encoding
-set enc=utf-8
 
-" Autocomplete with dictionary words when sell check is on
-set complete+=kspell
+set encoding=utf-8 " utf-8 default encoding
 
-" prefer unix over windows over os9 formats
-set fileformats=unix,dos,mac
+set complete+=kspell " autocomplete with dictionary words
 
-" don't bell or blink
-set noerrorbells
-set vb t_vb=
+set fileformats=unix,dos,mac " perfer unix file format
+
+set noerrorbells           " no beeping or screen flashing
+set visualbell t_vb=       " no beeping or screen flashing
 
 " hide some files and remove help
 let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
