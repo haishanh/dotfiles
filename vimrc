@@ -51,6 +51,26 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
+"" CSCOPE key mapping
+"" find this C symbol
+nnoremap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+"" find this definition
+nnoremap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+"" find functions calling this function
+nnoremap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+"" find assignments to
+nnoremap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+"" find this egrep pattern
+nnoremap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+"" find this file
+nnoremap <Leader>cf :cs find f <C-R>=expand("<cword>")<CR><CR>
+"" find  files #includeing this file
+nnoremap <Leader>ci :cs find i <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"" find functions called by this function
+nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
 Plugin 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
 nnoremap <Leader>t= :Tabularize /=<CR>
