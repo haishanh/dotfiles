@@ -49,7 +49,7 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
-
+Plugin 'vim-airline/vim-airline'
 
 Plugin 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
