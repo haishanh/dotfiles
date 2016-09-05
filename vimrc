@@ -50,6 +50,7 @@ let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
 Plugin 'vim-airline/vim-airline'
+set laststatus=2
 
 Plugin 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
@@ -73,6 +74,8 @@ Plugin 'tpope/vim-markdown'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 Plugin 'pangloss/vim-javascript'          " syntax - JS
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 Plugin 'nathanaelkane/vim-indent-guides'  " display indent guide
 
 
@@ -105,7 +108,7 @@ filetype plugin indent on    " required
 
 """" COLOR
 set t_Co=256  " this one should be put before colorscheme setting
-" syntax enable
+syntax enable
 " set background=dark
 " colorscheme dracula
 "
