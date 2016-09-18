@@ -41,7 +41,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrl_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*.so,*.swp,*.zip,node_modules/*
+set wildignore+=*.so,*.swp,*.zip,*/node_modules/*
 
 Plugin 'taglist.vim'
 let Tlist_Compact_Format = 1
@@ -139,9 +139,9 @@ nnoremap <leader>s :mksession<CR>
 set pastetoggle=<F10>
 
 """" SPACE & TAB
-set tabstop=4 " number of visual spaces per TAB
-set shiftwidth=4
-set softtabstop=4 " number of spaces in tab when editing
+set tabstop=2 " number of visual spaces per TAB
+set shiftwidth=2
+set softtabstop=2 " number of spaces in tab when editing
 set expandtab " tab to spaces
 " set backspace=2 " make backspace work like most other apps
 
