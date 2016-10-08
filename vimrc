@@ -36,7 +36,7 @@ Plugin 'VundleVim/Vundle.vim'
 "  let g:NERDTreeDirArrowExpandable = '>'
 "  let g:NERDTreeDirArrowCollapsible = 'v'
 ""  close vim if only NERDTree window exit
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plugin 'sjl/gundo.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrl_map = '<c-p>'
