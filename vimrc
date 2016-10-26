@@ -99,7 +99,7 @@ Plugin 'honza/vim-snippets'
 
 """ Theme
 Plugin 'mango.vim'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'dracula/vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'nanotech/jellybeans.vim'
 
