@@ -50,6 +50,7 @@ let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
 Plugin 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
 Plugin 'godlygeek/tabular'
@@ -246,7 +247,10 @@ augroup END
 
 " restore last cursor position
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
 endif
 
 set undodir=/home/haishanh/.vim/undo-dir
