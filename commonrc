@@ -13,3 +13,18 @@ man() {
 
 export VISUAL=vim
 export EDITOR=vim
+export PATH="$HOME/.usr/bin:$PATH"
+
+# for tj/n
+export N_PREFIX=$HOME/.usr
+export NODE_MIRROR=https://npm.taobao.org/mirrors/node/
+
+## alias
+alias v="vim"
+alias vi="vim"
+alias pps="ps -eo pid,args"
+alias bw="ssh -p 22222 root@bw.hanhaishan.com"
+alias size="du -h -d 0"
+
+# homebrew bottle
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles

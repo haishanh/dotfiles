@@ -111,12 +111,12 @@ filetype plugin indent on    " required
 set t_Co=256  " this one should be put before colorscheme setting
 syntax enable
 " set background=dark
-" colorscheme dracula
+colorscheme dracula
 "
 " let g:seoul256_background = 233
 " let g:seoul256_light_background = 256
 " colorscheme seoul256
-colorscheme jellybeans
+" colorscheme jellybeans
 " colorscheme seti
 
 " let g:solarized_termcolors=256
@@ -144,7 +144,7 @@ set tabstop=2 " number of visual spaces per TAB
 set shiftwidth=2
 set softtabstop=2 " number of spaces in tab when editing
 set expandtab " tab to spaces
-" set backspace=2 " make backspace work like most other apps
+set backspace=2 " make backspace work like most other apps
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -253,5 +253,5 @@ if has("autocmd")
     \ endif
 endif
 
-set undodir=/home/haishanh/.vim/undo-dir
-set backupdir=/home/haishanh/.vim/backup
+set undodir=$HOME/.vim/undo-dir
+set backupdir=$HOME/.vim/backup
