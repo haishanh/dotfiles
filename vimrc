@@ -74,6 +74,8 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 Plugin 'tpope/vim-markdown'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 Plugin 'pangloss/vim-javascript'          " syntax - JS
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
@@ -91,6 +93,14 @@ Plugin 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
                       \ 'jinja' : 1 }
 
+Plugin 'mileszs/ack.vim'
+"" https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+nnoremap <Leader>g :Ack! "<cword>"<CR>
+Plugin 'xavierchow/vim-sequence-diagram'
+nmap <unique> <leader>q <Plug>GenerateDiagram
 """""
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
