@@ -71,12 +71,13 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Plugin 'davidhalter/jedi-vim'  " Python autocompletion
 
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'pangloss/vim-javascript'          " syntax - JS
+let g:javascript_plugin_jsdoc = 1         " enable highlight for jsdoc
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
 Plugin 'nathanaelkane/vim-indent-guides'  " display indent guide
@@ -113,6 +114,8 @@ Plugin 'mango.vim'
 Plugin 'dracula/vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'liuchengxu/space-vim-dark'
+Plugin 'ashfinal/vim-colors-paper'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -121,7 +124,8 @@ filetype plugin indent on    " required
 set t_Co=256  " this one should be put before colorscheme setting
 syntax enable
 " set background=dark
-colorscheme dracula
+" colorscheme dracula
+colorscheme paper
 "
 " let g:seoul256_background = 233
 " let g:seoul256_light_background = 256
@@ -141,8 +145,10 @@ colorscheme dracula
 " let g:rehash256 = 1
 
 """" COMMON KEY BINDING
-map <leader>, :tabn<CR> " switch to next tab
-map <leader>. :tabp<CR> " switch to next tab
+" switch to next buffer 
+map <leader>. :bn<CR>
+" switch to previous buffer
+map <leader>, :bp<CR>
 inoremap jk <esc>  " jk is escape
 nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 " save session / vim -S to restore session
