@@ -1,66 +1,48 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
-
 let mapleader=","  " default is key `\`
 
 set tags+=/home/haishanh/repo/dpdk-2.2.0/tags
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-Plugin 'scrooloose/nerdtree'
+call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree'
 map <Leader>f :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 " close vim if only NERDTree window exit
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-Plugin 'sjl/gundo.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrl_map = '<c-p>'
+Plug 'sjl/gundo.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*.so,*.swp,*.zip,*/node_modules/*
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]node_modules$'
+  \ }
+set wildignore+=*.so,*.swp,*.zip
 
-Plugin 'taglist.vim'
+Plug 'taglist.vim'
 let Tlist_Compact_Format = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
 nnoremap <Leader>t= :Tabularize /=<CR>
 vnoremap <Leader>t= :Tabularize /=<CR>
 nnoremap <Leader>t: :Tabularize /:<CR>
 vnoremap <Leader>t: :Tabularize /:<CR>
 
-Plugin 'klen/python-mode'
+Plug 'klen/python-mode'
 let g:pymode_rope = 0
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
@@ -69,60 +51,78 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
-" Plugin 'davidhalter/jedi-vim'  " Python autocompletion
+" Plug 'davidhalter/jedi-vim'  " Python autocompletion
 
-" Plugin 'tpope/vim-markdown'
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" Plug 'tpope/vim-markdown'
+" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-Plugin 'pangloss/vim-javascript'          " syntax - JS
+Plug 'majutsushi/tagbar'
+Plug 'pangloss/vim-javascript'          " syntax - JS
 let g:javascript_plugin_jsdoc = 1         " enable highlight for jsdoc
-Plugin 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
-Plugin 'nathanaelkane/vim-indent-guides'  " display indent guide
+Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
 
 
-Plugin 'JulesWang/css.vim'  " syntax Highlight CSS3
+Plug 'JulesWang/css.vim'  " syntax Highlight CSS3
 " Plugin 'genoma/vim-less'  " syntax for less - CSS
 " Plugin 'lepture/vim-css'       " syntax for CSS - CSS
 " Plugin 'wavded/vim-stylus'     " syntax for stylus - CSS
 " Plugin 'blockloop/vim-swigjs'  " syntax for swig template - JS
 
 " Highlight html tags
-Plugin 'valloric/MatchTagAlways'
+Plug 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
                       \ 'jinja' : 1 }
 
-Plugin 'mileszs/ack.vim'
+Plug 'jlanzarotta/bufexplorer'
+nnoremap <silent> <leader>bb :ToggleBufExplorer<CR>
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+
+Plug 'mileszs/ack.vim'
 "" https://github.com/ggreer/the_silver_searcher
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 nnoremap <Leader>g :Ack! "<cword>"<CR>
-Plugin 'xavierchow/vim-sequence-diagram'
+Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
 nmap <unique> <leader>q <Plug>GenerateDiagram
+
+"" Aync Lint Engine
+Plug 'w0rp/ale'
 """""
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips', { 'on': [] }
+let g:UltiSnipsExpandTrigger="<C-e>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+Plug 'Valloric/YouCompleteMe', { 'on': [] }
+let g:ycm_register_as_syntastic_checker = 0
+
+augroup load_us_ycm
+  autocmd!
+  " autocmd CursorHold, CursorHoldI * call plug#load('ultisnips', 'YouCompleteMe')
+  "                    \| autocmd! load_us_ycm
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| autocmd! load_us_ycm
+augroup END
 " Optional:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 """ Theme
-Plugin 'mango.vim'
-Plugin 'dracula/vim'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'liuchengxu/space-vim-dark'
-Plugin 'ashfinal/vim-colors-paper'
+Plug 'mango.vim'
+Plug 'dracula/vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'ashfinal/vim-colors-paper'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 """" COLOR
 set t_Co=256  " this one should be put before colorscheme setting
-syntax enable
 " set background=dark
 " colorscheme dracula
 colorscheme paper
@@ -165,7 +165,7 @@ set backspace=2 " make backspace work like most other apps
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-""" UI
+"""" UI
 set number " show line number
 set showcmd " show command in bottom bar
 set wildmenu " visual autocomplete for command menu
@@ -173,8 +173,7 @@ set showmatch " highlight matching brackets
 set colorcolumn=79 " display a line length limit guiding gutter
 set scrolloff=6  " keep some more lines for scope
 
-""" SEARCH
-
+"""" SEARCH
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set ignorecase " case insensitive matching
@@ -183,10 +182,16 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 """" FOLDING
 " set foldenable " enable folding
-set foldlevelstart=99 " unfold every fold
-set foldnestmax=10 " 10 nested fold max
-nnoremap <space> za " space open/close folds
-set foldmethod=indent " fold based on indent level / run `:help foldmethod` for more
+" unfold every fold
+set foldlevelstart=99
+" 10 nested fold max
+set foldnestmax=10
+" space open/close folds
+nnoremap <space> za
+" fold based on syntax
+" another value can be "level"
+" run `:help foldmethod` for more
+set foldmethod=syntax
 
 """" SPLIT
 " more natual split
@@ -225,11 +230,10 @@ nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 set encoding=utf-8 " utf-8 default encoding
+set hidden " enable switch from unsaved buffer
 
-set complete+=kspell " autocomplete with dictionary words
-
+" set complete+=kspell " autocomplete with dictionary words
 set fileformats=unix,dos,mac " perfer unix file format
-
 set noerrorbells           " no beeping or screen flashing
 set visualbell t_vb=       " no beeping or screen flashing
 
@@ -239,26 +243,23 @@ nnoremap <leader>n :Explore<CR>
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
-    autocmd!
-    autocmd VimEnter * highlight clear SignColumn
-    autocmd FileType python setlocal commentstring=#\ %s
-    autocmd BufEnter *.cls setlocal filetype=java
-    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
-    autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.c,*.h,*.cpp,*.cxx setlocal sw=2 ts=2 sts=2 " google cpp coding style
-    autocmd BufEnter *.sh setlocal sw=2 ts=2 sts=2
-    autocmd BufEnter *.js setlocal sw=2 ts=2 sts=2
-    autocmd BufEnter *.html setlocal sw=2 ts=2 sts=2
-    autocmd BufEnter *.css,*scss,*.less setlocal sw=2 ts=2 sts=2
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd FileType python setlocal commentstring=#\ %s
+  autocmd FileTYpe python setlocal sw=4 ts=4 sts=4
+  autocmd BufEnter *.cls setlocal filetype=java
+  autocmd BufEnter *.zsh-theme setlocal filetype=zsh
+  autocmd BufEnter Makefile setlocal noexpandtab
+  autocmd BufEnter *.seq setlocal filetype=seq " sequence diagram
 augroup END
 
 " restore last cursor position
