@@ -33,6 +33,8 @@ nnoremap <Leader>l :TlistToggle<CR>
 
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 set laststatus=2
 
 Plug 'godlygeek/tabular'
@@ -41,6 +43,7 @@ nnoremap <Leader>t= :Tabularize /=<CR>
 vnoremap <Leader>t= :Tabularize /=<CR>
 nnoremap <Leader>t: :Tabularize /:<CR>
 vnoremap <Leader>t: :Tabularize /:<CR>
+Plug 'plasticboy/vim-markdown'
 
 Plug 'klen/python-mode'
 let g:pymode_rope = 0
@@ -57,6 +60,10 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 Plug 'majutsushi/tagbar'
+
+""" syntax highlight
+Plug 'sheerun/vim-polyglot'  " A collection of language packs
+
 Plug 'pangloss/vim-javascript'          " syntax - JS
 let g:javascript_plugin_jsdoc = 1         " enable highlight for jsdoc
 Plug 'mxw/vim-jsx'
@@ -64,7 +71,8 @@ let g:jsx_ext_required = 0
 Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
 
 
-Plug 'JulesWang/css.vim'  " syntax Highlight CSS3
+" Plug 'JulesWang/css.vim'  " syntax Highlight CSS3
+Plug 'cakebaker/scss-syntax.vim'
 " Plugin 'genoma/vim-less'  " syntax for less - CSS
 " Plugin 'lepture/vim-css'       " syntax for CSS - CSS
 " Plugin 'wavded/vim-stylus'     " syntax for stylus - CSS
@@ -111,6 +119,11 @@ augroup END
 " Optional:
 Plug 'honza/vim-snippets'
 
+Plug 'airblade/vim-gitgutter'
+" `]c` => to next change
+" `[c` => to prev change
+" Plug 'mhinz/vim-signify'
+
 """ Theme
 Plug 'mango.vim'
 Plug 'dracula/vim'
@@ -118,14 +131,36 @@ Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'ashfinal/vim-colors-paper'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 """" COLOR
-set t_Co=256  " this one should be put before colorscheme setting
-" set background=dark
+" set t_Co=256  " this one should be put before colorscheme setting
+set background=dark
 " colorscheme dracula
-colorscheme paper
+" colorscheme paper
+colorscheme onedark
+" let g:airline_theme='onedark'
+let g:onedark_terminal_italics=1
+" highlight Comment cterm=italic
+
 "
 " let g:seoul256_background = 233
 " let g:seoul256_light_background = 256
@@ -150,6 +185,7 @@ map <leader>. :bn<CR>
 " switch to previous buffer
 map <leader>, :bp<CR>
 inoremap jk <esc>  " jk is escape
+inoremap kj <esc>  " kj is escape
 nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 " save session / vim -S to restore session
 nnoremap <leader>s :mksession<CR>
@@ -180,6 +216,10 @@ set ignorecase " case insensitive matching
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
+" easy copy to system clipboard in visual mode
+vnoremap <leader>y "*y
+
+set nofoldenable
 """" FOLDING
 " set foldenable " enable folding
 " unfold every fold
@@ -272,3 +312,6 @@ endif
 
 set undodir=$HOME/.vim/undo-dir
 set backupdir=$HOME/.vim/backup
+
+" tmp
+nnoremap <leader>a <C-z>

@@ -13,15 +13,21 @@ man() {
 
 export VISUAL=vim
 export EDITOR=vim
-export PATH="$HOME/.usr/bin:$PATH"
+export PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
+
+# in iTerm2 using italic text
+export TERM=xterm-256color-italic
+
+# go
+export GOPATH=$HOME/go
 
 # for tj/n
 export N_PREFIX=$HOME/.usr
 export NODE_MIRROR=https://npm.taobao.org/dist
 
 ## alias
-alias v="vim"
-alias vi="vim"
+alias v="nvim"   # using neovim
+alias vi="nvim"
 alias pps="ps -eo pid,args"
 alias bw="ssh -p 22222 root@bw.hanhaishan.com"
 alias size="du -h -d 0"
