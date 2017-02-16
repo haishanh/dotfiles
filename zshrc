@@ -85,3 +85,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.commonrc
+
+# pure prompt for zsh `sindresorhus/pure`
+# works better with `sindresorhus/iterm2-snazzy`
+ZSH_THEME=""
+autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL="$"
+PURE_PROMPT_SYMBOL="▷"
+prompt pure
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -23,20 +23,33 @@ export GOPATH=$HOME/go
 
 # for tj/n
 export N_PREFIX=$HOME/.usr
-export NODE_MIRROR=https://npm.taobao.org/dist
+# export NODE_MIRROR=https://npm.taobao.org/dist
+# default export NODE_MIRROR=https://nodejs.org/dist/
 
 ## alias
 alias v="nvim"   # using neovim
 alias vi="nvim"
-alias pps="ps -eo pid,args"
+alias vp='vim $(fzf -m)'  # open projects
+# alias pps="ps -eo pid,args"
+alias pps="ps -eo pid,%cpu,command"
 alias bw="ssh -p 22222 root@bw.hanhaishan.com"
 alias size="du -h -d 0"
 alias c="printf '\n\n\n\n\n'; clear"
-alias agg="ag --ignore-dir node_modules" # brew install the_silver_searcher
+
+# inlude hidden files, ignore node_modules coverage
+alias agg="ag --hidden --ignore node_modules --ignore coverage" # brew install the_silver_searcher
+alias agf="agg -g ''" # brew install the_silver_searcher
 
 # homebrew bottle
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
+# ripgrep
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*,!node_modules/"'
+
+# ag
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage -g ''"
+
+[ -f ~/.thisrc ] && source ~/.thisrc
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

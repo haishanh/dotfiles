@@ -1,13 +1,15 @@
 set nocompatible              " be iMproved, required
 let mapleader=","  " default is key `\`
 
-set tags+=/home/haishanh/repo/dpdk-2.2.0/tags
+" set tags+=/home/haishanh/repo/dpdk-2.2.0/tags
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
+
+" vim --startuptime vim.log
 
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
@@ -17,12 +19,12 @@ let g:NERDTreeDirArrowCollapsible = '-'
 " close vim if only NERDTree window exit
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 Plug 'sjl/gundo.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/]node_modules$'
-  \ }
+" Plug 'ctrlpvim/ctrlp.vim'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir': '\v[\/]node_modules$'
+"   \ }
 set wildignore+=*.so,*.swp,*.zip
 
 Plug 'taglist.vim'
@@ -44,32 +46,38 @@ vnoremap <Leader>t= :Tabularize /=<CR>
 nnoremap <Leader>t: :Tabularize /:<CR>
 vnoremap <Leader>t: :Tabularize /:<CR>
 Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_frontmatter = 1
 
-Plug 'klen/python-mode'
-let g:pymode_rope = 0
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
+" Plug 'klen/python-mode'
+" let g:pymode_rope = 0
+" let g:pymode_lint = 1
+" let g:pymode_lint_checker = "pyflakes,pep8"
+" let g:pymode_syntax = 1
+" let g:pymode_syntax_all = 1
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Plug 'davidhalter/jedi-vim'  " Python autocompletion
 
-" Plug 'tpope/vim-markdown'
-" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/vim-after-object'
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+" va=  visual after =
+" ca=  change after =
+" da=  delete after =
+" ya=  yank after =
 
 """ syntax highlight
 Plug 'sheerun/vim-polyglot'  " A collection of language packs
 
 Plug 'pangloss/vim-javascript'          " syntax - JS
 let g:javascript_plugin_jsdoc = 1         " enable highlight for jsdoc
-Plug 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
+" Plug 'mxw/vim-jsx'
+let g:jsx_ext_required = 1
 Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
 
+Plug 'mattn/emmet-vim'
+" <c-y>,
 
 " Plug 'JulesWang/css.vim'  " syntax Highlight CSS3
 Plug 'cakebaker/scss-syntax.vim'
@@ -83,16 +91,12 @@ Plug 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
                       \ 'jinja' : 1 }
 
-Plug 'jlanzarotta/bufexplorer'
-nnoremap <silent> <leader>bb :ToggleBufExplorer<CR>
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-
 Plug 'mileszs/ack.vim'
 "" https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-endif
-nnoremap <Leader>g :Ack! "<cword>"<CR>
+" if executable('ag')
+"     let g:ackprg = 'ag --vimgrep'
+" endif
+" nnoremap <Leader>g :Ack! "<cword>"<CR>
 Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
 nmap <unique> <leader>q <Plug>GenerateDiagram
 
@@ -106,8 +110,32 @@ Plug 'SirVer/ultisnips', { 'on': [] }
 let g:UltiSnipsExpandTrigger="<C-e>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-Plug 'Valloric/YouCompleteMe', { 'on': [] }
-let g:ycm_register_as_syntastic_checker = 0
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
+
+" Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe'
+let g:ycm_collect_identifiers_from_comments_and_strings=1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_filetype_blacklist = {
+    \  'nerdtree' : 1,
+    \}
+" I do not need sematic completion
+let g:ycm_filetype_specific_completion_to_disable = {
+    \ '*': 1
+    \}
 
 augroup load_us_ycm
   autocmd!
@@ -131,7 +159,61 @@ Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'ashfinal/vim-colors-paper'
+" 24bit color supported
 Plug 'joshdick/onedark.vim'
+Plug 'AlessandroYorba/Monrovia'
+Plug 'alessandroyorba/sidonia'
+Plug 'jacoborus/tender.vim'
+Plug 'zanglg/nova.vim'
+Plug 'rakr/vim-one'
+
+" Temporary
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+
+Plug 'junegunn/vim-xmark', { 'do': 'make' }
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+autocmd VimEnter * command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Ctrl+P
+nnoremap <c-p> :Files<CR>
+" Grep text
+" see https://github.com/junegunn/fzf.vim/issues/50
+nnoremap <silent> <leader>g :Rg <C-R><C-W><CR>
+nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
+nnoremap <silent> <leader>ag :Ag <C-R><C-W><CR>
+" Buffer navigation
+nnoremap <silent> <leader>bb :Buffers<CR>
+nnoremap <silent> <leader><Enter> :Buffers<CR>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 call plug#end()
 
@@ -152,14 +234,14 @@ if (empty($TMUX))
 endif
 
 """" COLOR
-" set t_Co=256  " this one should be put before colorscheme setting
 set background=dark
+" set t_Co=256  " this one should be put before colorscheme setting
 " colorscheme dracula
 " colorscheme paper
 colorscheme onedark
 " let g:airline_theme='onedark'
 let g:onedark_terminal_italics=1
-" highlight Comment cterm=italic
+highlight Comment cterm=italic
 
 "
 " let g:seoul256_background = 233
@@ -181,9 +263,11 @@ let g:onedark_terminal_italics=1
 
 """" COMMON KEY BINDING
 " switch to next buffer 
-map <leader>. :bn<CR>
+nnoremap <leader>. :bn<CR>
+nnoremap ]b :bn<CR>
 " switch to previous buffer
-map <leader>, :bp<CR>
+nnoremap <leader>, :bp<CR>
+nnoremap [b :bp<CR>
 inoremap jk <esc>  " jk is escape
 inoremap kj <esc>  " kj is escape
 nnoremap <leader>u :GundoToggle<CR> " toggle gundo
@@ -191,11 +275,32 @@ nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 nnoremap <leader>s :mksession<CR>
 set pastetoggle=<F10>
 
+nnoremap ++ :m .+1<CR>==
+nnoremap __ :m .-2<CR>==
+vnoremap ++ :m '>+1<CR>gv=gv
+vnoremap __ :m '<-2<CR>gv=gv
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Save
+inoremap <C-s>     <C-O>:update<cr>
+nnoremap <C-s>     :update<cr>
+
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-^> <C-o><C-^>
+
+set visualbell
+
 """" SPACE & TAB
 set tabstop=2 " number of visual spaces per TAB
 set shiftwidth=2
 set softtabstop=2 " number of spaces in tab when editing
 set expandtab " tab to spaces
+set smarttab
 set backspace=2 " make backspace work like most other apps
 
 " Display extra whitespace
@@ -208,6 +313,15 @@ set wildmenu " visual autocomplete for command menu
 set showmatch " highlight matching brackets
 set colorcolumn=79 " display a line length limit guiding gutter
 set scrolloff=6  " keep some more lines for scope
+" set lazyredraw
+
+" windows navigation
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
+
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
 
 """" SEARCH
 set incsearch " search as characters are entered
@@ -219,7 +333,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 " easy copy to system clipboard in visual mode
 vnoremap <leader>y "*y
 
-set nofoldenable
+" set nofoldenable
 """" FOLDING
 " set foldenable " enable folding
 " unfold every fold
@@ -293,13 +407,16 @@ endif
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
   autocmd!
-  autocmd VimEnter * highlight clear SignColumn
+  " autocmd VimEnter * highlight clear SignColumn
   autocmd FileType python setlocal commentstring=#\ %s
-  autocmd FileTYpe python setlocal sw=4 ts=4 sts=4
+  autocmd FileType python setlocal sw=4 ts=4 sts=4
   autocmd BufEnter *.cls setlocal filetype=java
   autocmd BufEnter *.zsh-theme setlocal filetype=zsh
   autocmd BufEnter Makefile setlocal noexpandtab
   autocmd BufEnter *.seq setlocal filetype=seq " sequence diagram
+  autocmd BufNewFile,BufRead *.apib        set filetype=markdown
+  autocmd BufNewFile,BufRead Dockerfile*   set filetype=dockerfile
+  " autocmd BufEnter *.md setlocal foldlevelstart=0
 augroup END
 
 " restore last cursor position
@@ -314,4 +431,4 @@ set undodir=$HOME/.vim/undo-dir
 set backupdir=$HOME/.vim/backup
 
 " tmp
-nnoremap <leader>a <C-z>
+nnoremap <leader>z <C-Z>
