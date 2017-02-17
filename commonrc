@@ -11,12 +11,23 @@ man() {
     man "$@"
 }
 
+if [ "$(uname -s)" = 'Darwin' ];then
+  DARWIN="yes"
+fi
+
 export VISUAL=vim
 export EDITOR=vim
 export PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
 
+# locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+if [ ${DARWIN} ];then
 # in iTerm2 using italic text
-export TERM=xterm-256color-italic
+  export TERM=xterm-256color-italic
+  alias ssh="TERM=xterm-256color ssh"
+fi
 
 # go
 export GOPATH=$HOME/go

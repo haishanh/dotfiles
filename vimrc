@@ -120,8 +120,21 @@ function! BuildYCM(info)
   endif
 endfunction
 
-" Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
-Plug 'Valloric/YouCompleteMe'
+if (has("nvim"))
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction "}}}
+
+else
+Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
+" Plug 'Valloric/YouCompleteMe'
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -144,6 +157,7 @@ augroup load_us_ycm
   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
                      \| autocmd! load_us_ycm
 augroup END
+endif
 " Optional:
 Plug 'honza/vim-snippets'
 
@@ -220,7 +234,7 @@ call plug#end()
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
+" if (empty($TMUX))
   if (has("nvim"))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -231,7 +245,7 @@ if (empty($TMUX))
   if (has("termguicolors"))
     set termguicolors
   endif
-endif
+" endif
 
 """" COLOR
 set background=dark
@@ -265,6 +279,8 @@ highlight Comment cterm=italic
 " switch to next buffer 
 nnoremap <leader>. :bn<CR>
 nnoremap ]b :bn<CR>
+nnoremap <silent> <Left> :bp<CR>
+nnoremap <silent> <Right> :bn<CR>
 " switch to previous buffer
 nnoremap <leader>, :bp<CR>
 nnoremap [b :bp<CR>
