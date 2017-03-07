@@ -1,3 +1,4 @@
+" vim: set foldmethod=marker foldlevel=0:
 set nocompatible              " be iMproved, required
 let mapleader=","  " default is key `\`
 
@@ -12,42 +13,63 @@ endif
 " vim --startuptime vim.log
 
 call plug#begin('~/.vim/bundle')
+" nerdtree {{{
 Plug 'scrooloose/nerdtree'
-map <Leader>f :NERDTreeToggle<CR>
+map <leader>f :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 " close vim if only NERDTree window exit
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-Plug 'sjl/gundo.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir': '\v[\/]node_modules$'
-"   \ }
-set wildignore+=*.so,*.swp,*.zip
+" }}}
 
+Plug 'mbbill/undotree'
+nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
+
+Plug 'tpope/vim-fugitive'
+
+" Plug 'itchyny/lightline.vim'
+" let g:lightline = {
+"       \   'active': {
+"       \     'left': [  ['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified'] ]
+"       \   },
+"       \   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"       \   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"       \ }
+" set laststatus=2
+
+" taglist {{{
 Plug 'taglist.vim'
 let Tlist_Compact_Format = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
-nnoremap <Leader>l :TlistToggle<CR>
+nnoremap <leader>l :TlistToggle<CR>
+" }}}
 
+" ariline {{{
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 1
 set laststatus=2
+" }}}
 
+" tabular {{{
 Plug 'godlygeek/tabular'
 nnoremap <Leader>t :Tabularize /=<CR>:Tabularize /:<CR>
 nnoremap <Leader>t= :Tabularize /=<CR>
 vnoremap <Leader>t= :Tabularize /=<CR>
 nnoremap <Leader>t: :Tabularize /:<CR>
 vnoremap <Leader>t: :Tabularize /:<CR>
+" }}}
+
+" vim-markdown {{{
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_conceal = 0
+" :Tocv => open TOC in a vertical split
+" }}}
 
+" python-mode {{{
 " Plug 'klen/python-mode'
 " let g:pymode_rope = 0
 " let g:pymode_lint = 1
@@ -56,6 +78,7 @@ let g:vim_markdown_frontmatter = 1
 " let g:pymode_syntax_all = 1
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 " let g:pymode_syntax_space_errors = g:pymode_syntax_all
+" }}}
 
 " Plug 'davidhalter/jedi-vim'  " Python autocompletion
 
@@ -75,39 +98,67 @@ let g:javascript_plugin_jsdoc = 1         " enable highlight for jsdoc
 " Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 1
 Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+" <leader>ig to display indent guides
 
 Plug 'mattn/emmet-vim'
 " <c-y>,
 
-" Plug 'JulesWang/css.vim'  " syntax Highlight CSS3
 Plug 'cakebaker/scss-syntax.vim'
-" Plugin 'genoma/vim-less'  " syntax for less - CSS
-" Plugin 'lepture/vim-css'       " syntax for CSS - CSS
-" Plugin 'wavded/vim-stylus'     " syntax for stylus - CSS
-" Plugin 'blockloop/vim-swigjs'  " syntax for swig template - JS
 
 " Highlight html tags
 Plug 'valloric/MatchTagAlways'
 let g:mta_filetypes = { 'html' : 1, 'xhtml' : 1, 'xml' : 1,
-                      \ 'jinja' : 1 }
+                      \ 'jinja' : 1,
+                      \ 'javascript.jsx': 1 }
+nnoremap <leader>% :MtaJumpToOtherTag<cr>
 
-Plug 'mileszs/ack.vim'
-"" https://github.com/ggreer/the_silver_searcher
-" if executable('ag')
-"     let g:ackprg = 'ag --vimgrep'
-" endif
-" nnoremap <Leader>g :Ack! "<cword>"<CR>
 Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
 nmap <unique> <leader>q <Plug>GenerateDiagram
 
-"" Aync Lint Engine
+" async lint engine {{{
 Plug 'w0rp/ale'
-"""""
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+" }}}
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
-Plug 'SirVer/ultisnips', { 'on': [] }
-let g:UltiSnipsExpandTrigger="<C-e>"
+"
+"
+"
+" testing
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#snippets_directory='~/.vim/snips'
+
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ neosnippet#expandable_or_jumpable() ?
+      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" Plug 'SirVer/ultisnips'
+" let g:UltiSnipsUsePythonVersion = 3
+" let g:UltiSnipsExpandTrigger="<leader>e"
+" let g:UltiSnipsSnippetsDir = "~/.vim/snips"
+""" use <c-j> / <c-k> to jump between positional anchors
+
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 function! BuildYCM(info)
@@ -120,9 +171,10 @@ function! BuildYCM(info)
   endif
 endfunction
 
-if (has("nvim"))
+if has('nvim')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -167,16 +219,14 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 
 """ Theme
-Plug 'mango.vim'
 Plug 'dracula/vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'ashfinal/vim-colors-paper'
 " 24bit color supported
 Plug 'joshdick/onedark.vim'
 Plug 'AlessandroYorba/Monrovia'
 Plug 'alessandroyorba/sidonia'
+Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'jacoborus/tender.vim'
 Plug 'zanglg/nova.vim'
 Plug 'rakr/vim-one'
@@ -184,13 +234,17 @@ Plug 'rakr/vim-one'
 " Temporary
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
+imap <unique> <c-e> <Plug>(fzf-complete-word)
 Plug 'junegunn/gv.vim'
 
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+let g:fzf_tags_command = 'ctags -R'
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -205,11 +259,17 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-autocmd VimEnter * command! -bang -nargs=* Ag
+" vertical split :Colors
+command! -bang Colors
+  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+" autocmd VimEnter * 
+command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+" to use ripgrep
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -221,59 +281,46 @@ command! -bang -nargs=* Rg
 nnoremap <c-p> :Files<CR>
 " Grep text
 " see https://github.com/junegunn/fzf.vim/issues/50
-nnoremap <silent> <leader>g :Rg <C-R><C-W><CR>
+nnoremap <silent> <leader>g :Ag <C-R><C-W><CR>
 nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
 nnoremap <silent> <leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <leader>tg :Tags <C-R><C-W><CR>
 " Buffer navigation
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader><Enter> :Buffers<CR>
+
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 call plug#end()
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-" if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-" endif
+if has('termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 """" COLOR
-set background=dark
-" set t_Co=256  " this one should be put before colorscheme setting
+" set background=dark
+
 " colorscheme dracula
 " colorscheme paper
-colorscheme onedark
+
+" let g:onedark_terminal_italics=1
 " let g:airline_theme='onedark'
-let g:onedark_terminal_italics=1
-highlight Comment cterm=italic
+" colorscheme onedark
 
-"
-" let g:seoul256_background = 233
-" let g:seoul256_light_background = 256
-" colorscheme seoul256
-" colorscheme jellybeans
-" colorscheme seti
+" colorscheme tender
 
-" let g:solarized_termcolors=256
-" let g:solarized_termcolors=1
-" colorscheme solarized
-" colorscheme eclipse
-" colorscheme gentooish
-" colorscheme herald
-" colorscheme railscasts
-"
-" colorscheme molokai
-" let g:rehash256 = 1
+colorscheme quantum
+let g:airline_theme='quantum'
+let g:quantum_italics = 1
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  " esc in nvim terminal
+  " vs term://zsh
+  tnoremap <Esc> <C-\><C-n>
+endif
 
 """" COMMON KEY BINDING
 " switch to next buffer 
@@ -284,9 +331,12 @@ nnoremap <silent> <Right> :bn<CR>
 " switch to previous buffer
 nnoremap <leader>, :bp<CR>
 nnoremap [b :bp<CR>
+map <unique><silent> <leader>1 :buffer1<cr>
+map <unique><silent> <leader>2 :buffer2<cr>
+map <unique><silent> <leader>3 :buffer3<cr>
+
 inoremap jk <esc>  " jk is escape
 inoremap kj <esc>  " kj is escape
-nnoremap <leader>u :GundoToggle<CR> " toggle gundo
 " save session / vim -S to restore session
 nnoremap <leader>s :mksession<CR>
 set pastetoggle=<F10>
@@ -304,12 +354,11 @@ nnoremap <C-s>     :update<cr>
 
 " Movement in insert mode
 inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
-inoremap <C-^> <C-o><C-^>
+inoremap <C-l> <C-o>l
+" inoremap <C-j> <C-o>j
+" inoremap <C-k> <C-o>k
+" inoremap <C-^> <C-o><C-^>
 
-set visualbell
 
 """" SPACE & TAB
 set tabstop=2 " number of visual spaces per TAB
@@ -329,15 +378,11 @@ set wildmenu " visual autocomplete for command menu
 set showmatch " highlight matching brackets
 set colorcolumn=79 " display a line length limit guiding gutter
 set scrolloff=6  " keep some more lines for scope
-" set lazyredraw
+set lazyredraw
 
 " windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
-
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
 
 """" SEARCH
 set incsearch " search as characters are entered
@@ -399,26 +444,16 @@ nnoremap <Leader>ci :cs find i <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
-set encoding=utf-8 " utf-8 default encoding
-set hidden " enable switch from unsaved buffer
-
-" set complete+=kspell " autocomplete with dictionary words
-set fileformats=unix,dos,mac " perfer unix file format
-set noerrorbells           " no beeping or screen flashing
-set visualbell t_vb=       " no beeping or screen flashing
+set encoding=utf-8
+set hidden
+set fileformats=unix,dos,mac
+" set noerrorbells               " no beeping or screen flashing
+" set visualbell t_vb=           " no beeping or screen flashing
+set visualbell
 
 " hide some files and remove help
 let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
 nnoremap <leader>n :Explore<CR>
-
-" allows cursor change in tmux mode
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
@@ -433,10 +468,17 @@ augroup configgroup
   autocmd BufNewFile,BufRead *.apib        set filetype=markdown
   autocmd BufNewFile,BufRead Dockerfile*   set filetype=dockerfile
   " autocmd BufEnter *.md setlocal foldlevelstart=0
+
+  " yarn global add prettier => gq{motion}
+  " use gggqG to format the whole file
+  " 'gg' go to line 1,
+  " 'gq' fomat,
+  " 'G' motion
+  autocmd FileType javascript set formatprg=prettier\ --single-quote\ --stdin
 augroup END
 
 " restore last cursor position
-if has("autocmd")
+if has('autocmd')
   autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g'\"" |
@@ -448,3 +490,7 @@ set backupdir=$HOME/.vim/backup
 
 " tmp
 nnoremap <leader>z <C-Z>
+let g:matchparen_insert_timeout=5
+
+" using OS clipboard
+" set clipboard=unnamed

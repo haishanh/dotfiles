@@ -25,8 +25,8 @@ export LANG=en_US.UTF-8
 
 if [ ${DARWIN} ];then
 # in iTerm2 using italic text
-  export TERM=xterm-256color-italic
-  alias ssh="TERM=xterm-256color ssh"
+  # export TERM=xterm-256color-italic
+  # alias ssh="TERM=xterm-256color ssh"
 fi
 
 # go
@@ -38,9 +38,10 @@ export N_PREFIX=$HOME/.usr
 # default export NODE_MIRROR=https://nodejs.org/dist/
 
 ## alias
-alias v="nvim"   # using neovim
+alias v="/usr/local/bin/vim"
 alias vi="nvim"
-alias vp='vim $(fzf -m)'  # open projects
+alias vp='nvim $(fzf -m)'  # open projects
+alias vimp='/usr/local/bin/vim $(fzf -m)'
 # alias pps="ps -eo pid,args"
 alias pps="ps -eo pid,%cpu,command"
 alias bw="ssh -p 22222 root@bw.hanhaishan.com"
@@ -48,7 +49,7 @@ alias size="du -h -d 0"
 alias c="printf '\n\n\n\n\n'; clear"
 
 # inlude hidden files, ignore node_modules coverage
-alias agg="ag --hidden --ignore node_modules --ignore coverage" # brew install the_silver_searcher
+alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git" # brew install the_silver_searcher
 alias agf="agg -g ''" # brew install the_silver_searcher
 
 # homebrew bottle
@@ -58,7 +59,7 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*,!node_modules/"'
 
 # ag
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage -g ''"
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage --ignore .git -g ''"
 
 [ -f ~/.thisrc ] && source ~/.thisrc
 
