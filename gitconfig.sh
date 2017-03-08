@@ -15,6 +15,7 @@ git_config()
   # alias
   git config${global} alias.s status
   git config${global} alias.ci commit
+  git config${global} alias.co checkout
   git config${global} alias.r "remote -v"
   git config${global} alias.d '!f() { [ -z "$GIT_PREFIX" ] || cd "$GIT_PREFIX" && git diff --color "$@" | diff-so-fancy  | less --tabs=4 -RFX; }; f'
   git config${global} alias.ds "diff --shortstat"

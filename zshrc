@@ -86,6 +86,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.commonrc
 
+# disable auto window rename in tmux
+export DISABLE_AUTO_TITLE="true"
+
 # pure prompt for zsh `sindresorhus/pure`
 # works better with `sindresorhus/iterm2-snazzy`
 ZSH_THEME=""
