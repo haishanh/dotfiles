@@ -11,13 +11,20 @@ man() {
     man "$@"
 }
 
-if [ "$(uname -s)" = 'Darwin' ];then
+if [ "$(uname -s)" = "Darwin" ];then
   DARWIN="yes"
+fi
+
+if [ "$(uname -s)" = "Linux" ];then
+  LINUX="yes"
 fi
 
 export VISUAL=vim
 export EDITOR=vim
-export PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
+
+[ -d "$HOME/.linuxbrew/bin" ] && PATH="$HOME/.linuxbrew/bin:$PATH"
+PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
+export PATH
 
 # locale
 export LC_ALL=en_US.UTF-8
@@ -27,6 +34,15 @@ if [ ${DARWIN} ];then
 # in iTerm2 using italic text
   # export TERM=xterm-256color-italic
   # alias ssh="TERM=xterm-256color ssh"
+  # homebrew bottle
+  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+fi
+
+if [ ${LINUX} -a -d "${HOME}/.linuxbrew" ]; then
+  tmp="${HOME}/.linuxbrew/lib/pkgconfig:${HOME}/.linuxbrew/share/pkgconfig"
+  tmp="${tmp}:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig"
+  tmp="${tmp}:/usr/local/lib/x86_64-linux-gnu/pkgconfig:/usr/local/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig"
+  export PKG_CONFIG_PATH="$tmp"
 fi
 
 # go
@@ -40,6 +56,7 @@ export N_PREFIX=$HOME/.usr
 ## alias
 alias v="/usr/local/bin/vim"
 alias vi="nvim"
+alias vim="nvim"
 alias vp='nvim $(fzf -m)'  # open projects
 alias vimp='/usr/local/bin/vim $(fzf -m)'
 # alias pps="ps -eo pid,args"
@@ -52,8 +69,6 @@ alias c="printf '\n\n\n\n\n'; clear"
 alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git" # brew install the_silver_searcher
 alias agf="agg -g ''" # brew install the_silver_searcher
 
-# homebrew bottle
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # ripgrep
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*,!node_modules/"'
