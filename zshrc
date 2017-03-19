@@ -93,8 +93,8 @@ export DISABLE_AUTO_TITLE="true"
 # works better with `sindresorhus/iterm2-snazzy`
 ZSH_THEME=""
 autoload -U promptinit; promptinit
+# PURE_PROMPT_SYMBOL="▷"
 PURE_PROMPT_SYMBOL="$"
-PURE_PROMPT_SYMBOL="▷"
 prompt pure
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

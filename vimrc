@@ -417,6 +417,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <silent> <leader>= :resize +10<cr>
+nnoremap <silent> <leader>- :resize -10<cr>
+nnoremap <silent> <leader>v= :vertical resize +10<cr>
+nnoremap <silent> <leader>v- :vertical resize -10<cr>
 
 """" MOVE
 "" no skip for wrapped lines
@@ -494,4 +498,6 @@ nnoremap <leader>z <C-Z>
 let g:matchparen_insert_timeout=5
 
 " using OS clipboard
-" set clipboard=unnamed
+set clipboard=unnamed
+" help ins-completion
+" help i_^n
