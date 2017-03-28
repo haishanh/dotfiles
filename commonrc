@@ -38,7 +38,7 @@ if [ ${DARWIN} ];then
   export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 fi
 
-if [ ${LINUX} -a -d "${HOME}/.linuxbrew" ]; then
+if [ ${LINUX} ] && [ -d "${HOME}/.linuxbrew" ]; then
   tmp="${HOME}/.linuxbrew/lib/pkgconfig:${HOME}/.linuxbrew/share/pkgconfig"
   tmp="${tmp}:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig"
   tmp="${tmp}:/usr/local/lib/x86_64-linux-gnu/pkgconfig:/usr/local/share/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig"
@@ -47,6 +47,7 @@ fi
 
 # go
 export GOPATH=$HOME/go
+export PATH="${GOPATH}/bin:${PATH}"
 
 # for tj/n
 export N_PREFIX=$HOME/.usr
@@ -64,6 +65,8 @@ alias pps="ps -eo pid,%cpu,command"
 alias bw="ssh -p 22222 root@bw.hanhaishan.com"
 alias size="du -h -d 0"
 alias c="printf '\n\n\n\n\n'; clear"
+
+alias t="todolist"
 
 # inlude hidden files, ignore node_modules coverage
 alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git" # brew install the_silver_searcher

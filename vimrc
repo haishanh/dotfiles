@@ -292,6 +292,10 @@ nnoremap <silent> <leader><Enter> :Buffers<CR>
 
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
+" Golang
+Plug 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
+
 call plug#end()
 
 if has('termguicolors')
@@ -466,6 +470,7 @@ augroup configgroup
   " autocmd VimEnter * highlight clear SignColumn
   autocmd FileType python setlocal commentstring=#\ %s
   autocmd FileType python setlocal sw=4 ts=4 sts=4
+  autocmd FileType go setlocal nolist
   autocmd BufEnter *.cls setlocal filetype=java
   autocmd BufEnter *.zsh-theme setlocal filetype=zsh
   autocmd BufEnter Makefile setlocal noexpandtab
