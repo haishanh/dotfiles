@@ -86,3 +86,4 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage 
 
 # tmp
 alias svg="svgo --pretty --indent=2"
+alias pretty="prettier --single-quote"
