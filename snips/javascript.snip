@@ -1,0 +1,116 @@
+snippet us
+options head
+  'use strict';
+  ${0}
+
+snippet if
+options head
+  if (${1:true}) {
+    ${0:TARGET}
+  }
+
+snippet js
+options head
+  JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
+
+snippet c=
+alias cr
+options head
+  const ${1:fs} = require('${2:fs}');
+
+snippet func
+options head
+  function ${1:func_name}(${2:args}) {
+    ${0:TARGET}
+  };
+
+snippet cf
+options head
+  const f = () => {};
+
+snippet cls
+options head
+  class ${1:one} extends ${2:two} {
+    constructor(options) {
+      super(options);
+    }
+  };
+
+snippet try
+options head
+  try {
+    ${0:TARGET}
+  } catch (err) {
+  };
+
+snippet /*
+  /*
+  ${0:TARGET}
+  */
+
+#### supertest ###
+snippet     supertest200
+options     head
+  return request(app)
+    .post('/api/cat')
+    .send(JSON.stringify({
+      data
+    }))
+    .expect(200)
+    .then(res => {
+      const data = res.body.data;
+    });
+
+snippet     supertest404
+options     head
+  return request(app)
+    .post('/api/cat')
+    .send(JSON.stringify(({
+      data
+    }))
+    .then(res => {
+      const err = JSON.parse(res.error.text).error;
+      err.statusCode.should.equal(404);
+      err.code.should.equal(11404);
+      err.message.should.equal('User not found');
+
+      // 2
+      res.body.error.should.have.property('statusCode', err.statusCode);
+      res.body.error.should.have.property('message', err.message);
+    });
+
+#### Loopback ###
+snippet     remote
+options     head
+  Customer.remoteMethod('methodName', {
+    description: 'The description of this remote method',
+    http: { path: '/:id', verb: 'post', status: 200 },
+    returns: { arg: 'data', type: 'object' },
+    accepts: [{
+      arg: 'id',
+      type: 'string',
+      required: true,
+      http: { source: 'path' }
+    }]
+  });
+
+#### React ####
+snippet     react
+  import React, { Component } from 'react';
+
+  class Whatever extends Component {
+
+    handleClick = (e) => {
+      e.preventDefault();
+    }
+
+    render() {
+      return (
+        <div>
+          <a onClick={this.handleClick}>Hello</a>
+        </div>
+      );
+    }
+  }
+
+  export default Whatever;
