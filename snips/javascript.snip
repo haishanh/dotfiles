@@ -3,6 +3,26 @@ options head
   'use strict';
   ${0}
 
+snippet quote
+alias q
+options head
+  '${1:TARGET}'${2}
+
+snippet quotequote
+alias qq
+options head
+  "${1:TARGET}"${2}
+
+
+snippet console-log
+alias cl
+  console.log(${0:TARGET});
+
+snippet console-dir
+alias cd
+options head
+  console.dir(${0:TARGET});
+
 snippet if
 options head
   if (${1:true}) {
@@ -13,8 +33,9 @@ snippet js
 options head
   JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
 
-snippet c=
+snippet const-require
 alias cr
+abbr const fs = require('fs');
 options head
   const ${1:fs} = require('${2:fs}');
 
@@ -47,6 +68,19 @@ snippet /*
   /*
   ${0:TARGET}
   */
+
+#### mocha like tests ###
+snippet     tit
+options     head
+  it('${1:#:should response 200}', () => {
+    ${0:TARGET}
+  });
+
+snippet     tdes
+options     head
+  describe('${1:#:model}', () => {
+    ${0:TARGET}
+  });
 
 #### supertest ###
 snippet     supertest200
@@ -98,7 +132,7 @@ options     head
 snippet     react
   import React, { Component } from 'react';
 
-  class Whatever extends Component {
+  class ${1:#:Whatever} extends Component {
 
     handleClick = (e) => {
       e.preventDefault();
@@ -113,4 +147,20 @@ snippet     react
     }
   }
 
-  export default Whatever;
+  export default ${1:#:Whatever};
+
+snippet     redux-reducer
+abbr        rere
+options     head
+  export default function reducer(state = {}, action) {
+    switch (action.type) {
+      case 'OPEN_MODAL': {
+        return Object.assign({}, state, {
+          isModalOpen: true
+        });
+      }
+
+      default:
+        return state;
+    }
+  };

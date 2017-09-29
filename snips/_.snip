@@ -1,0 +1,12 @@
+snippet quote
+alias q
+  '${1:TARGET}'${2}
+
+snippet quotequote
+alias qq
+  "${1:TARGET}"${2}
+
+snippet     date
+alias       da
+options     word
+  `strftime("%Y-%m-%dT%H:%M:%S")`${0}

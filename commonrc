@@ -1,15 +1,15 @@
 # add color for man page
 # https://wiki.archlinux.org/index.php/man_page
 man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[38;5;246m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-    man "$@"
+  env LESS_TERMCAP_mb=$'\E[01;31m' \
+  LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+  LESS_TERMCAP_me=$'\E[0m' \
+  LESS_TERMCAP_ue=$'\E[0m' \
+  LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+  man "$@"
 }
+  # LESS_TERMCAP_so=$'\E[38;5;246m' \
+  # LESS_TERMCAP_se=$'\E[0m' \
 
 if [ "$(uname -s)" = "Darwin" ];then
   DARWIN="yes"
@@ -19,8 +19,8 @@ if [ "$(uname -s)" = "Linux" ];then
   LINUX="yes"
 fi
 
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 
 [ -d "$HOME/.linuxbrew/bin" ] && PATH="$HOME/.linuxbrew/bin:$PATH"
 PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
@@ -87,3 +87,7 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage 
 # tmp
 alias svg="svgo --pretty --indent=2"
 alias pretty="prettier --single-quote"
+alias gl="git lg1 | head"
+alias re="reattach-to-user-namespace"
+
+export GPG_TTY=$(tty)
