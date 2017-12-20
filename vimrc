@@ -60,6 +60,7 @@ Plug 'mgee/lightline-bufferline'
 " hide "-- INSERT --"
 set noshowmode
 " subseparator': { 'left': '¦', 'right': '' },
+" 'separator': { 'left': '¦', 'right': '¦' },
 let g:lightline = {
       \   'colorscheme': 'flatcolor',
       \   'active': {
@@ -68,8 +69,7 @@ let g:lightline = {
       \   'component': {
       \     'readonly': '%{&readonly? "\u229D":""}',
       \   },
-      \   'separator': { 'left': '░', 'right': '░' },
-      \   'subseparator': { 'left': '¦', 'right': '¦' },
+      \   'subseparator': { 'left': '/', 'right': '¦' },
       \   'enable': { 'statusline': 1, 'tabline': 1 },
       \   'tabline': {'left': [['buffers']], 'right': [['close']]},
       \   'component_expand': {'buffers': 'lightline#bufferline#buffers'},
@@ -141,6 +141,8 @@ let g:jsx_ext_required = 0
 " Plug 'flowtype/vim-flow'
 " Plug 'steelsojka/deoplete-flow'
 
+Plug 'chr4/nginx.vim'
+
 " indent guides {{{
 Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
 let g:indent_guides_start_level = 2
@@ -173,9 +175,10 @@ Plug 'digitaltoad/vim-pug'
 " nmap <unique> <leader>sq <Plug>GenerateDiagram
 
 " async lint engine {{{
-"Plug 'w0rp/ale'
-let g:ale_sign_column_always = 1
-" let g:ale_lint_on_text_changed = 0
+" Plug 'w0rp/ale'
+" let g:ale_sign_column_always = 1
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_save = 1
 " }}}
 
@@ -392,6 +395,8 @@ colorscheme onedark
 
 """}}}
 
+""" {{{ keymap
+
 if has('nvim')
   " vs term://zsh
   tnoremap <Esc> <C-\><C-n>
@@ -433,6 +438,8 @@ inoremap <C-l> <C-o>l
 " inoremap <C-j> <C-o>j
 " inoremap <C-k> <C-o>k
 " inoremap <C-^> <C-o><C-^>
+
+"""}}}
 
 set autoread
 
@@ -542,7 +549,7 @@ augroup configgroup
   " sequence diagram
   autocmd BufEnter *.seq                   setlocal filetype=seq
   " api blueprint
-  autocmd BufNewFile,BufRead *.apib        set filetype=markdown
+  " autocmd BufNewFile,BufRead *.apib        set filetype=markdown
   autocmd BufNewFile,BufRead Dockerfile*   set filetype=dockerfile
 
   " wechat miniapp

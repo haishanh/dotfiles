@@ -23,7 +23,8 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 [ -d "$HOME/.linuxbrew/bin" ] && PATH="$HOME/.linuxbrew/bin:$PATH"
-PATH="$HOME/.usr/bin:$PATH:/usr/local/sbin"
+PATH="$HOME/.usr/bin:$HOME/.yarn/bin:$PATH:/usr/local/sbin"
+# export PATH="/usr/local/opt/mozjpeg/bin:$PATH"
 export PATH
 
 # locale
@@ -88,6 +89,9 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage 
 alias svg="svgo --pretty --indent=2"
 alias pretty="prettier --single-quote"
 alias gl="git lg1 | head"
-alias re="reattach-to-user-namespace"
+alias rea="reattach-to-user-namespace"
 
 export GPG_TTY=$(tty)
+
+# export http_proxy=http://127.0.0.1:1087
+# export https_proxy=http://127.0.0.1:1087

@@ -98,3 +98,6 @@ PURE_PROMPT_SYMBOL="$"
 prompt pure
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/haishan/.travis/travis.sh ] && source /Users/haishan/.travis/travis.sh

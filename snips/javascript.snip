@@ -5,14 +5,15 @@ options head
 
 snippet quote
 alias q
-options head
   '${1:TARGET}'${2}
 
 snippet quotequote
 alias qq
-options head
   "${1:TARGET}"${2}
 
+snippet string-template
+alias ss
+  `${1:TARGET}`${2}
 
 snippet console-log
 alias cl
@@ -149,6 +150,18 @@ snippet     react
 
   export default ${1:#:Whatever};
 
+snippet     react-componentDidMount
+abbr        cdm
+  componentDidMount() {
+    ${0:TARGET}
+  }
+
+snippet     react-componentWillMount
+abbr        cwm
+  componentWillMount() {
+    ${0:TARGET}
+  }
+
 snippet     redux-reducer
 abbr        rere
 options     head
@@ -164,3 +177,12 @@ options     head
         return state;
     }
   };
+
+
+
+snippet     react-redux
+abbr        redux
+  // reduxxxxx
+  import { connect } from 'react-redux';
+  import { bindActionCreators } from 'redux';
+  import * as appActions from '../ducks/app';
