@@ -1,0 +1,234 @@
+priority -49
+
+
+snippet pr "prettier-ignore"
+// prettier-ignore
+endsnippet
+
+snippet us "use strict;"
+'use strict';
+endsnippet
+
+snippet cl "console.log" b
+// eslint-disable-next-line no-console
+console.log(${0});
+endsnippet
+
+snippet fun "function (named)" b
+function ${1:hello}(${2}) {
+	${VISUAL}${0:// TODO}
+}
+endsnippet
+
+snippet af "async function" b
+async function ${1:hello}(${2}) {
+	${VISUAL}${0:// TODO}
+}
+endsnippet
+
+snippet aw "await" b
+await ${VISUAL}$0
+endsnippet
+
+snippet cf "const f = () => {}" b
+const ${1} = (${2}) => {
+	${VISUAL}${0:// TODO}
+}
+endsnippet
+
+snippet tryf "try { ... } catch(e) { ... } finally { ... }" b
+try {
+	${VISUAL}$0
+} catch (${1:err}) {
+	${2:// TODO}
+} finally {
+	${3:/* be executed regardless of the try / catch result*/}
+}
+endsnippet
+
+snippet try "try { ... } catch(e) { ... }"
+try {
+	${VISUAL}$0
+} catch (${1:err}) {
+	${2:/* TODO handle error */}
+}
+endsnippet
+
+snippet switch
+	switch (${1:expression}) {
+		case '${3:case}':
+			${4}
+			break;
+		${0}
+		default:
+			${2}
+	}
+endsnippet
+
+snippet if "if"
+if (${1:true}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet ife "if(){...}else{..}"
+if (${1:true}) {
+	${VISUAL}$0
+} else {
+	// TODO
+}
+endsnippet
+
+snippet eslint
+// eslint-disable-next-line no-console
+// eslint-disable-next-line no-shadow
+// eslint-disable-next-line import/prefer-default-export
+endsnippet
+
+snippet for "for(let i=0;...)"
+for (let i = 0; i < ${1:arr}.length; i++) {
+	${0:TARGET}
+}
+endsnippet
+
+snippet forof "for(const v of iterable)"
+for (const value of iterable) {
+	// console.log(value);
+}
+endsnippet
+
+snippet js "JSON.stringify"
+JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
+endsnippet
+
+snippet jp "JSON.parse"
+JSON.parse(${0:TARGET});
+endsnippet
+
+snippet jsc "console.log(JSON.stringify(.))"
+	console.log(JSON.stringify(${1:TARGET}, null, 2));
+endsnippet
+
+snippet cls
+class ${1:one} extends ${2:two} {
+	constructor(options) {
+		super(options);
+	}
+};
+endsnippet
+
+snippet sleep "sleep function"
+const sleep = t => new Promise(r => setTimeout(r, t));
+endsnippet
+
+snippet timeout
+setTimeout(() => {
+	${VISUAL}$0
+}, ${1:#:3000});
+endsnippet
+
+snippet im "import xyz from 'xyz'"
+import ${1} from '${2:$1}';
+endsnippet
+snippet imas "import * as xyz from 'xyz'"
+import * as ${1} from '${2:$1}';
+endsnippet
+snippet imm "import { member } from 'xyz'"
+import { ${1} } from '${2}';
+endsnippet
+
+#=== node
+
+snippet cr "const fs = require('fs')"
+const ${1:fs} = require('${2:fs}');
+${0}
+endsnippet
+
+snippet node
+'use strict';
+
+const fs = require('fs');
+const util = require('util');
+
+const writeFile = util.promisify(fs.writeFile);
+const readFile = util.promisify(fs.readFile);
+
+// main
+async function main() {
+	const c = await readFile('package.json', 'utf8');
+	console.log(c.version);
+}
+
+main();
+endsnippet
+
+#=== test
+snippet supertest
+
+const { statusCode, body } = await request(app)
+	.post('/api/cat')
+	.type('application/json')
+	.set('x-transaction-id', 'testTransactionId')
+	.send({});
+endsnippet
+
+snippet stub "sinon.stub"
+const $1Stub = sinon
+	.stub(Stripe.webhooks, '$1')
+	.callsFake(() => {
+		$0
+	});
+
+/* TODO */
+
+${1}Stub.restore();
+endsnippet
+
+#=== react
+
+snippet re "React boilerplate"
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const { useState, useEffect, useCallback } = React;
+
+function $1() {
+	const handleClick = useCallback(e => {
+		e.preventDefault();
+	}, []);
+	return (
+		<>
+			$0
+		</>
+	);
+}
+
+$1.propTypes = {
+	isOpen: PropTypes.bool.isRequired,
+	onRequestClose: PropTypes.func.isRequired
+};
+
+export default ${1:Whatever};
+endsnippet
+
+snippet uses "useState"
+const [$1, set$1] = useState($2);
+endsnippet
+
+snippet usee "useEffect"
+useEffect(() => {
+	$0
+}, []);
+endsnippet
+
+snippet usec "useCallback"
+const abc = useCallback(() => {
+	$0
+}, []);
+endsnippet
+
+snippet usem "useMemo"
+const abc = useMemo(() => {
+	$0
+}, []);
+endsnippet

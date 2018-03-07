@@ -1,52 +1,77 @@
+#!/bin/bash
+# vi: set ft=sh :
 # add color for man page
 # https://wiki.archlinux.org/index.php/Color_output_in_console#man
-# man() {
-#   env LESS_TERMCAP_mb=$'\E[01;31m' \
-#   LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-#   LESS_TERMCAP_me=$'\E[0m' \
-#   LESS_TERMCAP_ue=$'\E[0m' \
-#   LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-#   man "$@"
-# }
 man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;44;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  command man "$@"
 }
-  # LESS_TERMCAP_so=$'\E[38;5;246m' \
-  # LESS_TERMCAP_se=$'\E[0m' \
 
-if [ "$(uname -s)" = "Darwin" ];then
+if [ "$(uname -s)" = "Darwin" ]; then
   DARWIN="yes"
 fi
 
-if [ "$(uname -s)" = "Linux" ];then
+if [ "$(uname -s)" = "Linux" ]; then
   LINUX="yes"
 fi
 
 export VISUAL=nvim
 export EDITOR=nvim
 
-## PATH
+##### PATH >
+
 [ -d "$HOME/.linuxbrew/bin" ] && PATH="$HOME/.linuxbrew/bin:$PATH"
-PATH="$HOME/.usr/bin:$HOME/.yarn/bin:$PATH:/usr/local/sbin:/usr/local/bin"
-# export PATH="/usr/local/opt/mozjpeg/bin:$PATH"
+PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/local/bin:$HOME/Downloads/flutter/bin"
+
+# go
+export GOPATH=$HOME/go
+PATH="${GOPATH}/bin:${PATH}"
+
+# rust
+#  https://rustup.rs/
+PATH="$HOME/.cargo/bin:${PATH}"
+
+# use curl from the homebrew
+PATH="/usr/local/opt/curl/bin:${PATH}"
+PATH="/usr/local/opt/openjdk/bin:${PATH}"
+
+# nodejs
+
+# fnm
+# https://github.com/Schniz/fnm#manually
+# eval `fnm env`
+# [ -x ~/.usr/bin/fnm ] && PATH="$HOME/.fnm/current/bin:$PATH"
+# eval `fnm env --node-dist-mirror="https://npm.taobao.org/dist"`
+if [ -x ~/.usr/bin/fnm ]; then
+  eval `~/.usr/bin/fnm env --node-dist-mirror="https://npm.taobao.org/dist"`
+fi
+
 export PATH
+
+###### PATH <
 
 # locale
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 if [ ${DARWIN} ];then
-# in iTerm2 using italic text
+  # in iTerm2 using italic text
   # export TERM=xterm-256color-italic
   # alias ssh="TERM=xterm-256color ssh"
   # homebrew bottle
-  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+  # https://mirrors.bfsu.edu.cn/help/homebrew-bottles/
+  # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.bfsu.edu.cn/homebrew-bottles
+
+  # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+  # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+  # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+  # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 fi
 
 if [ ${LINUX} ] && [ -d "${HOME}/.linuxbrew" ]; then
@@ -56,13 +81,6 @@ if [ ${LINUX} ] && [ -d "${HOME}/.linuxbrew" ]; then
   export PKG_CONFIG_PATH="$tmp"
 fi
 
-# go
-export GOPATH=$HOME/go
-export PATH="${GOPATH}/bin:${PATH}"
-
-# rust
-#  https://rustup.rs/
-export PATH="$HOME/.cargo/bin:${PATH}"
 
 # for tj/n
 export N_PREFIX=$HOME/.usr
@@ -77,11 +95,10 @@ alias vp='nvim $(fzf -m)'  # open projects
 alias vimp='/usr/local/bin/vim $(fzf -m)'
 # alias pps="ps -eo pid,args"
 alias pps="ps -eo pid,%cpu,command"
-alias bw="ssh -p 22222 root@bw.hanhaishan.com"
 alias size="du -h -d 0"
 alias c="printf '\n\n\n\n\n'; clear"
-
 alias t="todolist"
+alias myip="curl ip.cn"
 
 # inlude hidden files, ignore node_modules coverage
 alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git --ignore yarn.lock --ignore package-lock.json" # brew install the_silver_searcher
@@ -92,7 +109,15 @@ alias agf="agg -g ''" # brew install the_silver_searcher
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*,!node_modules/"'
 
 # ag
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage --ignore .git -g ''"
+# export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage --ignore .git -g ''"
+
+# fzf + fd
+# https://github.com/sharkdp/fd/blob/master/README.md#using-fd-with-fzf
+# brew install fd
+# export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.thisrc ] && source ~/.thisrc
 
@@ -101,11 +126,25 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore node_modules --ignore coverage 
 
 # tmp
 alias svg="svgo --pretty --indent=2"
+alias png="pngquant --ext 80.png --quality 80"
 alias pretty="prettier --single-quote"
 alias gl="git lg1 | head"
 alias rea="reattach-to-user-namespace"
 
+alias uuid="node ~/t/uuid/index.js"
+alias del="rmtrash"
+alias rm="rmtrash"
+# z lua
+alias zz="z -I"
+
+# https://sw.kovidgoyal.net/kitty/faq.html#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
+# alias ssh="kitty +kitten ssh"
+
 export GPG_TTY=$(tty)
 
-# export http_proxy=http://127.0.0.1:1087
-# export https_proxy=http://127.0.0.1:1087
+export NVIM_LOG_FILE="~/tmp"
+
+# list recent branches
+alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gt="git tag -l --sort=-taggerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(taggerdate:relative)%(color:reset))'"
+alias gt1="git tag -l --sort=-v:refname --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(taggerdate:relative)%(color:reset))'"

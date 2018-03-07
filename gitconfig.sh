@@ -1,20 +1,20 @@
 #!/bin/bash
 # ~/.gitconfig
 
-
-git_config()
-{
+git_config() {
   global=${1}
-  git config${global} user.name "haishanh"
+  git config${global} user.name "Haishan"
   git config${global} user.email haishanhan@gmail.com
 
   git config${global} core.editor vim
-
   git config${global} color.ui true
+
+  git config${global} protocol.version 2
 
   # alias
   git config${global} alias.s status
   git config${global} alias.ci commit
+  git config${global} alias.fo "fetch origin"
   git config${global} alias.co checkout
   git config${global} alias.r "remote -v"
   git config${global} alias.d '!f() { [ -z "$GIT_PREFIX" ] || cd "$GIT_PREFIX" && git diff --color "$@" | diff-so-fancy  | less --tabs=4 -RFX; }; f'

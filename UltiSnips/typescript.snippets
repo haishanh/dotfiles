@@ -1,0 +1,45 @@
+priority -49
+
+snippet pi "prettier-ignore"
+// prettier-ignore
+endsnippet
+
+snippet cl "console.log" b
+// eslint-disable-next-line no-console
+console.log(${0});
+endsnippet
+
+snippet js "JSON.stringify"
+JSON.stringify(${1:TARGET}, ${2:null}, ${3:2})
+endsnippet
+
+snippet jsc "console.log(JSON.stringify...)"
+console.log(
+JSON.stringify(${1:TARGET}, ${2:null}, ${3:2})
+)
+endsnippet
+
+snippet for "for(let i=0;...)"
+for (let i = 0; i < ${1:arr}.length; i++) {
+	${0:TARGET}
+}
+endsnippet
+
+snippet lint "eslint" b
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+endsnippet
+
+snippet unused "eslint ignore" b
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+endsnippet
+
+snippet sleep "sleep function"
+const sleep = (t: number) => new Promise((r) => setTimeout(r, t));
+endsnippet
+
+snippet iife
+const sleep = (t: number) => new Promise((r) => setTimeout(r, t));
+(async () => {
+	await sleep(1);
+})();
+endsnippet

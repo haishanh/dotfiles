@@ -10,3 +10,6 @@ snippet     date
 alias       da
 options     word
   `strftime("%Y-%m-%dT%H:%M:%S")`${0}
+
+snippet dt "date YYYY-mm-dd"
+  ${1:`strftime("%Y")`}-${2:`strftime("%m")`}-${3:`strftime("%d")`} ${0}

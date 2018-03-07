@@ -1,0 +1,72 @@
+[user]
+	name = Haishan
+	email = haishanhan@gmail.com
+[core]
+	editor = nvim
+	excludesfile = /Users/haishan/.gitignore_global
+  # https://github.com/dandavison/delta
+  pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+  line-numbers = true
+  decorations = true
+  # features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[color]
+	ui = true
+[alias]
+	s = status
+	ci = commit
+	co = checkout
+	r = remote -v
+	d = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+	ds = diff --shortstat
+	l = log --pretty=oneline --graph --abbrev-commit
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	fo = fetch origin
+[github]
+	user = haishanh
+[ghi]
+	token = !security find-internet-password -a haishanh -s github.com -l 'ghi token' -w
+[pull]
+	rebase = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = ~/commit.template
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+ ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[protocol]
+	version = 2
+[init]
+	defaultBranch = main
