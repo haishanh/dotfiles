@@ -11,6 +11,17 @@
 " l  ":lmap" mappings for Insert, Command-line and Lang-Arg
 " c  Command-line
 "
+"
+" variables
+" g:  global variables
+" b:  local buffer variables
+" w:  local window variables
+" t:  local tab page variables
+" s:  script-local variables
+" l:  local function variables
+" v:  vim variables
+" to list all global vars, run `:let g:`
+
 " Notes {{{
 """ startuptime debug
 " vim --startuptime vim.log
@@ -24,7 +35,13 @@ set nocompatible
 "" defaut one is `\`
 let mapleader=","
 
+set complete+=kspell
+
 " set tags+=/home/haishanh/repo/dpdk-2.2.0/tags
+"
+if has('termguicolors')
+  set termguicolors
+endif
 
 """ {{{ plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -36,7 +53,7 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " nerdtree {{{
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 map <silent> <leader>f :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -48,7 +65,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nnoremap <leader>q :bp<cr>:bd #<cr>
 " }}}
 
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
 Plug 'tpope/vim-fugitive'
@@ -97,10 +114,12 @@ let g:lightline = {
 " }}}
 
 " vim-markdown {{{
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_conceal = 0
 " :Tocv => open TOC in a vertical split
+Plug 'junegunn/goyo.vim', { 'for': 'markdown', 'on': 'Goyo' }
+" autocmd! User goyo.vim echom 'Goyo is now loaded!'
 " }}}
 
 " python-mode {{{
@@ -141,10 +160,10 @@ let g:jsx_ext_required = 0
 " Plug 'flowtype/vim-flow'
 " Plug 'steelsojka/deoplete-flow'
 
-Plug 'chr4/nginx.vim'
+Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 
 " indent guides {{{
-Plug 'nathanaelkane/vim-indent-guides'  " display indent guide
+Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
@@ -153,16 +172,22 @@ let g:indent_guides_auto_colors = 0
 " <leader>ig to display indent guides
 " }}}
 
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
 "= syntax scss
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 "= syntax typescript
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+
+Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 
 "= syntax pug/jade
-Plug 'digitaltoad/vim-pug'
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+
+Plug 'posva/vim-vue'
+
+Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " Highlight html tags
 " Plug 'valloric/MatchTagAlways'
@@ -182,14 +207,16 @@ Plug 'digitaltoad/vim-pug'
 " let g:ale_lint_on_save = 1
 " }}}
 
+" Automatically close parenthesis, etc
+" Plug 'Townk/vim-autoclose'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
-"
 "
 "
 " testing
@@ -224,6 +251,9 @@ function! BuildYCM(info)
 endfunction
 
 if has('nvim')
+
+" {{{
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
@@ -231,10 +261,18 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
+function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction "}}}
+endfunction
+
+" }}}
+
+" {{{
+" Plug 'roxma/nvim-completion-manager'
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" }}}
 
 else
 Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
@@ -262,26 +300,31 @@ augroup load_us_ycm
 augroup END
 endif
 " Optional:
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 Plug 'airblade/vim-gitgutter'
+" When you make a change to a file tracked by git, the diff markers should appear automatically
+" The delay is governed by vim's updatetime option
+" https://github.com/airblade/vim-gitgutter#getting-started
+set updatetime=100
 " `]c` => to next change
 " `[c` => to prev change
 " Plug 'mhinz/vim-signify'
 
 """ Theme
-Plug 'dracula/vim'
-Plug 'nanotech/jellybeans.vim'
+" Plug 'dracula/vim'
+Plug 'haishanh/vim-dracula'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'ashfinal/vim-colors-paper'
 " 24bit color supported
 Plug 'joshdick/onedark.vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'jacoborus/tender.vim'
-Plug 'zanglg/nova.vim'
-Plug 'rakr/vim-one'
-Plug 'iCyMind/NeoSolarized'
+" Plug 'zanglg/nova.vim'
+" Plug 'rakr/vim-one'
+" Plug 'iCyMind/NeoSolarized'
 Plug 'MaxSt/FlatColor'
-Plug 'mhinz/vim-janah'
+" Plug 'mhinz/vim-janah'
 Plug 'mhartington/oceanic-next'
 
 " Temporary
@@ -344,41 +387,51 @@ nnoremap <silent> <leader><Enter> :Buffers<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Golang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 let g:go_fmt_command = "goimports"
 
 " Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
-Plug 'sbdchd/neoformat'
-let g:neoformat_try_formatprg = 1
+" Plug 'sbdchd/neoformat'
+" let g:neoformat_try_formatprg = 1
+" nnoremap <silent> gp :Neoformat<cr>
 
-Plug 'fleischie/vim-styled-components'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#bracket_spacing = 'true'
+" none|es5|all
+let g:prettier#config#trailing_comma = 'none'
+nnoremap <silent> gp :PrettierAsync<cr>
+" nnoremap <silent> gp :Prettier<cr>
 
-Plug 'aklt/plantuml-syntax'
+" Plug 'fleischie/vim-styled-components'
 
-Plug 'tpope/vim-liquid' " Jeyll template
+" Plug 'aklt/plantuml-syntax'
+
+" Plug 'tpope/vim-liquid' " Jeyll template
 
 """ run tests
-Plug 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 " API Blueprint syntax
-Plug 'kylef/apiblueprint.vim'
+Plug 'kylef/apiblueprint.vim', { 'for': 'apib' }
 call plug#end()
 
 """"}}}
 
-if has('termguicolors')
-  set termguicolors
-endif
-
 """ {{{ colorschemes
 
+"" let g:airline_theme='onedark'
 set background=dark
-
-let g:onedark_terminal_italics=1
-" let g:airline_theme='onedark'
-colorscheme onedark
+" let g:onedark_terminal_italics=1
+" colorscheme onedark
+" colorscheme dracula
 
 " let g:neosolarized_italic = 0
 
@@ -389,17 +442,43 @@ colorscheme onedark
 " colorscheme flatcolor
 " highlight Comment cterm=italic
 
+colorscheme tender
+
 " set background=dark
 " colorscheme NeoSolarized
 " let g:neosolarized_italic = 0
+" highlight Comment cterm=italic
 
 """}}}
 
 """ {{{ keymap
 
 if has('nvim')
+  " tnoremap => terminal noremap
   " vs term://zsh
+  " A for ALT key
   tnoremap <Esc> <C-\><C-n>
+  tnoremap <A-[> <Esc>
+  " Terminal mode
+  tnoremap <A-h> <c-\><c-n><c-w>h
+  tnoremap <A-j> <c-\><c-n><c-w>j
+  tnoremap <A-k> <c-\><c-n><c-w>k
+  tnoremap <A-l> <c-\><c-n><c-w>l
+  " " Normal mode
+  nnoremap <A-h> <c-w>h
+  nnoremap <A-j> <c-w>j
+  nnoremap <A-k> <c-w>k
+  nnoremap <A-l> <c-w>l
+  " " Insert mode
+  " inoremap <A-h> <Esc><c-w>h
+  " inoremap <A-j> <Esc><c-w>j
+  " inoremap <A-k> <Esc><c-w>k
+  " inoremap <A-l> <Esc><c-w>l
+  " " Visual mode
+  " vnoremap <A-h> <Esc><c-w>h
+  " vnoremap <A-j> <Esc><c-w>j
+  " vnoremap <A-k> <Esc><c-w>k
+  " vnoremap <A-l> <Esc><c-w>l
 endif
 
 """" common key binding
@@ -442,42 +521,61 @@ inoremap <C-l> <C-o>l
 """}}}
 
 set autoread
+" au FocusGained,BufEnter * :silent! !
+" au FocusLost,WinLeave * :silent! w
 
-"""" SPACE & TAB
-set tabstop=2 " number of visual spaces per TAB
+""" {{{ SPACE & TAB
+
+" number of visual spaces per TAB
+set tabstop=2
 set shiftwidth=2
-set softtabstop=2 " number of spaces in tab when editing
-set expandtab " tab to spaces
+" number of spaces in tab when editing
+set softtabstop=2
+" tab to spaces
+set expandtab
 set smarttab
-set backspace=2 " make backspace work like most other apps
-
-" Display extra whitespace
+" make backspace work like most other apps
+set backspace=2
+" display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-"""" UI
-set number " show line number
-set showcmd " show command in bottom bar
-set wildmenu " visual autocomplete for command menu
-set showmatch " highlight matching brackets
-set colorcolumn=79 " display a line length limit guiding gutter
-set scrolloff=6  " keep some more lines for scope
-set lazyredraw
+""" }}} SPACE & TAB
+
+""" {{{ UI
+set number
+" show command in bottom bar
+set showcmd
+" visual autocomplete for command menu
+set wildmenu
+" highlight matching brackets
+set showmatch
+" display a line length limit guiding gutter
+set colorcolumn=79
+" keep some more lines for scope
+set scrolloff=6
+" set lazyredraw
+""" }}} UI
+
 " windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
-"""" SEARCH
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set ignorecase " case insensitive matching
+""" {{{ search
+" search as characters are entered
+set incsearch
+" highlight matches
+set hlsearch
+" case insensitive matching
+set ignorecase
 " turn off search highlight
 nnoremap <silent> <leader><space> :nohlsearch<CR>
+""" }}} search
 
 " easy copy to system clipboard in visual mode
 vnoremap <leader>y "*y
 
-" set nofoldenable
-"""" FOLDING
+""" {{{ folding
+
 " set foldenable " enable folding
 " unfold every fold
 set foldlevelstart=99
@@ -490,7 +588,9 @@ nnoremap <space> za
 " run `:help foldmethod` for more
 set foldmethod=syntax
 
-"""" SPLIT
+""" }}} folding
+
+""" {{{ split
 " more natual split
 set splitbelow
 set splitright
@@ -502,14 +602,9 @@ nnoremap <silent> <leader>= :resize +10<cr>
 nnoremap <silent> <leader>- :resize -10<cr>
 nnoremap <silent> <leader>v= :vertical resize +10<cr>
 nnoremap <silent> <leader>v- :vertical resize -10<cr>
+""" }}} split
 
-"""" MOVE
-"" no skip for wrapped lines
-" nnoremap j gj
-" nnoremap k gk
-" highlight last inserted text
-
-"// CSCOPE key mapping
+""" {{{ cscope
 "// find this C symbol
 nnoremap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
 "" find this definition
@@ -527,6 +622,7 @@ nnoremap <Leader>ci :cs find i <C-R>=expand("<cword>")<CR><CR>
 " nnoremap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "" find functions called by this function
 nnoremap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+""" }}} cscope
 
 set encoding=utf-8
 scriptencoding utf-8
@@ -538,6 +634,8 @@ set visualbell
 let g:netrw_list_hide='^\.,.\(pyc\|pyo\|o\)$'
 nnoremap <leader>n :Explore<CR> 
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
+
+" autocmd {{{
 augroup configgroup
   autocmd!
   " autocmd VimEnter * highlight clear SignColumn
@@ -552,9 +650,16 @@ augroup configgroup
   " autocmd BufNewFile,BufRead *.apib        set filetype=markdown
   autocmd BufNewFile,BufRead Dockerfile*   set filetype=dockerfile
 
+  autocmd BufEnter *babelrc                  setlocal filetype=json
+
   " wechat miniapp
-  autocmd BufEnter *.wxss                   setlocal filetype=scss
-  autocmd BufEnter *.wxml                   setlocal filetype=xml
+  autocmd BufEnter *.wxss                  setlocal filetype=scss
+  autocmd BufEnter *.wxml                  setlocal filetype=xml
+  autocmd BufRead,BufNewFile *.wpy setlocal filetype=vue.html.javascript.css
+
+  " spell check
+  autocmd BufRead,BufNewFile *.md          setlocal spell
+  autocmd FileType gitcommit               setlocal spell
 
   " yarn global add prettier => gq{motion}
   " use gggqG to format the whole file
@@ -563,14 +668,13 @@ augroup configgroup
   " 'G' motion
   autocmd FileType javascript set formatprg=prettier\ --single-quote\ --stdin
 augroup END
+" autocmd }}}
 
 " restore last cursor position
-if has('autocmd')
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
-endif
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
 
 if has('persistent_undo')
   set noswapfile
@@ -583,7 +687,6 @@ endif
 
 " tmp
 " nnoremap <c-j> gggqG
-nnoremap <silent> gp :Neoformat<cr>
 nnoremap <leader>z <C-Z>
 let g:matchparen_insert_timeout=5
 

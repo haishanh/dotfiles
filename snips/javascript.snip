@@ -30,9 +30,19 @@ options head
     ${0:TARGET}
   }
 
+snippet for
+abbr hs+for let array
+  for (let i = 0; i < ${1:arr}.length; i++) {
+    ${0:TARGET}
+  }
+
 snippet js
 options head
   JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
+
+snippet jp
+options head
+  JSON.parse(${0:TARGET});
 
 snippet const-require
 alias cr
@@ -57,6 +67,19 @@ options head
       super(options);
     }
   };
+
+snippet sleep
+  const sleep = t => new Promise(r => setTimeout(r, t));
+
+snippet interval
+  setInterval(() => {
+    ${0:TARGET}
+  }, ${1:#:3000});
+
+snippet timeout
+  setTimeout(() => {
+    ${0:TARGET}
+  }, ${1:#:3000});
 
 snippet try
 options head
@@ -132,8 +155,14 @@ options     head
 #### React ####
 snippet     react
   import React, { Component } from 'react';
+  import PropTypes from 'prop-types';
 
   class ${1:#:Whatever} extends Component {
+
+    static propTypes = {
+      isOpen: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired
+    };
 
     handleClick = (e) => {
       e.preventDefault();
@@ -150,15 +179,21 @@ snippet     react
 
   export default ${1:#:Whatever};
 
-snippet     react-componentDidMount
-abbr        cdm
+snippet     cdm
+abbr        react-componentDidMount
   componentDidMount() {
     ${0:TARGET}
   }
 
-snippet     react-componentWillMount
-abbr        cwm
+snippet     cwm
+abbr        react-componentWillMount
   componentWillMount() {
+    ${0:TARGET}
+  }
+
+snippet     cwu
+abbr        react-componentWillUnmount
+  componentWillUnmount() {
     ${0:TARGET}
   }
 
@@ -180,9 +215,27 @@ options     head
 
 
 
-snippet     react-redux
-abbr        redux
+snippet        redux
+abbr           react-redux
   // reduxxxxx
   import { connect } from 'react-redux';
   import { bindActionCreators } from 'redux';
   import * as appActions from '../ducks/app';
+
+  function mapStateToProps(state) {
+    return {
+      app: state.app,
+      modal: state.modal
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(
+        Object.assign({}, modalActions, appActions),
+        dispatch
+      )
+    };
+  }
+
+  @connect(mapStateToProps, mapDispatchToProps)

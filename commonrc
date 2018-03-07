@@ -1,12 +1,21 @@
 # add color for man page
-# https://wiki.archlinux.org/index.php/man_page
+# https://wiki.archlinux.org/index.php/Color_output_in_console#man
+# man() {
+#   env LESS_TERMCAP_mb=$'\E[01;31m' \
+#   LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+#   LESS_TERMCAP_me=$'\E[0m' \
+#   LESS_TERMCAP_ue=$'\E[0m' \
+#   LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+#   man "$@"
+# }
 man() {
-  env LESS_TERMCAP_mb=$'\E[01;31m' \
-  LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-  LESS_TERMCAP_me=$'\E[0m' \
-  LESS_TERMCAP_ue=$'\E[0m' \
-  LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-  man "$@"
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
 }
   # LESS_TERMCAP_so=$'\E[38;5;246m' \
   # LESS_TERMCAP_se=$'\E[0m' \
@@ -22,8 +31,9 @@ fi
 export VISUAL=nvim
 export EDITOR=nvim
 
+## PATH
 [ -d "$HOME/.linuxbrew/bin" ] && PATH="$HOME/.linuxbrew/bin:$PATH"
-PATH="$HOME/.usr/bin:$HOME/.yarn/bin:$PATH:/usr/local/sbin"
+PATH="$HOME/.usr/bin:$HOME/.yarn/bin:$PATH:/usr/local/sbin:/usr/local/bin"
 # export PATH="/usr/local/opt/mozjpeg/bin:$PATH"
 export PATH
 
@@ -50,6 +60,10 @@ fi
 export GOPATH=$HOME/go
 export PATH="${GOPATH}/bin:${PATH}"
 
+# rust
+#  https://rustup.rs/
+export PATH="$HOME/.cargo/bin:${PATH}"
+
 # for tj/n
 export N_PREFIX=$HOME/.usr
 # export NODE_MIRROR=https://npm.taobao.org/dist
@@ -70,7 +84,7 @@ alias c="printf '\n\n\n\n\n'; clear"
 alias t="todolist"
 
 # inlude hidden files, ignore node_modules coverage
-alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git" # brew install the_silver_searcher
+alias agg="ag --hidden --ignore node_modules --ignore coverage --ignore .git --ignore yarn.lock --ignore package-lock.json" # brew install the_silver_searcher
 alias agf="agg -g ''" # brew install the_silver_searcher
 
 
