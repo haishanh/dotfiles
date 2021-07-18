@@ -808,15 +808,15 @@ let g:asyncrun_open = 8
 " nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 "=== easymotion
-let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_smartcase = 1
 " map  <Leader>f <Plug>(easymotion-bd-f)
 " nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+" nmap s <Plug>(easymotion-overwin-f2)
 " Move to line
-map <Leader>j <Plug>(easymotion-bd-jk)
-nmap <Leader>k <Plug>(easymotion-overwin-line)
-nmap f <Plug>(easymotion-bd-f)
+" map <Leader>j <Plug>(easymotion-bd-jk)
+" nmap <Leader>k <Plug>(easymotion-overwin-line)
+" nmap f <Plug>(easymotion-bd-f)
 
 " === ultisnips
 let g:UltiSnipsExpandTrigger="<c-k>"

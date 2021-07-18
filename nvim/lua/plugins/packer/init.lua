@@ -91,7 +91,45 @@ local startup = function()
     end
   }
 
+  use {
+    'phaazon/hop.nvim',
+    as = 'hop',
+    cofig = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      -- place this in one of your configuration file(s)
+      -- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+      vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
+      vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
+
+      vim.api.nvim_set_keymap('', '<leader><space>', ':HopChar1<CR>', { noremap = true, silent = true })
+    end
+  }
+
   -- use 'projekt0n/github-nvim-theme'
+  use {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  -- :Twilight - toggle twilight
+  use {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
 end
 
 return require('packer').startup(startup)
