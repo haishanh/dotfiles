@@ -112,22 +112,15 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 """ syntax highlight
 " Plug 'sheerun/vim-polyglot'  " A collection of language packs
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-Plug 'niftylettuce/vim-jinja', { 'for': 'jinja' }
+" Plug 'chr4/nginx.vim', { 'for': 'nginx' }
+" Plug 'niftylettuce/vim-jinja', { 'for': 'jinja' }
 " Plug 'posva/vim-vue'
 Plug 'digitaltoad/vim-pug'
 
 """ syntax - JS
 " Plug 'othree/yajs.vim'
 Plug 'pangloss/vim-javascript'
-""" enable highlight for jsdoc
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-
-" set conceallevel=1
-" let g:javascript_conceal_function             = "⨍"
-" let g:javascript_conceal_static               = "•"
-
 " 'mxw/vim-jsx' has been deprecated
 Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -146,7 +139,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 
 " Plug 'JulesWang/css.vim'
 Plug 'alexlafroscia/postcss-syntax.vim'
-Plug 'skywind3000/vim-quickui'
+" Plug 'skywind3000/vim-quickui'
 " Plug 'stephenway/postcss.vim', { 'for': 'css' }
 
 " Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -422,7 +415,7 @@ let g:coc_global_extensions = [
 
 " Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-repeat'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 " Plug 'ejholmes/vim-forcedotcom'
 
 " Plug 'dstein64/vim-startuptime'
@@ -895,4 +888,6 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighligh
 
 lua require'init'
 
-
+" lua vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
+" lua vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
+" lua vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })

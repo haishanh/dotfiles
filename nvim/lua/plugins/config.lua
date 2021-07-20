@@ -249,4 +249,12 @@ function M.config_sunjon_shade()
   })
 end
 
+function M.config_hop() 
+  require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+
+  vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
+  vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
+  vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
+end
+
 return M

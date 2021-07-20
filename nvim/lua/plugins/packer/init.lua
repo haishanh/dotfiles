@@ -94,16 +94,7 @@ local startup = function()
   use {
     'phaazon/hop.nvim',
     as = 'hop',
-    cofig = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-      -- place this in one of your configuration file(s)
-      -- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
-      vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
-      vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
-
-      vim.api.nvim_set_keymap('', '<leader><space>', ':HopChar1<CR>', { noremap = true, silent = true })
-    end
+    config = config.config_hop,
   }
 
   -- use 'projekt0n/github-nvim-theme'
