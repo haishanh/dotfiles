@@ -37,7 +37,7 @@ function M.config_telescope()
   -- require'telescope'.load_extension('dotfiles')
   -- require'telescope'.load_extension('gosource')
 
-  vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
 end
 
 function M.config_galaxyline()

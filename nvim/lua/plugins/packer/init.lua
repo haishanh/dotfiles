@@ -7,16 +7,16 @@ local startup = function()
   -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree') end}
 
-  -- use {
-  --   'nvim-telescope/telescope.nvim',
-  --   requires = {
-  --     {'nvim-lua/popup.nvim'},
-  --     {'nvim-lua/plenary.nvim'},
-  --     {'nvim-telescope/telescope-fzy-native.nvim'},
-  --     {'nvim-telescope/telescope-symbols.nvim'}
-  --   },
-  --   config = config.config_telescope,
-  -- }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzy-native.nvim'},
+      {'nvim-telescope/telescope-symbols.nvim'}
+    },
+    config = config.config_telescope,
+  }
 
   -- use {
   --   'prettier/vim-prettier',
