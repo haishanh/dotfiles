@@ -7,20 +7,19 @@ do_backup() {
   [ -f ${1} ] && mv ${1} ${1}.${tod}
 }
 
-config_nvim() {
-  ln -s ~/.vim ~/.config/nvim
-  ln -s ~/.vimrc ~/.config/nvim/init.vim
+config_vim() {
+  ln -s $PWD/vimrc ~/.vimrc
+  ln -s $PWD/vimrc ~/.config/nvim/init.vim
+  ln -s $PWD/nvim/lua ~/.config/nvim/lua
+
+  mkdir ~/.vim 2> /dev.null
+  ln -s $PWD/UltiSnips ~/.vim/UltiSnips
+  ln -s $PWD/snips ~/.vim/snips
 }
 
-config_bash() {
-  echo "Customizing bash config ..."
-  # customized bashrc
-  do_backup ${HOME}/.${BASHCFG}
-  cp ${BASHCFG} ~/.${BASHCFG}
-  echo -e "\n# customized bashrc" >> ~/.bashrc
-  echo ". ~/.${BASHCFG}" >> ~/.bashrc
-  # effect immediately
-  . ~/.${BASHCFG}
+config_shell() {
+  ln -s $PWD/commonrc ~/.commonrc
+  ln -s $PWD/zshrc ~/.zshrc
 }
 
 config_tmux() {
@@ -29,10 +28,10 @@ config_tmux() {
 }
 
 config_git() {
-  echo "git clobal config ..."
-  bash gitconfig.sh global
+  ln -s $PWD/gitconfig ~/.gitconfig
 }
 
-config_bash
+config_vim
+config_shell
 config_tmux
 config_git

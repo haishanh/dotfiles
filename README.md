@@ -1,31 +1,16 @@
-## node
 
 ```
-# https://github.com/Schniz/fnm
-brew install Schniz/tap/fnm
-```
+# node / fnm https://github.com/Schniz/fnm
+brew install fnm
 
-## git
+# git
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
 
-```bash
-ln -s ~/dotfiles/gitconfig .gitconfig
-```
-
-## kitty
-
-```bash
+# kitty
 ln -s $PWD/kitty.conf ~/.config/kitty/kitty.conf
-```
 
-## vim
-
-### vimrc
-
-create symlink `~/.vimrc` points to `vimr` in the repo
-
-### neovim
-
-```bash
+# vim
+ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/vimrc ~/.config/nvim/init.vim
 ln -s $PWD/nvim/lua ~/.config/nvim/lua
 ```
@@ -67,3 +52,8 @@ create symlink `~/.vim/snips` points `snips` in the repo
 ln -s $PWD/coc-settings.json ~/.config/nvim/coc-settings.json
 ```
 
+## Others
+
+```
+note -> /Users/haishan/nutstore/50-note
+```
