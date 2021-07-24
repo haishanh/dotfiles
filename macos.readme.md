@@ -4,7 +4,7 @@
 brew tap haishanh/brew
 brew install rmtrash
 
-brew install zsh git hub wget curl gh the_silver_searcher
+brew install zsh git hub wget curl gh the_silver_searcher jq
 brew install iproute2mac
 brew install diff-so-fancy
 brew install ncdu # disk usage
@@ -26,7 +26,7 @@ brew install figlet
 brew install --cask mos rectangle keepassxc snipaste
 brew install --cask ticktick
 # subl
-brew cask install sublime-text
+brew install --cask sublime-text
 # smerge
 brew install --cask sublime-merge
 # database
@@ -36,7 +36,7 @@ azure-data-studio
 authy
 
 # dev
-brew install -- cask docker
+brew install --cask docker
 sourcetree
 dteoh-devdocs
 # media
@@ -48,7 +48,7 @@ sloth
 
 # https://github.com/Kevin-De-Koninck/Clean-Me
 # A small macOS app that acts as a system cleaner (logs, cache, ...)
-brew cask install clean-me
+brew install --cask clean-me
 
 # other essential casks
 dropbox slack-beta
