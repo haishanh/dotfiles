@@ -9,6 +9,7 @@ brew install iproute2mac
 brew install diff-so-fancy
 brew install ncdu # disk usage
 brew install reattach-to-user-namespace
+brew install httpie httpstat
 
 # line of code
 brew install tokei

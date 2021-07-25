@@ -12,6 +12,7 @@ local startup = function()
     requires = {
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
+      {'fannheyward/telescope-coc.nvim'},
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-symbols.nvim'}
     },

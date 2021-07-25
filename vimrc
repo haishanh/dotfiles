@@ -888,6 +888,8 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighligh
 
 lua require'init'
 
+command -nargs=0 Reload :lua package.loaded.init = nil <cr>:source ~/.vimrc <cr>
+
 " lua vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
 " lua vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
 " lua vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
