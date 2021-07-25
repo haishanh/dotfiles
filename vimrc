@@ -40,6 +40,26 @@
 set nocompatible
 let mapleader=" "
 
+" disable default plugins
+let g:loaded_gzip              = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_matchit           = 1
+let g:loaded_matchparen        = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_logiPat           = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
+
 set complete+=kspell
 
 let g:loaded_python_provider = 0
@@ -112,7 +132,7 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 
 """ syntax highlight
 " Plug 'sheerun/vim-polyglot'  " A collection of language packs
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 " Plug 'niftylettuce/vim-jinja', { 'for': 'jinja' }
 " Plug 'posva/vim-vue'
@@ -133,24 +153,13 @@ Plug 'maxmellon/vim-jsx-pretty'
 " let g:indentLine_enabled = 0
 " let g:indentLine_char_list = ['|', '⎸', '┆', '┊']
 " let g:indentLine_char_list = ['⎸']
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
 " Plug 'JulesWang/css.vim'
 Plug 'alexlafroscia/postcss-syntax.vim'
-" Plug 'skywind3000/vim-quickui'
-" Plug 'stephenway/postcss.vim', { 'for': 'css' }
-
-" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-" Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'jparise/vim-graphql', { 'for': 'graphql' }
-" Plug 'keith/swift.vim', { 'for': 'swift' }
-" Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
@@ -158,7 +167,6 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " surround
 Plug 'machakann/vim-sandwich'
-" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 " Closes brackets only when after pressing `Enter`
 Plug 'rstacruz/vim-closer'
@@ -271,12 +279,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug '$HOME/repo/h/night-owl.vim'
 " Plug '$HOME/repo/o/zephyr-nvim'
 Plug 'glepnir/zephyr-nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-
-" Plug 'nightsense/snow'
-" Plug 'morhetz/gruvbox'
-
-" Plug 'neovim/nvim-lspconfig'
+" Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -434,7 +437,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent' " ai/ii/aI/iI for indented lines
 Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
 Plug 'jceb/vim-textobj-uri'    " au/iu for uri
-Plug 'beloglazov/vim-textobj-quotes'
+" Plug 'beloglazov/vim-textobj-quotes'
 
 Plug 'NieTiger/halcyon-neovim'
 
@@ -444,30 +447,16 @@ Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
 " Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
-"""" lua based plugins
-Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }
-" The fastest Neovim colorizer
-" Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'lewis6991/gitsigns.nvim'
-" Plug 'glepnir/indent-guides.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'steelsojka/completion-buffers'
-" Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-" Plug 'ryanoasis/vim-devicons' " vimscript
-" Plug 'onsails/lspkind-nvim'
-
 " plug_end
 call plug#end()
 
 " colorscheme dracula
 set background=dark
-" colorscheme zephyr
+colorscheme zephyr
 " set background=light
 " colorscheme night-owl
 " set background=light
-colorscheme tokyonight
+" colorscheme tokyonight
 " colorscheme base16-onedark
 
 " highlight Comment cterm=italic
@@ -707,13 +696,6 @@ nnoremap <silent> <C-k> :move-2<cr>
 nnoremap <silent> <C-j> :move+<cr>
 xnoremap <silent> <C-k> :move-2<cr>gv
 xnoremap <silent> <C-j> :move'>+<cr>gv
-
-" disable default plugins
-let g:loaded_netrwFileHandlers = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
-let g:loaded_gzip              = 1
-let g:loaded_zipPlugin         = 1
 
 " math unicode https://www.fileformat.info/info/unicode/category/Sm/list.htm
 " ⦂∘∙°֍ ༝࿏↬↯○◍

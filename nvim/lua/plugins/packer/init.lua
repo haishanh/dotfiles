@@ -99,6 +99,9 @@ local startup = function()
 
   -- :Twilight - toggle twilight
   use {"folke/twilight.nvim", config = function() require("twilight").setup {} end, event = 'BufEnter'}
+
+  -- use {'beloglazov/vim-textobj-quotes', event = 'BufEnter'}
+  use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
 end
 
 return require('packer').startup(startup)
