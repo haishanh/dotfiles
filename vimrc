@@ -42,6 +42,8 @@ let mapleader=" "
 
 set complete+=kspell
 
+let g:loaded_python_provider = 0
+let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 if has('termguicolors')
@@ -78,7 +80,6 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
 Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-eunuch'
@@ -268,7 +269,10 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'hardselius/warlock'
 " Plug 'chriskempson/base16-vim'
 " Plug '$HOME/repo/h/night-owl.vim'
-Plug '$HOME/repo/o/zephyr-nvim'
+" Plug '$HOME/repo/o/zephyr-nvim'
+Plug 'glepnir/zephyr-nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 " Plug 'nightsense/snow'
 " Plug 'morhetz/gruvbox'
 
@@ -280,7 +284,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 
 " breakdown --startuptime output
-" Plug 'tweekmonster/startuptime.vim'
+Plug 'tweekmonster/startuptime.vim'
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -457,12 +461,13 @@ Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }
 " plug_end
 call plug#end()
 
-
 " colorscheme dracula
 set background=dark
+" colorscheme zephyr
 " set background=light
 " colorscheme night-owl
-colorscheme zephyr
+" set background=light
+colorscheme tokyonight
 " colorscheme base16-onedark
 
 " highlight Comment cterm=italic
@@ -888,7 +893,8 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighligh
 
 lua require'init'
 
-command -nargs=0 Reload :lua package.loaded.init = nil <cr>:source ~/.vimrc <cr>
+" command -nargs=0 Reload lua package.loaded.init = nil <cr> " :source ~/.vimrc <cr>
+" nmap <leader>ll  :lua package.loaded.init = nil <cr>:source ~/.vimrc <cr>
 
 " lua vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
 " lua vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})

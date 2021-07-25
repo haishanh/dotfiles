@@ -11,5 +11,6 @@ ts_config.setup {
   -- https://github.com/p00f/nvim-ts-rainbow
   rainbow = {enable = true},
   -- https://github.com/nvim-treesitter/playground
-  playground = {enable = true}
+  playground = {enable = true},
+  context_commentstring = {enable = true}
 }

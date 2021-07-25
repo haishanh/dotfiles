@@ -4,7 +4,7 @@ local config = require('plugins/config')
 
 local startup = function()
   use {'wbthomason/packer.nvim', opt = true}
-  -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree') end}
 
   use {
@@ -16,7 +16,9 @@ local startup = function()
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-symbols.nvim'}
     },
+    setup = config.setup_telescope,
     config = config.config_telescope,
+    cmd = 'Telescope'
   }
 
   -- use {
@@ -33,12 +35,17 @@ local startup = function()
   -- }
 
   use {'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade}
-  use {'b3nj5m1n/kommentary', config = config.config_kommentary}
+
+  use 'tpope/vim-commentary'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- use { 'b3nj5m1n/kommentary', config = config.config_kommentary, event = 'BufEnter' }
+
   use {
     -- <leader>gy for normal and visual mode
     'ruifm/gitlinker.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function() require('gitlinker').setup() end,
+    event = 'BufEnter'
   }
   use {
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
@@ -55,15 +62,18 @@ local startup = function()
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup() end,
+    event = 'BufEnter'
   }
   use {
     'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
-    config = function() require('plugins/gitsigns/config') end,
+    config = [[require('plugins/gitsigns/config')]],
+    event = 'BufEnter'
   }
   use {
     'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup() end,
+    event = 'BufEnter'
   }
   use {
     'akinsho/nvim-bufferline.lua', disable = true,
@@ -73,55 +83,22 @@ local startup = function()
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+    config = function() require("trouble").setup {} end,
+    event = 'BufEnter'
   }
   use {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+    config = function() require("which-key").setup {} end,
+    event = 'BufEnter'
   }
 
-  use {
-    'phaazon/hop.nvim',
-    as = 'hop',
-    config = config.config_hop,
-  }
+  use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
 
   -- use 'projekt0n/github-nvim-theme'
-  use {
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
+  use {"folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end, event = 'BufEnter'}
 
   -- :Twilight - toggle twilight
-  use {
-    "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
+  use {"folke/twilight.nvim", config = function() require("twilight").setup {} end, event = 'BufEnter'}
 end
 
 return require('packer').startup(startup)
