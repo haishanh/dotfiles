@@ -11,6 +11,10 @@ brew install ncdu # disk usage
 brew install reattach-to-user-namespace
 brew install httpie httpstat
 
+# smart cd
+# https://github.com/ajeetdsouza/zoxide
+brew install zoxide
+
 # line of code
 brew install tokei
 

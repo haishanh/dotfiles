@@ -134,3 +134,6 @@ bindkey -e
 
 # acme
 # . "/Users/hhan13/.acme.sh/acme.sh.env"
+
+# https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
