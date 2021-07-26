@@ -277,8 +277,8 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'hardselius/warlock'
 " Plug 'chriskempson/base16-vim'
 " Plug '$HOME/repo/h/night-owl.vim'
-" Plug '$HOME/repo/o/zephyr-nvim'
-Plug 'glepnir/zephyr-nvim'
+" Plug '$HOME/repo/h/zephyr-nvim'
+Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
