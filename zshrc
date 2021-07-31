@@ -76,6 +76,7 @@ alias l='exa'
 alias ll='exa -abghHliS'
 alias i='cat ~/i'
 alias see='hub browse'
+alias f="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 alias d='dirs -v | head -10'
 # alias 1='cd -'
