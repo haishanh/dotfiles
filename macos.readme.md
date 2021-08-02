@@ -11,6 +11,8 @@ brew install ncdu # disk usage
 brew install reattach-to-user-namespace
 brew install httpie httpstat
 
+brew install sqlite-utils
+
 # smart cd
 # https://github.com/ajeetdsouza/zoxide
 brew install zoxide
