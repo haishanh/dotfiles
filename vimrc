@@ -65,6 +65,7 @@ set complete+=kspell
 let g:loaded_python_provider = 0
 let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
+" pip3 install pynvim
 
 if has('termguicolors')
   set termguicolors

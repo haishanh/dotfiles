@@ -132,8 +132,7 @@ alias gl="git lg1 | head"
 alias rea="reattach-to-user-namespace"
 
 alias uuid="node ~/t/uuid/index.js"
-alias del="rmtrash"
-alias rm="rmtrash"
+alias rm="trash"
 # z lua
 alias zz="z -I"
 

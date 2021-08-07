@@ -11,6 +11,11 @@ brew install ncdu # disk usage
 brew install reattach-to-user-namespace
 brew install httpie httpstat
 
+# for git diff
+brew install git-delta
+
+go get -u github.com/nikitavoloboev/gitupdate
+
 brew install sqlite-utils
 
 # smart cd
@@ -30,7 +35,8 @@ brew install figlet
 ## cask
 
 ```bash
-brew install --cask mos rectangle keepassxc snipaste
+brew install --cask mos rectangle 
+keepassxc snipaste
 brew install --cask ticktick
 # subl
 brew install --cask sublime-text

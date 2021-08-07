@@ -69,9 +69,7 @@ function M.config_galaxyline()
 
   gls.left[1] = {
     leftRounded = {
-      provider = function()
-        return ""
-      end,
+      provider = function() return "" end,
       highlight = {colors.nord, colors.bg}
     }
   }
