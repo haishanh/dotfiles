@@ -444,6 +444,7 @@ Plug 'NieTiger/halcyon-neovim'
 
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
+Plug 'mogelbrod/vim-jsonpath'
 " svelte
 " Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
@@ -875,6 +876,7 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighligh
 " imap <silent> <c-k> <Plug>(completion_trigger)
 
 lua require'init'
+au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " command -nargs=0 Reload lua package.loaded.init = nil <cr> " :source ~/.vimrc <cr>
 " nmap <leader>ll  :lua package.loaded.init = nil <cr>:source ~/.vimrc <cr>

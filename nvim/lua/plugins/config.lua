@@ -42,6 +42,7 @@ end
 
 function M.config_galaxyline()
   local gl = require("galaxyline")
+  local ico = require("nvim-nonicons")
   local gls = gl.section
   gl.short_line_list = {"NvimTree", "LuaTree", "vista", "dbui"}
 
@@ -76,9 +77,7 @@ function M.config_galaxyline()
 
   gls.left[2] = {
     ViMode = {
-      provider = function()
-        return "   "
-      end,
+      provider = function() return ico.get("bug").." " end,
       highlight = {colors.bg, colors.nord},
       separator = " ",
       separator_highlight = {colors.lightbg, colors.lightbg}
@@ -123,7 +122,7 @@ function M.config_galaxyline()
       provider = "DiffAdd",
       condition = checkwidth,
       icon = "  ",
-      highlight = {colors.greenYel, colors.line_bg}
+      highlight = {colors.green, colors.line_bg}
     }
   }
 
@@ -215,6 +214,7 @@ function M.config_galaxyline()
           v = "VISUAL",
           R = "REPLACE"
         }
+
         return alias[vim.fn.mode()]
       end,
       highlight = {colors.bg, colors.red}
