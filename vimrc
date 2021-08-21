@@ -446,7 +446,7 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
 Plug 'mogelbrod/vim-jsonpath'
 " svelte
-" Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
 " plug_end

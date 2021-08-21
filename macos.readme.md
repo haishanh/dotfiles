@@ -10,6 +10,7 @@ brew install diff-so-fancy
 brew install ncdu # disk usage
 brew install reattach-to-user-namespace
 brew install httpie httpstat
+brew install pgcli
 
 # for git diff
 brew install git-delta
