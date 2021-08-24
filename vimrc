@@ -449,6 +449,8 @@ Plug 'mogelbrod/vim-jsonpath'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
+Plug 'neoclide/jsonc.vim'
+
 " plug_end
 call plug#end()
 

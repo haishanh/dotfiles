@@ -44,6 +44,7 @@ function M.config_galaxyline()
   local gl = require("galaxyline")
   local ico = require("nvim-nonicons")
   local gls = gl.section
+
   gl.short_line_list = {"NvimTree", "LuaTree", "vista", "dbui"}
 
   local fileinfo = require('galaxyline.provider_fileinfo')
@@ -68,46 +69,33 @@ function M.config_galaxyline()
     greenYel = "#EBCB8B"
   }
 
-  gls.left[1] = {
-    leftRounded = {
-      provider = function() return "" end,
-      highlight = {colors.nord, colors.bg}
-    }
+  local mode_x = {
+    -- normal
+    n = { b = colors.red      , i = ico.get("vim-normal-mode") },
+    -- insert
+    i = { b = colors.green    , i = ico.get("vim-insert-mode") },
+    -- command
+    c = { b = colors.yellow     , i = ico.get("vim-command-mode") },
+    -- visual
+    V = { b = colors.nord     , i = ico.get("vim-visual-mode") },
+    -- replace
+    R = { b = colors.magenta  , i = ico.get("vim-select-mode") },
   }
 
-  gls.left[2] = {
-    ViMode = {
-      provider = function() return ico.get("bug").." " end,
-      highlight = {colors.bg, colors.nord},
-      separator = " ",
-      separator_highlight = {colors.lightbg, colors.lightbg}
-    }
-  }
+  mode_x["v"] = mode_x.V
+  mode_x[""] = mode_x.V
 
-  gls.left[3] = {
-    FileIcon = {
-      provider = "FileIcon",
-      condition = buffer_not_empty,
-      highlight = {fileinfo.get_file_icon_color, colors.lightbg}
-    }
-  }
+  local function hlMain(group, bg, fg, gui)
+    local cmd = string.format('highlight %s guibg=%s guifg=%s', group, bg, fg)
+    -- if gui ~= nil then cmd = cmd .. ' gui=' .. gui end
+    vim.cmd(cmd)
+  end
 
-  gls.left[4] = {
-    FileName = {
-      provider = {"FileName", "FileSize"},
-      condition = buffer_not_empty,
-      highlight = {colors.fg, colors.lightbg}
-    }
-  }
-
-  gls.left[5] = {
-    teech = {
-      provider = function() return "" end,
-      separator = " ",
-      separator_highlight = {colors.lightbg, colors.bg},
-      highlight = {colors.lightbg, colors.bg}
-    }
-  }
+  local function hlPrimary(group, fg, gui)
+    local cmd = string.format('highlight %s guifg=%s', group, fg)
+    -- if gui ~= nil then cmd = cmd .. ' gui=' .. gui end
+    vim.cmd(cmd)
+  end
 
   local checkwidth = function()
     local squeeze_width = vim.fn.winwidth(0) / 2
@@ -117,7 +105,55 @@ function M.config_galaxyline()
     return false
   end
 
-  gls.left[6] = {
+  local i = 1
+
+  gls.left[i] = {
+    leftRounded = {
+      provider = function() return "" end,
+      highlight = {colors.nord, colors.bg}
+    }
+  }
+
+  i = i + 1;
+  gls.left[i] = {
+    ViMode = {
+      provider = function() return ico.get("rust").." " end,
+      highlight = {colors.bg, colors.nord},
+      separator = " ",
+      separator_highlight = {colors.lightbg, colors.lightbg}
+    }
+  }
+
+  i = i + 1;
+  gls.left[i] = {
+    FileIcon = {
+      provider = "FileIcon",
+      condition = buffer_not_empty,
+      highlight = {fileinfo.get_file_icon_color, colors.lightbg}
+    }
+  }
+
+  i = i + 1;
+  gls.left[i] = {
+    FileName = {
+      provider = {"FileName", "FileSize"},
+      condition = buffer_not_empty,
+      highlight = {colors.fg, colors.lightbg}
+    }
+  }
+
+  i = i + 1;
+  gls.left[i] = {
+    teech = {
+      provider = function() return "" end,
+      separator = " ",
+      separator_highlight = {colors.lightbg, colors.bg},
+      highlight = {colors.lightbg, colors.bg}
+    }
+  }
+
+  i = i + 1;
+  gls.left[i] = {
     DiffAdd = {
       provider = "DiffAdd",
       condition = checkwidth,
@@ -126,7 +162,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.left[7] = {
+  i = i + 1;
+  gls.left[i] = {
     DiffModified = {
       provider = "DiffModified",
       condition = checkwidth,
@@ -135,7 +172,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.left[8] = {
+  i = i + 1;
+  gls.left[i] = {
     DiffRemove = {
       provider = "DiffRemove",
       condition = checkwidth,
@@ -144,7 +182,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.left[9] = {
+  i = i + 1;
+  gls.left[i] = {
     LeftEnd = {
       provider = function() return " " end,
       separator = " ",
@@ -153,7 +192,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.left[10] = {
+  i = i + 1;
+  gls.left[i] = {
     DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
@@ -161,14 +201,16 @@ function M.config_galaxyline()
     }
   }
 
-  gls.left[11] = {
+  i = i + 1;
+  gls.left[i] = {
     Space = {
       provider = function() return " " end,
       highlight = {colors.line_bg, colors.line_bg}
     }
   }
 
-  gls.left[12] = {
+  i = i + 1;
+  gls.left[i] = {
     DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
@@ -176,7 +218,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.right[1] = {
+  i = 1
+  gls.right[i] = {
     GitIcon = {
       provider = function() return " " end,
       icon = "",
@@ -185,7 +228,8 @@ function M.config_galaxyline()
     }
   }
 
-  gls.right[2] = {
+  i = i + 1;
+  gls.right[i] = {
     GitBranch = {
       provider = "GitBranch",
       condition = vcs.check_git_workspace,
@@ -193,47 +237,60 @@ function M.config_galaxyline()
     }
   }
 
-  gls.right[3] = {
-    right_LeftRounded = {
+  i = i + 1;
+  gls.right[i] = {
+    HaishanViModeInv = {
       provider = function() return "" end,
-      separator = " ",
-      separator_highlight = {colors.bg, colors.bg},
-      highlight = {colors.red, colors.bg}
+      -- separator = " ",
+      -- separator_highlight = {colors.bg, colors.bg},
+      -- highlight = {colors.red, colors.bg}
+      -- highlight = HaishanViModeInv
     }
   }
 
-  gls.right[4] = {
-    SiMode = {
+  i = i + 1;
+  gls.right[i] = {
+    HaishanViMode = {
       provider = function()
-        local alias = {
-          n = "NORMAL",
-          i = "INSERT",
-          c = "COMMAND",
-          V = "VISUAL",
-          [""] = "VISUAL",
-          v = "VISUAL",
-          R = "REPLACE"
-        }
 
-        return alias[vim.fn.mode()]
+        local m = mode_x[vim.fn.mode()]
+
+        -- blue orange
+        --                               red           black
+        -- highlight GalaxyHaishanViMode guibg=#BBE67E guifg=#282c34
+        -- highlight GalaxyHaishanViModeInv guifg=#BBE67E
+
+        hlMain('GalaxyHaishanViMode', m.b, '#282c34')
+        hlPrimary('GalaxyHaishanViModeInv', m.b)
+        return m.i .. " "
       end,
-      highlight = {colors.bg, colors.red}
+
+      -- highlight = {colors.bg, colors.red}
     }
   }
 
-  gls.right[5] = {
+  -- i = i + 1;
+  -- gls.right[i] = {
+  --   PerCentLeftRound = {
+  --     provider = function() return "" end,
+  --     highlight = {colors.fg, colors.bg}
+  --   }
+  -- }
+
+  i = i + 1;
+  gls.right[i] = {
     PerCent = {
       provider = function()
-          return string.format(' %s %s', fileinfo.line_column(), fileinfo.current_line_percent())
+        return string.format(' %s%s', fileinfo.line_column(), fileinfo.current_line_percent())
       end,
-      -- provider = "LinePercent",
-      separator = " ",
+      separator = "",
       separator_highlight = {colors.red, colors.red},
       highlight = {colors.bg, colors.fg}
     }
   }
 
-  gls.right[6] = {
+  i = i + 1;
+  gls.right[i] = {
     rightRounded = {
       provider = function() return "" end,
       highlight = {colors.fg, colors.bg}
