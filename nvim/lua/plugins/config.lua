@@ -69,13 +69,26 @@ function M.config_galaxyline()
     greenYel = "#EBCB8B"
   }
 
+  local symbols = {
+    round = { right = "", left = "" },
+    space = " ",
+  }
+
+  local providers = {
+    space = function() return " " end,
+    round = {
+      left = function() return symbols.round.left end;
+      right = function() return symbols.round.right end;
+    }
+  }
+
   local mode_x = {
     -- normal
     n = { b = colors.red      , i = ico.get("vim-normal-mode") },
     -- insert
     i = { b = colors.green    , i = ico.get("vim-insert-mode") },
     -- command
-    c = { b = colors.yellow     , i = ico.get("vim-command-mode") },
+    c = { b = colors.yellow   , i = ico.get("vim-command-mode") },
     -- visual
     V = { b = colors.nord     , i = ico.get("vim-visual-mode") },
     -- replace
@@ -85,14 +98,8 @@ function M.config_galaxyline()
   mode_x["v"] = mode_x.V
   mode_x[""] = mode_x.V
 
-  local function hlMain(group, bg, fg, gui)
+  local function hl(group, bg, fg, gui)
     local cmd = string.format('highlight %s guibg=%s guifg=%s', group, bg, fg)
-    -- if gui ~= nil then cmd = cmd .. ' gui=' .. gui end
-    vim.cmd(cmd)
-  end
-
-  local function hlPrimary(group, fg, gui)
-    local cmd = string.format('highlight %s guifg=%s', group, fg)
     -- if gui ~= nil then cmd = cmd .. ' gui=' .. gui end
     vim.cmd(cmd)
   end
@@ -108,19 +115,48 @@ function M.config_galaxyline()
   local i = 1
 
   gls.left[i] = {
-    leftRounded = {
-      provider = function() return "" end,
-      highlight = {colors.nord, colors.bg}
+    ViModeO = {
+      provider = providers.round.left,
+    }
+  }
+
+  i = i + 1
+  gls.left[i] = {
+    -- main
+    ViModeM = {
+      provider = function()
+        local m = mode_x[vim.fn.mode()]
+        --                                  red           black
+        -- highlight GalaxyHaishanViMode guibg=#BBE67E guifg=#282c34
+        -- highlight GalaxyHaishanViModeInv guifg=#BBE67E
+        hl('GalaxyViModeM', m.b, '#282c34')
+        hl('GalaxyViModeO', "NONE", m.b)
+        hl('GalaxyViModeC', "NONE", m.b)
+        return " " .. m.i .. " "
+      end,
+    }
+  }
+
+  i = i + 1
+  gls.left[i] = {
+    ViModeC = {
+      provider = providers.round.right,
+    }
+  }
+
+  i = i + 1
+  gls.left[i] = {
+    FileIconOpenLeadSpace = {
+      provider = providers.space,
     }
   }
 
   i = i + 1;
   gls.left[i] = {
-    ViMode = {
-      provider = function() return ico.get("rust").." " end,
-      highlight = {colors.bg, colors.nord},
-      separator = " ",
-      separator_highlight = {colors.lightbg, colors.lightbg}
+    FileIconOpen = {
+      provider = providers.round.left,
+      condition = buffer_not_empty,
+      highlight = {colors.lightbg, colors.bg}
     }
   }
 
@@ -145,7 +181,7 @@ function M.config_galaxyline()
   i = i + 1;
   gls.left[i] = {
     teech = {
-      provider = function() return "" end,
+      provider = providers.round.right,
       separator = " ",
       separator_highlight = {colors.lightbg, colors.bg},
       highlight = {colors.lightbg, colors.bg}
@@ -185,7 +221,7 @@ function M.config_galaxyline()
   i = i + 1;
   gls.left[i] = {
     LeftEnd = {
-      provider = function() return " " end,
+      provider = providers.space,
       separator = " ",
       separator_highlight = {colors.line_bg, colors.line_bg},
       highlight = {colors.line_bg, colors.line_bg}
@@ -204,7 +240,7 @@ function M.config_galaxyline()
   i = i + 1;
   gls.left[i] = {
     Space = {
-      provider = function() return " " end,
+      provider = providers.space,
       highlight = {colors.line_bg, colors.line_bg}
     }
   }
@@ -221,7 +257,7 @@ function M.config_galaxyline()
   i = 1
   gls.right[i] = {
     GitIcon = {
-      provider = function() return " " end,
+      provider = providers.space,
       icon = "",
       condition = vcs.check_git_workspace,
       highlight = {colors.green, colors.line_bg}
@@ -239,43 +275,18 @@ function M.config_galaxyline()
 
   i = i + 1;
   gls.right[i] = {
-    HaishanViModeInv = {
-      provider = function() return "" end,
-      -- separator = " ",
-      -- separator_highlight = {colors.bg, colors.bg},
-      -- highlight = {colors.red, colors.bg}
-      -- highlight = HaishanViModeInv
+    PerCentLeadSpace = {
+      provider = providers.space,
     }
   }
 
   i = i + 1;
   gls.right[i] = {
-    HaishanViMode = {
-      provider = function()
-
-        local m = mode_x[vim.fn.mode()]
-
-        -- blue orange
-        --                               red           black
-        -- highlight GalaxyHaishanViMode guibg=#BBE67E guifg=#282c34
-        -- highlight GalaxyHaishanViModeInv guifg=#BBE67E
-
-        hlMain('GalaxyHaishanViMode', m.b, '#282c34')
-        hlPrimary('GalaxyHaishanViModeInv', m.b)
-        return m.i .. " "
-      end,
-
-      -- highlight = {colors.bg, colors.red}
+    PerCentOpen = {
+      provider = providers.round.left,
+      highlight = {colors.fg, colors.bg},
     }
   }
-
-  -- i = i + 1;
-  -- gls.right[i] = {
-  --   PerCentLeftRound = {
-  --     provider = function() return "" end,
-  --     highlight = {colors.fg, colors.bg}
-  --   }
-  -- }
 
   i = i + 1;
   gls.right[i] = {
@@ -291,8 +302,8 @@ function M.config_galaxyline()
 
   i = i + 1;
   gls.right[i] = {
-    rightRounded = {
-      provider = function() return "" end,
+    PerCentOpenClose = {
+      provider = providers.round.right,
       highlight = {colors.fg, colors.bg}
     }
   }
