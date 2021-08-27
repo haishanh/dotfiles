@@ -14,7 +14,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=""
 
 source ~/.commonrc
 
-PURE_PROMPT_SYMBOL="$"
+PURE_PROMPT_SYMBOL="€"
 # prompt pure
 
 # added by travis gem

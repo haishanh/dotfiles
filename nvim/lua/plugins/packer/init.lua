@@ -51,13 +51,22 @@ local startup = function()
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
     config = function() require('plugins/treesitter/config') end,
   }
+  -- use {
+  --   '~/h/nvim-nonicons',
+  --   requires = {'kyazdani42/nvim-web-devicons'}
+  -- }
+  use {
+    'yamatsum/nvim-nonicons',
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
   -- use {'p00f/nvim-ts-rainbow', disable = true }
   use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
     config = config.config_galaxyline,
-    requires = {'kyazdani42/nvim-web-devicons', 'yamatsum/nvim-web-nonicons'}
+    -- requires = {'kyazdani42/nvim-web-devicons'}
+    -- requires = {'kyazdani42/nvim-web-devicons', 'yamatsum/nvim-web-nonicons'}
   }
   use {
     'norcalli/nvim-colorizer.lua',
@@ -77,12 +86,12 @@ local startup = function()
   }
   use {
     'akinsho/nvim-bufferline.lua', disable = true,
-    requires = {'kyazdani42/nvim-web-devicons','yamatsum/nvim-web-nonicons'},
+    -- requires = {'kyazdani42/nvim-web-devicons','yamatsum/nvim-nonicons'},
     config = function() require('plugins/bufferline') end,
   }
   use {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    -- requires = "kyazdani42/nvim-web-devicons",
     config = function() require("trouble").setup {} end,
     event = 'BufEnter'
   }
