@@ -8,7 +8,8 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
 # defaults write NSGlobalDomain InitialKeyRepeat -int 35
-defaults write NSGlobalDomain InitialKeyRepeat -int 30
+# defaults write NSGlobalDomain InitialKeyRepeat -int 30
+defaults write NSGlobalDomain InitialKeyRepeat -int 5
 
 # steal from https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # Disable automatic termination of inactive apps

@@ -141,12 +141,12 @@ Plug 'digitaltoad/vim-pug'
 
 """ syntax - JS
 " Plug 'othree/yajs.vim'
-Plug 'pangloss/vim-javascript'
-let g:javascript_plugin_jsdoc = 1
-" 'mxw/vim-jsx' has been deprecated
-Plug 'yuezk/vim-js'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'pangloss/vim-javascript'
+" let g:javascript_plugin_jsdoc = 1
+" " 'mxw/vim-jsx' has been deprecated
+" Plug 'yuezk/vim-js'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'maxmellon/vim-jsx-pretty'
 
 " Plug 'vim/killersheep'
 
@@ -160,7 +160,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
 " Plug 'JulesWang/css.vim'
-Plug 'alexlafroscia/postcss-syntax.vim'
+" Plug 'alexlafroscia/postcss-syntax.vim'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
@@ -349,7 +349,7 @@ function! s:show_documentation()
   endif
 endfunction
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " Applying codeAction to the selected region.
@@ -444,9 +444,9 @@ Plug 'NieTiger/halcyon-neovim'
 
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
-Plug 'mogelbrod/vim-jsonpath'
+" Plug 'mogelbrod/vim-jsonpath'
 " svelte
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
+" Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'neoclide/jsonc.vim'
@@ -501,8 +501,8 @@ nnoremap ]b :bn<CR>
 nnoremap <leader>, :bp<CR>
 nnoremap [b :bp<CR>
 
-inoremap kj <esc>  " kj is escape
-inoremap jk <esc>  " jk is escape
+" inoremap kj <esc>  " kj is escape
+" inoremap jk <esc>  " jk is escape
 " save session / vim -S to restore session
 nnoremap <leader>s :mksession<CR>
 set pastetoggle=<F10>
@@ -557,7 +557,8 @@ augroup END
 
 " make dash(`-`) part of a word hel$lo-world
 " 36 is `$`
-set iskeyword+=-,36
+" set iskeyword+=-,36
+set iskeyword+=-
 " number of visual spaces per TAB
 set tabstop=2
 set shiftwidth=2
