@@ -44,6 +44,7 @@ function M.config_galaxyline()
   local gl = require("galaxyline")
   local ico = require("nvim-nonicons")
   local gls = gl.section
+  local sl = gl.section.short_line_left;
 
   gl.short_line_list = {"NvimTree", "LuaTree", "vista", "dbui"}
 
@@ -166,6 +167,25 @@ function M.config_galaxyline()
       provider = "FileIcon",
       condition = buffer_not_empty,
       highlight = {fileinfo.get_file_icon_color, colors.lightbg}
+    }
+  }
+
+  sl[1] = {
+    FileNameSL = {
+      -- provider = {"FileName", "FileSize"},
+      condition = buffer_not_empty,
+      highlight = {colors.fg, colors.lightbg},
+      provider = function()
+        if #vim.fn.expand '%:p' == 0 then
+          return '-'
+        end
+        local f = vim.fn.expand '%:~'
+        if vim.fn.winwidth(0) - 8 > #f then
+          return vim.fn.expand '%:~'
+        else
+          return vim.fn.expand '%:t'
+        end
+      end
     }
   }
 
