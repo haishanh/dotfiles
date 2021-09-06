@@ -628,7 +628,6 @@ else
   set signcolumn=yes
 endif
 
-
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
   autocmd!
@@ -640,22 +639,14 @@ augroup configgroup
   " sequence diagram
   autocmd BufEnter *.seq                   setlocal filetype=seq
   autocmd BufNewFile,BufRead Dockerfile*   setlocal filetype=dockerfile
-
   autocmd BufEnter *babelrc                setlocal filetype=json
-
   " wechat miniapp
   autocmd BufEnter *.wxss                  setlocal filetype=css
   autocmd BufEnter *.wxml                  setlocal filetype=html
-  " autocmd BufEnter *.pug                   execute ":IndentLinesEnable"
   autocmd BufEnter *.svx                  setlocal filetype=html
-
   " jsonc
   autocmd FileType json syntax match Comment +\/\/.\+$+
 
-  " go template
-  " autocmd BufEnter,BufNewFile *.html       setlocal ft=gohtmltmpl commentstring={{/*\ %s\*/}}
-  " spell check
-  " autocmd BufRead,BufNewFile *.md          setlocal spell
   autocmd FileType gitcommit               setlocal spell
   " disable auto indent for pug files
   " noautoindent nocindent, nosmartindent, indentexpr=
@@ -729,17 +720,7 @@ let g:vista#renderer#icons = {
       \ }
 
 " instead of having ~/.vim/coc-settings.json
-let s:LSP_CONFIG = {
-\  'flow': {
-\    'command': exepath('flow'),
-\    'args': ['lsp'],
-\    'filetypes': ['javascript', 'javascriptreact'],
-\    'initializationOptions': {},
-\    'requireRootPattern': 1,
-\    'settings': {},
-\    'rootPatterns': ['.flowconfig']
-\  }
-\}
+let s:LSP_CONFIG = {}
 
 let s:languageservers = {}
 for [lsp, config] in items(s:LSP_CONFIG)
@@ -869,14 +850,6 @@ let g:DokuVimKi_URL  = 'https://doku.haishan.me'
 autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighlight cterm=NONE gui=NONE')})
 
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
-"
-" https://neovim.io/doc/user/lsp.html
-" https://github.com/neovim/nvim-lspconfig
-" https://github.com/nvim-lua/completion-nvim
-
-" let g:completion_enable_snippet = 'UltiSnips'
-" https://github.com/nvim-lua/completion-nvim"
-" imap <silent> <c-k> <Plug>(completion_trigger)
 
 lua require'init'
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
