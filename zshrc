@@ -138,3 +138,5 @@ bindkey -e
 
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
+
+export PATH="/Users/HHan13/.deta/bin:$PATH"

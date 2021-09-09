@@ -440,7 +440,7 @@ Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
 Plug 'jceb/vim-textobj-uri'    " au/iu for uri
 " Plug 'beloglazov/vim-textobj-quotes'
 
-Plug 'NieTiger/halcyon-neovim'
+" Plug 'NieTiger/halcyon-neovim'
 
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}

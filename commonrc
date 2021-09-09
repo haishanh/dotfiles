@@ -147,3 +147,6 @@ export NVIM_LOG_FILE="~/tmp"
 alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias gt="git tag -l --sort=-taggerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(taggerdate:relative)%(color:reset))'"
 alias gt1="git tag -l --sort=-v:refname --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(taggerdate:relative)%(color:reset))'"
+
+# use neovim for man pager
+export MANPAGER='nvim +Man!'
