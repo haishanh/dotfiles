@@ -13,7 +13,7 @@ config_vim() {
   ln -s $PWD/nvim/lua ~/.config/nvim/lua
   ln -s $PWD/coc-settings.json ~/.config/nvim/coc-settings.json
 
-  mkdir ~/.vim 2> /dev.null
+  mkdir ~/.vim 2> /dev/null
   ln -s $PWD/UltiSnips ~/.vim/UltiSnips
   ln -s $PWD/snips ~/.vim/snips
 }
@@ -29,7 +29,9 @@ config_tmux() {
 }
 
 config_git() {
-  ln -s $PWD/gitconfig ~/.gitconfig
+  ln -s $PWD/gitconfig ~/.gitconfig || echo "link already exists"
+  mkdir ~/.config/git 2> /dev/null
+  ln -s $PWD/commit.template ~/.config/git/commit.template || echo "link already exists"
 }
 
 config_vim
