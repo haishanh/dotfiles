@@ -1,16 +1,9 @@
 " vim: set foldmethod=marker foldlevel=0:
 
 " mapping
-" n  Normal
-" v  Visual and Select
-" s  Select
-" x  Visual
-" o  Operator-pending
-" !  Insert and Command-line
-" i  Insert
+" n  Normal, v  Visual and Select, s  Select, x  Visual, o  Operator-pending, !  Insert and Command-line, i  Insert
 " l  ":lmap" mappings for Insert, Command-line and Lang-Arg
 " c  Command-line
-"
 "
 " variables
 " g:  global variables
@@ -61,6 +54,7 @@ let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 
 set complete+=kspell
+set noshowmode " hide "-- INSERT --"
 
 let g:loaded_python_provider = 0
 let g:python_host_prog = '/usr/local/bin/python2'
@@ -80,19 +74,6 @@ endif
 let g:plug_pwindow = 'vertical belowright new'
 call plug#begin('~/.vim/bundle')
 
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" map <silent> <leader>f :NERDTreeToggle<CR>
-" let g:NERDTreeShowHidden = 1
-" let g:NERDTreeDirArrowExpandable = '+'
-" let g:NERDTreeDirArrowCollapsible = '-'
-" let g:NERDTreeWinPos = "right"
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" open NERDTree if its is a dir
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-" autocmd BufEnter * if isdirectory(bufname("%")) | exe 'NERDTree' bufname("%") | wincmd p | ene | exe 'cd '.bufname("%") | endif
-
 " delete buffer without close the window
 " https://stackoverflow.com/questions/1864394
 nnoremap <leader>q :bp<cr>:bd #<cr>
@@ -108,8 +89,6 @@ Plug 'tpope/vim-eunuch'
 " Plug 'skywind3000/asyncrun.vim'
 " Plug 'voldikss/vim-floaterm'
 
-" hide "-- INSERT --"
-set noshowmode
 " ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
 
 " :Tocv => open TOC in a vertical split
@@ -137,7 +116,7 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 " Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 " Plug 'niftylettuce/vim-jinja', { 'for': 'jinja' }
 " Plug 'posva/vim-vue'
-Plug 'digitaltoad/vim-pug'
+" Plug 'digitaltoad/vim-pug'
 
 """ syntax - JS
 " Plug 'othree/yajs.vim'
@@ -159,8 +138,6 @@ Plug 'digitaltoad/vim-pug'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
-" Plug 'JulesWang/css.vim'
-" Plug 'alexlafroscia/postcss-syntax.vim'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
@@ -280,6 +257,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug '$HOME/repo/h/night-owl.vim'
 " Plug '$HOME/repo/h/zephyr-nvim'
 Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -393,20 +371,20 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 
 " https://github.com/neoclide/coc-sources
 let g:coc_global_extensions = [
-      \ 'coc-tsserver',
-      \ 'coc-prettier',
-      \ 'coc-git',
-      \ 'coc-word',
-      \ 'coc-syntax',
-      \ 'coc-dictionary',
-      \ 'coc-ultisnips',
-      \ 'coc-json',
-      \ 'coc-css',
-      \ 'coc-svelte',
-      \ 'coc-emoji',
-      \ 'coc-eslint',
-      \ 'coc-actions'
-      \ ]
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
+  \ 'coc-git',
+  \ 'coc-word',
+  \ 'coc-syntax',
+  \ 'coc-dictionary',
+  \ 'coc-ultisnips',
+  \ 'coc-json',
+  \ 'coc-css',
+  \ 'coc-svelte',
+  \ 'coc-emoji',
+  \ 'coc-eslint',
+  \ 'coc-actions'
+  \ ]
 
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'jacoborus/tender.vim'
@@ -456,7 +434,8 @@ call plug#end()
 
 " colorscheme dracula
 set background=dark
-colorscheme zephyr
+colorscheme bluewery
+" colorscheme zephyr
 " set background=light
 " colorscheme night-owl
 " set background=light
