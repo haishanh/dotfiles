@@ -814,6 +814,7 @@ endif
 
 " user name with which you want to login at the remote wiki
 let g:DokuVimKi_USER = 'haishan'
+
 " password
 let g:DokuVimKi_PASS = ''
 " url of the remote wiki (without trailing '/')
@@ -831,6 +832,7 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighligh
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
 
 lua require'init'
+
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " command -nargs=0 Reload lua package.loaded.init = nil <cr> " :source ~/.vimrc <cr>
@@ -839,3 +841,9 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 " lua vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
 " lua vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
 " lua vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
+
+" set signcolumn=number
+
+highlight DiffAdd    guifg='#00ff00' guibg=#07242c
+highlight DiffChange guifg='#fff1ac' guibg=#07242c
+highlight DiffDelete guifg='#fc6195' guibg=#07242c
