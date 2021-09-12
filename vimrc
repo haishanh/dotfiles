@@ -257,7 +257,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug '$HOME/repo/h/night-owl.vim'
 " Plug '$HOME/repo/h/zephyr-nvim'
 Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
-Plug 'relastle/bluewery.vim'
+" Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -434,8 +434,8 @@ call plug#end()
 
 " colorscheme dracula
 set background=dark
-colorscheme bluewery
-" colorscheme zephyr
+" colorscheme bluewery
+colorscheme zephyr
 " set background=light
 " colorscheme night-owl
 " set background=light
@@ -844,6 +844,6 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " set signcolumn=number
 
-highlight DiffAdd    guifg='#00ff00' guibg=#07242c
-highlight DiffChange guifg='#fff1ac' guibg=#07242c
-highlight DiffDelete guifg='#fc6195' guibg=#07242c
+" highlight DiffAdd    guifg='#00ff00' guibg=#07242c
+" highlight DiffChange guifg='#fff1ac' guibg=#07242c
+" highlight DiffDelete guifg='#fc6195' guibg=#07242c
