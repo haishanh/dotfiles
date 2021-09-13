@@ -226,7 +226,8 @@ function M.config_galaxyline()
       provider = providers.round.right,
       separator = " ",
       separator_highlight = {colors.lightbg, colors.bg},
-      highlight = {colors.lightbg, colors.bg}
+      -- highlight = {colors.lightbg, colors.bg}
+      highlight = {colors.lightbg}
     }
   }
 
@@ -236,7 +237,8 @@ function M.config_galaxyline()
       provider = "DiffAdd",
       condition = checkwidth,
       icon = "  ",
-      highlight = {colors.green, colors.line_bg}
+      -- highlight = {colors.green, colors.line_bg}
+      highlight = {colors.green}
     }
   }
 
@@ -246,7 +248,8 @@ function M.config_galaxyline()
       provider = "DiffModified",
       condition = checkwidth,
       icon = " ",
-      highlight = {colors.orange, colors.line_bg}
+      -- highlight = {colors.orange, colors.line_bg}
+      highlight = {colors.orange}
     }
   }
 
@@ -256,7 +259,8 @@ function M.config_galaxyline()
       provider = "DiffRemove",
       condition = checkwidth,
       icon = " ",
-      highlight = {colors.red, colors.line_bg}
+      -- highlight = {colors.red, colors.line_bg}
+      highlight = {colors.red}
     }
   }
 
@@ -265,8 +269,9 @@ function M.config_galaxyline()
     LeftEnd = {
       provider = providers.space,
       separator = " ",
-      separator_highlight = {colors.line_bg, colors.line_bg},
-      highlight = {colors.line_bg, colors.line_bg}
+      -- separator_highlight = {colors.line_bg, colors.line_bg},
+      -- highlight = {colors.line_bg, colors.line_bg}
+      -- highlight = {colors.line_bg}
     }
   }
 
@@ -275,24 +280,26 @@ function M.config_galaxyline()
     DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
-      highlight = {colors.red, colors.bg}
+      -- highlight = {colors.red, colors.bg}
+      highlight = {colors.red}
     }
   }
 
-  i = i + 1;
-  gls.left[i] = {
-    Space = {
-      provider = providers.space,
-      highlight = {colors.line_bg, colors.line_bg}
-    }
-  }
+--   i = i + 1;
+--   gls.left[i] = {
+--     Space = {
+--       provider = providers.space,
+--       highlight = {colors.line_bg, colors.line_bg}
+--     }
+--   }
 
   i = i + 1;
   gls.left[i] = {
     DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
-      highlight = {colors.blue, colors.bg}
+      -- highlight = {colors.blue, colors.bg}
+      highlight = {colors.blue}
     }
   }
 
@@ -302,7 +309,8 @@ function M.config_galaxyline()
       provider = providers.space,
       icon = "",
       condition = vcs.check_git_workspace,
-      highlight = {colors.green, colors.line_bg}
+      -- highlight = {colors.green, colors.line_bg}
+      highlight = {colors.green}
     }
   }
 
@@ -311,7 +319,8 @@ function M.config_galaxyline()
     GitBranch = {
       provider = "GitBranch",
       condition = vcs.check_git_workspace,
-      highlight = {colors.green, colors.line_bg}
+      -- highlight = {colors.green, colors.line_bg}
+      highlight = {colors.green}
     }
   }
 
@@ -326,7 +335,8 @@ function M.config_galaxyline()
   gls.right[i] = {
     PerCentOpen = {
       provider = providers.round.left,
-      highlight = {colors.fg, colors.bg},
+      -- highlight = {colors.fg, colors.bg},
+      highlight = {colors.fg},
     }
   }
 
