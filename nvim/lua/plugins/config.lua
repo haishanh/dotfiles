@@ -68,7 +68,7 @@ function M.config_galaxyline()
     lightbg = "#3C4048",
     nord = "#81A1C1",
     greenYel = "#EBCB8B",
-    gray1 = "#C0C0C0",
+    gray1 = "#a0a0a0",
   }
 
   local symbols = {
@@ -176,7 +176,8 @@ function M.config_galaxyline()
     FileNameSlOpen = {
       provider = providers.round.left,
       condition = buffer_not_empty,
-      highlight = {colors.lightbg, colors.bg}
+      -- highlight = {colors.lightbg, colors.bg}
+      highlight = {colors.lightbg}
     }
   }
 
@@ -205,9 +206,8 @@ function M.config_galaxyline()
     FileNameSlClose = {
       provider = providers.round.right,
       condition = buffer_not_empty,
-      -- separator = " ",
-      -- separator_highlight = {colors.lightbg, colors.bg},
-      highlight = {colors.lightbg, colors.bg}
+      -- highlight = {colors.lightbg, colors.bg}
+      highlight = {colors.lightbg}
     }
   }
 
