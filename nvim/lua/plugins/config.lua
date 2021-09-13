@@ -67,7 +67,8 @@ function M.config_galaxyline()
     red = "#DF8890",
     lightbg = "#3C4048",
     nord = "#81A1C1",
-    greenYel = "#EBCB8B"
+    greenYel = "#EBCB8B",
+    gray1 = "#C0C0C0",
   }
 
   local symbols = {
@@ -114,6 +115,7 @@ function M.config_galaxyline()
   end
 
   local i = 1
+  local j = 1
 
   gls.left[i] = {
     ViModeO = {
@@ -170,11 +172,20 @@ function M.config_galaxyline()
     }
   }
 
-  sl[1] = {
-    FileNameSL = {
+  sl[j] = {
+    FileNameSlOpen = {
+      provider = providers.round.left,
+      condition = buffer_not_empty,
+      highlight = {colors.lightbg, colors.bg}
+    }
+  }
+
+  j = j + 1;
+  sl[j] = {
+    FileNameSl = {
       -- provider = {"FileName", "FileSize"},
       condition = buffer_not_empty,
-      highlight = {colors.fg, colors.lightbg},
+      highlight = {colors.gray1, colors.lightbg},
       provider = function()
         if #vim.fn.expand '%:p' == 0 then
           return '-'
@@ -186,6 +197,17 @@ function M.config_galaxyline()
           return vim.fn.expand '%:t'
         end
       end
+    }
+  }
+
+  j = j + 1;
+  sl[j] = {
+    FileNameSlClose = {
+      provider = providers.round.right,
+      condition = buffer_not_empty,
+      -- separator = " ",
+      -- separator_highlight = {colors.lightbg, colors.bg},
+      highlight = {colors.lightbg, colors.bg}
     }
   }
 
