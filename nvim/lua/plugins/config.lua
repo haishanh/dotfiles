@@ -102,7 +102,7 @@ function M.config_galaxyline()
     -- replace
     R = { b = colors.magenta  , i = ico.get("vim-replace-mode") },
     -- select
-    s = { b = colors.purple  , i = ico.get("vim-select-mode") },
+    s = { b = colors.orange  , i = ico.get("vim-select-mode") },
     -- terminal
     t = { b = colors.blue  , i = ico.get("vim-terminal-mode") },
   }
@@ -139,8 +139,11 @@ function M.config_galaxyline()
     -- main
     ViModeM = {
       provider = function()
-        print(vim.fn.mode())
         local m = mode_x[vim.fn.mode()]
+        -- if we don't find a match, use the mode string
+        if m == nil then
+          return vim.fn.mode();
+        end
         --                                  red           black
         -- highlight GalaxyHaishanViMode guibg=#BBE67E guifg=#282c34
         -- highlight GalaxyHaishanViModeInv guifg=#BBE67E
