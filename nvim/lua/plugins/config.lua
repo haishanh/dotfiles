@@ -2,11 +2,17 @@ local M = {}
 
 -- https://github.com/b3nj5m1n/kommentary
 function M.config_kommentary()
-  require('kommentary.config').configure_language("typescript", {
-    prefer_single_line_comments = true,
-    --[[ single_line_comment_string = "//",
-    multi_line_comment_strings = {"/*", "*/"}, ]]
-  })
+  -- require('kommentary.config').configure_language({"typescript", "zig"}, {
+  --   prefer_single_line_comments = true,
+  --   single_line_comment_string = 'auto',
+  --   multi_line_comment_strings = 'auto',
+  --   hook_function = function()
+  --     require('ts_context_commentstring.internal').update_commentstring()
+  --   end,
+  -- })
+  vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
+  vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
+  vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 end
 
 function M.config_telescope()
@@ -94,9 +100,14 @@ function M.config_galaxyline()
     -- visual
     V = { b = colors.nord     , i = ico.get("vim-visual-mode") },
     -- replace
-    R = { b = colors.magenta  , i = ico.get("vim-select-mode") },
+    R = { b = colors.magenta  , i = ico.get("vim-replace-mode") },
+    -- select
+    s = { b = colors.purple  , i = ico.get("vim-select-mode") },
+    -- terminal
+    t = { b = colors.blue  , i = ico.get("vim-terminal-mode") },
   }
-
+  -- s select by char, S select by line
+  mode_x["S"] = mode_x.s
   mode_x["v"] = mode_x.V
   mode_x[""] = mode_x.V
 
@@ -128,6 +139,7 @@ function M.config_galaxyline()
     -- main
     ViModeM = {
       provider = function()
+        print(vim.fn.mode())
         local m = mode_x[vim.fn.mode()]
         --                                  red           black
         -- highlight GalaxyHaishanViMode guibg=#BBE67E guifg=#282c34
