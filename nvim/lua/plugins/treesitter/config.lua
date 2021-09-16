@@ -12,7 +12,7 @@ ts_config.setup {
     enable = true,
     -- use_languagetree = true,
   },
-  -- indent = {enable = true},
+  indent = {enable = true},
   incremental_selection = {
     enable = true;
   },

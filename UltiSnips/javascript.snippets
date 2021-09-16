@@ -14,7 +14,7 @@ snippet cl "console.log" b
 console.log(${0});
 endsnippet
 
-snippet fun "function (named)" b
+snippet fn "function (named)" b
 function ${1:hello}(${2}) {
 	${VISUAL}${0:// TODO}
 }
@@ -34,6 +34,17 @@ snippet cf "const f = () => {}" b
 const ${1} = (${2}) => {
 	${VISUAL}${0:// TODO}
 }
+endsnippet
+
+snippet doc "JSDoc"
+/**
+ * TODO
+ *
+ * @param {string} p1 - A string param.
+ * @param {string} [p3] - Another optional param (JSDoc syntax).
+ * @param {string} [p4="test"] - An optional param with a default value
+ * @return {string} This is the result
+ */
 endsnippet
 
 snippet tryf "try { ... } catch(e) { ... } finally { ... }" b
@@ -144,6 +155,15 @@ snippet iife
 endsnippet
 
 #=== node
+
+snippet fs
+import { promises as fs } from "fs";
+
+(async () => {
+  const cnt = await fs.readFile("./x.json", "utf8");
+  const json = JSON.parse(cnt);
+})();
+endsnippet
 
 snippet cr "const fs = require('fs')"
 const ${1:fs} = require('${2:fs}');

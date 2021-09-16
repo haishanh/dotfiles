@@ -847,3 +847,5 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 " highlight DiffAdd    guifg='#00ff00' guibg=#07242c
 " highlight DiffChange guifg='#fff1ac' guibg=#07242c
 " highlight DiffDelete guifg='#fc6195' guibg=#07242c
+
+command! -nargs=0 Out :CocCommand workspace.showOutput
