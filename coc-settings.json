@@ -33,5 +33,6 @@
       "fileMatch": ["/app.json"],
       "url": "https://newfuture.github.io/miniprogram-json-schema/app.json"
     }
-  ]
+  ],
+  "svelte.enable-ts-plugin": true
 }
