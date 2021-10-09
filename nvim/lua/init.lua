@@ -22,6 +22,7 @@ end
 disable_distribution_plugins()
 
 vim.o.termguicolors = true
+
 require('plugins/packer')
 
 -- require("nvim-lspconfig/lua")

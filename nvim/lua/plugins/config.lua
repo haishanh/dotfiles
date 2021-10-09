@@ -378,7 +378,7 @@ end
 
 function M.config_sunjon_shade()
   require('shade').setup({
-    overlay_opacity = 80
+    overlay_opacity = 85,
   })
 end
 

@@ -1,7 +1,22 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 
+local M = {}
 local g = vim.g;
 local c = vim.cmd;
+
+function M.setup_nvim_tree()
+  require'nvim-tree'.setup {
+    disable_netrw = true,
+    hijack_netrw = true,
+    auto_close = true,
+    follow = true,
+    view = {
+      width = 40,
+      side = 'right',
+      auto_resize = true,
+    }
+  }
+end
 
 c('hi NvimTreeFolderIcon   guifg=#addb67')
 c('hi NvimTreeFolderName   guifg=#d6deeb')
@@ -20,16 +35,15 @@ c([[hi NvimTreeOpenedFile   guifg=#f1f1f1]])
 -- NvimTreeGitRenamed
 -- NvimTreeGitNew
 
-g.nvim_tree_side = 'right'
-g.nvim_tree_width = 40
-g.nvim_tree_width_allow_resize = 1
+-- g.nvim_tree_width_allow_resize = 1
+
 -- g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
 g.nvim_tree_ignore = {'.git', '.cache'}
 g.nvim_tree_add_trailing = 1
-g.nvim_tree_show_icons = {git = 0, folders = 1, files = 1}
+g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}
 g.nvim_tree_git_hl = 1
-g.nvim_tree_auto_close = 1
-g.nvim_tree_follow = 1
+-- g.nvim_tree_auto_close = 1
+-- g.nvim_tree_follow = 1
 g.nvim_tree_special_files = { ['README.md'] = 1, Makefile = 1, MAKEFILE = 1 }
 g.nvim_tree_icons = {
   default = '',
@@ -40,3 +54,5 @@ g.nvim_tree_icons = {
 
 -- vim.api.nvim_set_keymap('n', '<c-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<leader>f', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+return M

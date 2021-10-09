@@ -5,7 +5,7 @@ local config = require('plugins/config')
 local startup = function()
   use {'wbthomason/packer.nvim', opt = true}
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-  use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree') end}
+  use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -34,7 +34,7 @@ local startup = function()
   --   config = function() require('plugins/nvim-compe') end,
   -- }
 
-  use {'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade}
+  use {'sunjon/shade.nvim', config = config.config_sunjon_shade}
 
   use 'tpope/vim-commentary'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
