@@ -73,6 +73,8 @@ font-jetbrains-mono
 font-jetbrains-mono-nerd-font
 font-ubuntu-mono-nerd-font
 font-ia-writer-mono
+
+brew install homebrew/cask-fonts/font-{jetbrains-mono,iosevka,input}
 ```
 
 ### docker

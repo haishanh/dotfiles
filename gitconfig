@@ -3,7 +3,7 @@
 	email = haishanhan@gmail.com
 [core]
 	editor = nvim
-	excludesfile = /Users/haishan/.gitignore_global
+	excludesfile = /Users/HHan13/.gitignore_global
   # https://github.com/dandavison/delta
   # brew install git-delta
   pager = delta

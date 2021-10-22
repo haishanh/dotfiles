@@ -34,7 +34,7 @@ local startup = function()
   --   config = function() require('plugins/nvim-compe') end,
   -- }
 
-  use {'sunjon/shade.nvim', config = config.config_sunjon_shade}
+  use {'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade}
 
   use 'tpope/vim-commentary'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
