@@ -56,6 +56,7 @@ local startup = function()
   --   requires = {'kyazdani42/nvim-web-devicons'}
   -- }
   use {
+    -- depends on the font https://github.com/yamatsum/nonicons
     'yamatsum/nvim-nonicons',
     requires = {'kyazdani42/nvim-web-devicons'}
   }

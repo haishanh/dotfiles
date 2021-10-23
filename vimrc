@@ -256,7 +256,8 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'chriskempson/base16-vim'
 " Plug '$HOME/repo/h/night-owl.vim'
 " Plug '$HOME/repo/h/zephyr-nvim'
-Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+" Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+Plug 'EdenEast/nightfox.nvim'
 " Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
@@ -435,7 +436,8 @@ call plug#end()
 " colorscheme dracula
 set background=dark
 " colorscheme bluewery
-colorscheme zephyr
+" colorscheme zephyr
+colorscheme nightfox
 " set background=light
 " colorscheme night-owl
 " set background=light
@@ -848,4 +850,5 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 " highlight DiffChange guifg='#fff1ac' guibg=#07242c
 " highlight DiffDelete guifg='#fc6195' guibg=#07242c
 
+" highlight typescriptImport guifg='#111111' guibg=#fff1ac
 command! -nargs=0 Out :CocCommand workspace.showOutput

@@ -174,7 +174,8 @@ function M.config_galaxyline()
     FileIconOpen = {
       provider = providers.round.left,
       condition = buffer_not_empty,
-      highlight = {colors.lightbg, colors.bg}
+      -- highlight = {colors.lightbg, colors.bg}
+      highlight = {colors.lightbg}
     }
   }
 
@@ -221,7 +222,6 @@ function M.config_galaxyline()
     FileNameSlClose = {
       provider = providers.round.right,
       condition = buffer_not_empty,
-      -- highlight = {colors.lightbg, colors.bg}
       highlight = {colors.lightbg}
     }
   }
@@ -240,8 +240,6 @@ function M.config_galaxyline()
     teech = {
       provider = providers.round.right,
       separator = " ",
-      separator_highlight = {colors.lightbg, colors.bg},
-      -- highlight = {colors.lightbg, colors.bg}
       highlight = {colors.lightbg}
     }
   }
@@ -371,7 +369,7 @@ function M.config_galaxyline()
   gls.right[i] = {
     PerCentOpenClose = {
       provider = providers.round.right,
-      highlight = {colors.fg, colors.bg}
+      highlight = {colors.fg}
     }
   }
 end
