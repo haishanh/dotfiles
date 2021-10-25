@@ -251,13 +251,9 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'blinry/vimboy'
 " Plug 'AGhost-7/critiq.vim'
 " colorscheme
-" Plug 'arzg/vim-substrata'
-" Plug 'hardselius/warlock'
-" Plug 'chriskempson/base16-vim'
-" Plug '$HOME/repo/h/night-owl.vim'
 " Plug '$HOME/repo/h/zephyr-nvim'
 " Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
-Plug 'EdenEast/nightfox.nvim'
+" Plug 'EdenEast/nightfox.nvim'
 " Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
@@ -434,10 +430,10 @@ Plug 'neoclide/jsonc.vim'
 call plug#end()
 
 " colorscheme dracula
-set background=dark
+" set background=dark
 " colorscheme bluewery
-" colorscheme zephyr
-colorscheme nightfox
+" colorscheme zephyr    " 8/10
+" colorscheme nightfox  " 8/10
 " set background=light
 " colorscheme night-owl
 " set background=light
@@ -663,10 +659,10 @@ set clipboard=unnamed
 set hidden
 
 " show syntax name under the cursor
-map <leader>x :echo "hi<"
-  \. synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-  \. synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-  \. synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" map <leader>x :echo "hi<"
+"   \. synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+"   \. synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+"   \. synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " moving lines
 nnoremap <silent> <C-k> :move-2<cr>
@@ -791,7 +787,7 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 
-nnoremap <silent> <leader>te :FloatermToggle<cr>
+" nnoremap <silent> <leader>te :FloatermToggle<cr>
 
 " https://github.com/neovim/neovim/pull/12279
 augroup highlight_yank

@@ -112,6 +112,26 @@ local startup = function()
 
   -- use {'beloglazov/vim-textobj-quotes', event = 'BufEnter'}
   use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
+
+  -- theme / colorscheme
+  use {
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    config = function()
+      vim.g.rose_pine_variant = 'moon'
+      vim.g.rose_pine_disable_italics = true
+      -- Load colorscheme after options
+      vim.cmd('colorscheme rose-pine')
+    end
+  }
+
+  use {"akinsho/toggleterm.nvim", config = function()
+    require("toggleterm").setup{
+      open_mapping = [[<c-\>]],
+      shell = '/bin/zsh'
+    }
+    -- vim.api.nvim_set_keymap("n", "<leader>x", ":ToggleTerm<CR>", {})
+  end}
 end
 
 return require('packer').startup(startup)
