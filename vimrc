@@ -252,7 +252,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'AGhost-7/critiq.vim'
 " colorscheme
 " Plug '$HOME/repo/h/zephyr-nvim'
-" Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
 " Plug 'EdenEast/nightfox.nvim'
 " Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -432,7 +432,7 @@ call plug#end()
 " colorscheme dracula
 " set background=dark
 " colorscheme bluewery
-" colorscheme zephyr    " 8/10
+colorscheme zephyr    " 8/10
 " colorscheme nightfox  " 8/10
 " set background=light
 " colorscheme night-owl

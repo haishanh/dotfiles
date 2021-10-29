@@ -116,6 +116,7 @@ local startup = function()
   -- theme / colorscheme
   use {
     'rose-pine/neovim',
+    disable = true,
     as = 'rose-pine',
     config = function()
       vim.g.rose_pine_variant = 'moon'
