@@ -16,6 +16,7 @@
   "git.addGBlameToVirtualText": false,
   "git.enableGutters": false,
   "prettier.statusItemText": "P",
+  "prettier.singleQuote": true,
   "coc.source.word.enable": true,
   "coc.source.syntax.enable": true,
   "coc.source.emoji.enable": true,
