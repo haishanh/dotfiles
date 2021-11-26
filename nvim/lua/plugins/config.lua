@@ -395,4 +395,160 @@ function M.setup_telescope()
   vim.api.nvim_set_keymap('n', '<c-g>', [[<cmd>Telescope live_grep<cr>]], {silent=true})
 end
 
+
+function M.config_lsp()
+  local lsp_installer = require("nvim-lsp-installer")
+  local nvim_lsp = require('lspconfig')
+  -- Use an on_attach function to only map the following keys
+  -- after the language server attaches to the current buffer
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    -- Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<space>h', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  end
+
+  local ts_on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup{}
+    ts_utils.setup_client(client)
+
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", { silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", { silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", { silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", { silent = true }) 
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        signs = true,
+        -- delay update diagnostics
+        -- update_in_insert = false,
+      }
+    )
+  end
+
+  lsp_installer.on_server_ready(function(server)
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local opts = {
+      flags = { debounce_text_changes = 150 },
+      capabilities = capabilities
+    }
+
+    print(server.name .. ' loaded')
+
+    -- (optional) Customize the options passed to the server
+    if server.name == "tsserver" then
+      opts.on_attach = ts_on_attach
+        -- opts.root_dir = function() ... end
+    elseif server.name == "eslint" then
+      opts.on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = true end
+      opts.settings = { format = { enable = true } }
+      opts.flags = { debounce_text_changes = 250 }
+    end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+  end)
+  -- on_server_ready end
+
+  -- Use a loop to conveniently call 'setup' on multiple servers and
+  -- map buffer local keybindings when the language server attaches
+  --
+  -- local servers = { 'tsserver', 'eslint', 'svelte', 'cssls', 'bashls' }
+  -- for _, lsp in ipairs(servers) do
+  --   nvim_lsp[lsp].setup {
+  --     on_attach = on_attach,
+  --     flags = {
+  --       debounce_text_changes = 150,
+  --     }
+  --   }
+  -- end
+end
+
+function M.config_cmp()
+  local cmp = require'cmp'
+  cmp.setup({
+    -- completion = {
+    --   autocomplete = false
+    -- },
+    snippet = {
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body)
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    -- sources = cmp.config.sources({
+    --   { name = 'nvim_lsp' },
+    --   { name = 'ultisnips' },
+    -- }, {
+    --   { name = 'buffer' },
+    --   { name = "dictionary", keyword_length = 2 }
+    -- })
+  })
+  cmp.setup.cmdline('/', {
+    sources = { { name = 'buffer' } }
+  })
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }})
+  })
+end
+
+function M.config_null_ls()
+  local null_ls = require("null-ls")
+  null_ls.config({
+    sources = {
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.completion.spell,
+      null_ls.builtins.formatting.prettier.with({
+        filetypes = {
+          "javascript", "javascriptreact", "typescript", "typescriptreact",
+          "svelte", "css", "scss", "less", "html",
+          "json", "yaml", "markdown", "graphql"
+        }
+      })
+    },
+  })
+  require("lspconfig")["null-ls"].setup({})
+end
+
 return M

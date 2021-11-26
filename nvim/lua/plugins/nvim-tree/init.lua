@@ -14,7 +14,8 @@ function M.setup_nvim_tree()
       width = 40,
       side = 'right',
       auto_resize = true,
-    }
+    },
+    nvim_tree_ignore = {'.git', '.cache'}
   }
 end
 
@@ -38,7 +39,7 @@ c([[hi NvimTreeOpenedFile   guifg=#f1f1f1]])
 -- g.nvim_tree_width_allow_resize = 1
 
 -- g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
-g.nvim_tree_ignore = {'.git', '.cache'}
+-- g.nvim_tree_ignore = {'.git', '.cache'}
 g.nvim_tree_add_trailing = 1
 g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}
 g.nvim_tree_git_hl = 1

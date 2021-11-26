@@ -237,6 +237,8 @@ nnoremap <silent> gp :Prettier<CR>
 vmap <leader>ps <Plug>(coc-format-selected)
 nmap <leader>ps <Plug>(coc-format-selected)
 
+" nnoremap <silent> gp :PrettierAsync<CR>
+
 " coc-eslint
 command! -nargs=0 LintFix :CocCommand eslint.executeAutofix
 command! -nargs=0 LintProject :CocCommand eslint.lintProject
@@ -261,6 +263,9 @@ Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
+
+" for hrsh7th/nvim-cmp
+" set completeopt=menu,menuone,noselect
 
 " breakdown --startuptime output
 Plug 'tweekmonster/startuptime.vim'
@@ -346,15 +351,12 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
@@ -413,7 +415,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent' " ai/ii/aI/iI for indented lines
 Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
 Plug 'jceb/vim-textobj-uri'    " au/iu for uri
-" Plug 'beloglazov/vim-textobj-quotes'
+Plug 'beloglazov/vim-textobj-quotes'
 
 " Plug 'NieTiger/halcyon-neovim'
 
@@ -425,6 +427,7 @@ Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
 Plug 'neoclide/jsonc.vim'
+Plug 'tomlion/vim-solidity'
 
 " plug_end
 call plug#end()
@@ -826,6 +829,8 @@ let g:DokuVimKi_URL  = 'https://doku.haishan.me'
 " not sure what's the exact issue
 " probably coc will overrides our changes after it's loaded
 autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighlight cterm=NONE gui=NONE')})
+autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocUnderline cterm=NONE gui=NONE')})
+" CocUnderline   xxx cterm=underline gui=underline
 
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
 
@@ -848,3 +853,27 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " highlight typescriptImport guifg='#111111' guibg=#fff1ac
 command! -nargs=0 Out :CocCommand workspace.showOutput
+
+" https://github.com/neoclide/coc-eslint/pull/118
+augroup eslint8
+  autocmd!
+  autocmd BufEnter *.ts,*.tsx,*.js  set runtimepath^=~/tmp/coc-eslint
+augroup END
+
+let g:coc_disable_transparent_cursor = 1
+
+" autocmd FileType typescript lua require'cmp'.setup.buffer {
+" \   sources = {
+" \     { name = 'nvim_lsp' },
+" \     { name = 'ultisnips' },
+" \     { name = 'buffer' },
+" \     { name = 'dictionary', keyword_length = 2 },
+" \   },
+" \ }
+
+" autocmd FileType json,yaml lua require'cmp'.setup.buffer {
+" \   sources = {
+" \     { name = 'buffer' },
+" \     { name = 'dictionary', keyword_length = 2 },
+" \   },
+" \ }

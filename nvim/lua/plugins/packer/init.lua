@@ -7,6 +7,23 @@ local startup = function()
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
 
+  -- lsp
+  -- use { 'neovim/nvim-lspconfig', config = config.config_lsp }
+  -- use { 'williamboman/nvim-lsp-installer' }
+  -- use { 'nvim-lua/lsp-status.nvim', disable = true }
+  -- use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-path', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'uga-rosa/cmp-dictionary', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
+  -- use { 'onsails/lspkind-nvim' }
+  -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
+  -- use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
+
+  -- use { 'prettier/vim-prettier' }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
