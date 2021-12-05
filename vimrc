@@ -74,10 +74,6 @@ endif
 let g:plug_pwindow = 'vertical belowright new'
 call plug#begin('~/.vim/bundle')
 
-" delete buffer without close the window
-" https://stackoverflow.com/questions/1864394
-nnoremap <leader>q :bp<cr>:bd #<cr>
-
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
@@ -239,6 +235,8 @@ nmap <leader>ps <Plug>(coc-format-selected)
 
 " nnoremap <silent> gp :PrettierAsync<CR>
 
+" use `:Oi` for organize import of current buffer
+command! -nargs=0 Oi :CocCommand editor.action.organizeImport
 " coc-eslint
 command! -nargs=0 LintFix :CocCommand eslint.executeAutofix
 command! -nargs=0 LintProject :CocCommand eslint.lintProject
@@ -358,8 +356,6 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -550,7 +546,8 @@ set smarttab
 " make backspace work like most other apps
 set backspace=2
 " display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
+" set list listchars=tab:»·,trail:·,nbsp:·
+set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set number
 set showcmd " show command in bottom bar
