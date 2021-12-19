@@ -8,6 +8,8 @@
 # zinit update  : to update zinit
 #-
 
+# tmux
+if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 # # disable auto window rename in tmux
 # export DISABLE_AUTO_TITLE="true"
 
@@ -43,7 +45,7 @@ eval "$(fnm env)"
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f" || \
         print -P "%F{160}▓▒░ The clone has failed.%f"
 fi
@@ -63,7 +65,7 @@ zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
 zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice wait lucid atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
@@ -147,9 +149,3 @@ bindkey -e
 eval "$(zoxide init zsh)"
 
 export PATH="/Users/HHan13/.deta/bin:$PATH"
-
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####

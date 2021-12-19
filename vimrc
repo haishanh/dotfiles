@@ -253,6 +253,8 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " colorscheme
 " Plug '$HOME/repo/h/zephyr-nvim'
 Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+" Plug 'wuelnerdotexe/vim-enfocado'
+" Plug 'catppuccin/nvim'
 " Plug 'EdenEast/nightfox.nvim'
 " Plug 'relastle/bluewery.vim'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -432,6 +434,9 @@ call plug#end()
 " set background=dark
 " colorscheme bluewery
 colorscheme zephyr    " 8/10
+" let g:enfocado_style = "neon"
+" autocmd VimEnter * ++nested colorscheme enfocado
+" colorscheme catppuccin    " 7/10
 " colorscheme nightfox  " 8/10
 " set background=light
 " colorscheme night-owl
@@ -809,14 +814,6 @@ let g:terraform_fmt_on_save=1
 if exists('&pythonthreedll')
   set pythonthreedll=/usr/local/Cellar/python@3.9/3.9.0_1/Frameworks/Python.framework/Versions/3.9/Python
 endif
-
-" user name with which you want to login at the remote wiki
-let g:DokuVimKi_USER = 'haishan'
-
-" password
-let g:DokuVimKi_PASS = ''
-" url of the remote wiki (without trailing '/')
-let g:DokuVimKi_URL  = 'https://doku.haishan.me'
 
 " coc highlight overrides
 " hi CocUnderline cterm=NONE gui=NONE
