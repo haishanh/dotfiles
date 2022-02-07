@@ -253,6 +253,8 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " colorscheme
 " Plug '$HOME/repo/h/zephyr-nvim'
 Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
+Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
 " Plug 'wuelnerdotexe/vim-enfocado'
 " Plug 'catppuccin/nvim'
 " Plug 'EdenEast/nightfox.nvim'
@@ -847,6 +849,7 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " highlight typescriptImport guifg='#111111' guibg=#fff1ac
 command! -nargs=0 Out :CocCommand workspace.showOutput
+command! -nargs=0 Push :Dispatch gitupdate .
 
 " https://github.com/neoclide/coc-eslint/pull/118
 augroup eslint8
