@@ -553,8 +553,8 @@ set smarttab
 " make backspace work like most other apps
 set backspace=2
 " display extra whitespace
-" set list listchars=tab:»·,trail:·,nbsp:·
-set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set list listchars=tab:»·,trail:·,nbsp:·
+" set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set number
 set showcmd " show command in bottom bar

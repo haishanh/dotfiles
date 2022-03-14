@@ -8,12 +8,22 @@ function M.setup_nvim_tree()
   require'nvim-tree'.setup {
     disable_netrw = true,
     hijack_netrw = true,
+    hijack_cursor = true,
     auto_close = true,
     follow = true,
+    update_focused_file = {
+      enable      = true,
+      update_cwd  = false,
+      ignore_list = {}
+    },
     view = {
       width = 40,
       side = 'right',
       auto_resize = true,
+    },
+    trash = {
+      cmd = "trash",
+      require_confirm = true,
     },
     nvim_tree_ignore = {'.git', '.cache'}
   }
