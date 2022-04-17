@@ -36,7 +36,7 @@ brew install figlet
 ## cask
 
 ```bash
-brew install --cask mos rectangle 
+brew install --cask mos rectangle
 keepassxc snipaste
 brew install --cask ticktick
 # subl
@@ -47,6 +47,7 @@ brew install --cask sublime-merge
 brew install --cask dbeaver-community
 pgadmin4
 azure-data-studio
+
 authy
 
 # dev

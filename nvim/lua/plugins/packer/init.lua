@@ -8,21 +8,22 @@ local startup = function()
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
 
   -- lsp
-  -- use { 'neovim/nvim-lspconfig', config = config.config_lsp }
-  -- use { 'williamboman/nvim-lsp-installer' }
+  use { 'neovim/nvim-lspconfig', config = config.config_lsp }
+  use { 'williamboman/nvim-lsp-installer' }
   -- use { 'nvim-lua/lsp-status.nvim', disable = true }
-  -- use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'hrsh7th/cmp-path', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'uga-rosa/cmp-dictionary', requires = 'hrsh7th/nvim-cmp' }
-  -- use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
+  use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
+  use {
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
+  use { 'uga-rosa/cmp-dictionary', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
   -- use { 'onsails/lspkind-nvim' }
-  -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
+  use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
   -- use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
-
-  -- use { 'prettier/vim-prettier' }
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -38,11 +39,10 @@ local startup = function()
     cmd = 'Telescope'
   }
 
-  -- use {
-  --   'prettier/vim-prettier',
-  --   run = 'yarn',
-  --   ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'}
-  -- }
+  use {
+    'prettier/vim-prettier',
+    run = 'yarn',
+  }
 
   -- use {'nvim-lua/completion-nvim'}
   -- use {
@@ -144,7 +144,10 @@ local startup = function()
     end
   }
 
-  use {"akinsho/toggleterm.nvim", config = function()
+  use {
+    "akinsho/toggleterm.nvim",
+    disable = true,
+    config = function()
     require("toggleterm").setup{
       open_mapping = [[<c-\>]],
       shell = '/bin/zsh'
