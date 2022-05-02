@@ -401,11 +401,7 @@ function M.config_lsp()
   local nvim_lsp = require('lspconfig')
 
   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-  vim.diagnostic.config({
-    virtual_text = true,
-    signs = true,
-    underline = false,
-  })
+  vim.diagnostic.config({ virtual_text = true, signs = true, underline = false })
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
@@ -462,12 +458,32 @@ function M.config_lsp()
         -- update_in_insert = false,
       }
     )
+
+    -- https://en.wikipedia.org/wiki/Box-drawing_character
+    local border = {
+          {"┌", "FloatBorder"},
+          {"─", "FloatBorder"},
+          {"┐", "FloatBorder"},
+          {"│", "FloatBorder"},
+          {"┘", "FloatBorder"},
+          {"─", "FloatBorder"},
+          {"└", "FloatBorder"},
+          {"│", "FloatBorder"},
+    }
+
+    -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=NONE cterm=NONE]]
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      vim.lsp.handlers.hover, {border = border}
+    )
+
   end
+
 
   lsp_installer.on_server_ready(function(server)
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     local opts = {
-      flags = { debounce_text_changes = 150 },
+      flags = { debounce_text_changes = 200 },
       capabilities = capabilities
     }
 
@@ -480,7 +496,7 @@ function M.config_lsp()
     elseif server.name == "eslint" then
       opts.on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = true end
       opts.settings = { format = { enable = true } }
-      opts.flags = { debounce_text_changes = 250 }
+      opts.flags = { debounce_text_changes = 300 }
     end
 
     -- This setup() function is exactly the same as lspconfig's setup function.
@@ -505,6 +521,35 @@ end
 
 function M.config_cmp()
   local cmp = require'cmp'
+  local kind_icons = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    -- File = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+  }
+
   cmp.setup({
     -- completion = {
     --   autocomplete = false
@@ -513,6 +558,21 @@ function M.config_cmp()
       expand = function(args)
         vim.fn["UltiSnips#Anon"](args.body)
       end,
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        -- Kind icons
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        -- Source
+        vim_item.menu = ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]",
+          nvim_lua = "[Lua]",
+          latex_symbols = "[LaTeX]",
+        })[entry.source.name]
+        return vim_item
+      end
     },
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -542,33 +602,30 @@ function M.config_cmp()
 
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, { name = 'ultisnips' },
-      { name = 'nvim_lsp_signature_help' },
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }, { name = 'nvim_lsp_signature_help' },
     }, {
       { name = 'buffer' }, { name = "dictionary", keyword_length = 2 }
     })
   })
   cmp.setup.cmdline('/', {
-    sources = { { name = 'buffer' } }
+    sources = { { name = 'buffer' } },
+    view = { entries = {name = 'wildmenu', separator = '|' } }
   })
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }})
-  })
+  -- cmp.setup.cmdline(':', {
+  --   sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }}),
+  --   view = { entries = {name = 'wildmenu', separator = '|' } }
+  -- })
 end
 
 function M.config_null_ls()
   local null_ls = require("null-ls")
-  null_ls.config({
+  null_ls.setup({
+    -- filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
     sources = {
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.completion.spell,
-      null_ls.builtins.formatting.prettier.with({
-        filetypes = {
-          "javascript", "javascriptreact", "typescript", "typescriptreact",
-          "svelte", "css", "scss", "less", "html",
-          "json", "yaml", "markdown", "graphql"
-        }
-      })
+      -- null_ls.builtins.formatting.stylua,
+      -- null_ls.builtins.completion.spell,
+      null_ls.builtins.formatting.prettier,
     },
   })
   require("lspconfig")["null-ls"].setup({})

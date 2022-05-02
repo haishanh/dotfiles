@@ -23,7 +23,7 @@ local startup = function()
   use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
   -- use { 'onsails/lspkind-nvim' }
   use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
-  -- use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
+  use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -115,12 +115,15 @@ local startup = function()
     event = 'BufEnter'
   }
   use {
-    "folke/which-key.nvim",
+    "folke/which-key.nvim", disable = true,
     config = function() require("which-key").setup {} end,
     event = 'BufEnter'
   }
 
-  use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
+  use {
+    'ggandor/lightspeed.nvim'
+  }
+  -- use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
 
   -- use 'projekt0n/github-nvim-theme'
   use {"folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end, event = 'BufEnter'}
@@ -132,10 +135,7 @@ local startup = function()
   use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
 
   -- theme / colorscheme
-  use {
-    'rose-pine/neovim',
-    disable = true,
-    as = 'rose-pine',
+  use { 'rose-pine/neovim', disable = true, as = 'rose-pine',
     config = function()
       vim.g.rose_pine_variant = 'moon'
       vim.g.rose_pine_disable_italics = true
@@ -143,17 +143,24 @@ local startup = function()
       vim.cmd('colorscheme rose-pine')
     end
   }
+  use { "rebelot/kanagawa.nvim",
+    config = function()
+      require'kanagawa'.setup({ dimInactive = true, globalStatus = true })
+      vim.cmd("colorscheme kanagawa")
+    end
+  }
 
   use {
     "akinsho/toggleterm.nvim",
     disable = true,
     config = function()
-    require("toggleterm").setup{
-      open_mapping = [[<c-\>]],
-      shell = '/bin/zsh'
-    }
-    -- vim.api.nvim_set_keymap("n", "<leader>x", ":ToggleTerm<CR>", {})
-  end}
+      require("toggleterm").setup{
+        open_mapping = [[<c-\>]],
+        shell = '/bin/zsh'
+      }
+      -- vim.api.nvim_set_keymap("n", "<leader>x", ":ToggleTerm<CR>", {})
+    end
+  }
 end
 
 return require('packer').startup(startup)

@@ -140,7 +140,7 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 " nmap <unique> <leader>sq <Plug>GenerateDiagram
 
 " surround
-Plug 'machakann/vim-sandwich'
+" Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-endwise'
 " Closes brackets only when after pressing `Enter`
 Plug 'rstacruz/vim-closer'
@@ -153,6 +153,7 @@ set updatetime=300
 " Plug 'haishanh/vim-dracula'
 " Plug 'haishanh/night-owl.vim'
 Plug 'Mofiqul/adwaita.nvim'
+Plug 'navarasu/onedark.nvim'
 "Plug '$HOME/repo/h/night-owl.vim'
 " Plug 'iCyMind/NeoSolarized'
 " Plug 'lifepillar/vim-gruvbox8'
@@ -235,7 +236,9 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 " nmap <leader>ps <Plug>(coc-format-selected)
 
 """ https://github.com/prettier/vim-prettier
-nnoremap <silent> gp :PrettierAsync<CR>
+" nnoremap <silent> gp :PrettierAsync<CR>
+" use null-ls
+nnoremap <silent> gp :lua vim.lsp.buf.formatting()<CR>
 
 " use `:Oi` for organize import of current buffer
 command! -nargs=0 Oi :CocCommand editor.action.organizeImport
@@ -395,9 +398,10 @@ call plug#end()
 " set background=dark
 " colorscheme bluewery
 " colorscheme zephyr    " 8/10
+" colorscheme onedark
 
-set background=dark
-colorscheme adwaita
+" set background=dark
+" colorscheme adwaita
 
 " let g:enfocado_style = "neon"
 " autocmd VimEnter * ++nested colorscheme enfocado
@@ -783,10 +787,6 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 " command -nargs=0 Reload lua package.loaded.init = nil <cr> " :source ~/.vimrc <cr>
 " nmap <leader>ll  :lua package.loaded.init = nil <cr>:source ~/.vimrc <cr>
 
-" lua vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
-" lua vim.api.nvim_set_keymap('n', 's', ":HopChar2<CR>", {})
-" lua vim.api.nvim_set_keymap('', '<leader>j', ":HopLine<CR>", { noremap = true, silent = true })
-
 " set signcolumn=number
 
 " highlight DiffAdd    guifg='#00ff00' guibg=#07242c
@@ -807,9 +807,10 @@ let g:coc_disable_transparent_cursor = 1
 
 " make it short since i keep forgeting this
 command! -nargs=0 Bye :Sayonara
+command! -nargs=0 Noh  :nohlsearch
 
 """ https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+" autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 command! -nargs=0 Rename :TSLspRenameFile
 
@@ -828,3 +829,5 @@ command! -nargs=0 Rename :TSLspRenameFile
 " \     { name = 'dictionary', keyword_length = 2 },
 " \   },
 " \ }
+
+

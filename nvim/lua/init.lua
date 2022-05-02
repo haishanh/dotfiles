@@ -21,9 +21,38 @@ end
 
 disable_distribution_plugins()
 
-vim.o.termguicolors = true
+local options = {
+  termguicolors = true,
+  laststatus = 3,
+  pumheight = 10,
+}
+
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
+
+vim.opt.fillchars:append({
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┨',
+  vertright = '┣',
+  verthoriz = '╋',
+})
 
 require('plugins/packer')
+
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   pattern = 'onedark',
+--   desc = 'extend / override onedark',
+--   callback = function()
+--     local h = function(...) vim.api.nvim_set_hl(0, ...) end
+
+--     h('String', {fg = '#FFEB95'})
+--     h('TelescopeMatching', {link = 'Boolean'})
+--   end
+-- })
 
 -- require("nvim-lspconfig/lua")
 -- require("lspkind/lua")
