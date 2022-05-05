@@ -9,7 +9,7 @@ function M.setup_nvim_tree()
     disable_netrw = true,
     hijack_netrw = true,
     hijack_cursor = true,
-    follow = true,
+    -- follow = true,
     update_focused_file = {
       enable      = true,
       update_cwd  = false,
@@ -18,13 +18,13 @@ function M.setup_nvim_tree()
     view = {
       width = 40,
       side = 'right',
-      auto_resize = true,
+      -- auto_resize = true,
     },
     trash = {
       cmd = "trash",
       require_confirm = true,
     },
-    nvim_tree_ignore = {'.git', '.cache'}
+    -- nvim_tree_ignore = {'.git', '.cache'}
   }
 end
 

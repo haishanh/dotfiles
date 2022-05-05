@@ -141,6 +141,7 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " surround
 " Plug 'machakann/vim-sandwich'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 " Closes brackets only when after pressing `Enter`
 Plug 'rstacruz/vim-closer'
@@ -397,7 +398,7 @@ call plug#end()
 " colorscheme dracula
 " set background=dark
 " colorscheme bluewery
-" colorscheme zephyr    " 8/10
+colorscheme zephyr    " 8/10
 " colorscheme onedark
 
 " set background=dark
@@ -781,6 +782,18 @@ autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocUnderline cterm
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
 
 lua require'init'
+
+let g:surround_no_mappings = 1
+nmap ds       <Plug>Dsurround
+nmap cs       <Plug>Csurround
+nmap cS       <Plug>CSurround
+nmap ys       <Plug>Ysurround
+nmap yS       <Plug>YSurround
+nmap yss      <Plug>Yssurround
+nmap ySs      <Plug>YSsurround
+nmap ySS      <Plug>YSsurround
+xmap gs       <Plug>VSurround
+xmap gS       <Plug>VgSurround
 
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 

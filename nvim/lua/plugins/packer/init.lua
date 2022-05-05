@@ -80,8 +80,10 @@ local startup = function()
   -- use {'p00f/nvim-ts-rainbow', disable = true }
   use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
+    -- 'NTBBloodbath/galaxyline.nvim',
+    'dsych/galaxyline.nvim',
+    -- 'glepnir/galaxyline.nvim',
+    branch = 'bugfix/diagnostics',
     config = config.config_galaxyline,
     -- requires = {'kyazdani42/nvim-web-devicons'}
     -- requires = {'kyazdani42/nvim-web-devicons', 'yamatsum/nvim-web-nonicons'}
@@ -144,6 +146,7 @@ local startup = function()
     end
   }
   use { "rebelot/kanagawa.nvim",
+    disable = true,
     config = function()
       require'kanagawa'.setup({ dimInactive = true, globalStatus = true })
       vim.cmd("colorscheme kanagawa")

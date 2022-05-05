@@ -487,7 +487,7 @@ function M.config_lsp()
       capabilities = capabilities
     }
 
-    print(server.name .. ' loaded')
+    -- print(server.name .. ' loaded')
 
     -- (optional) Customize the options passed to the server
     if server.name == "tsserver" then
@@ -608,10 +608,10 @@ function M.config_cmp()
       { name = 'buffer' }, { name = "dictionary", keyword_length = 2 }
     })
   })
-  cmp.setup.cmdline('/', {
-    sources = { { name = 'buffer' } },
-    view = { entries = {name = 'wildmenu', separator = '|' } }
-  })
+  -- cmp.setup.cmdline('/', {
+  --   sources = { { name = 'buffer' } },
+  --   view = { entries = {name = 'wildmenu', separator = '|' } }
+  -- })
   -- cmp.setup.cmdline(':', {
   --   sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }}),
   --   view = { entries = {name = 'wildmenu', separator = '|' } }
