@@ -398,7 +398,9 @@ end
 
 function M.config_lsp()
   local lsp_installer = require("nvim-lsp-installer")
-  local nvim_lsp = require('lspconfig')
+  lsp_installer.setup {}
+
+  local lspconfig = require('lspconfig')
 
   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
   vim.diagnostic.config({ virtual_text = true, signs = true, underline = false })
@@ -479,31 +481,24 @@ function M.config_lsp()
 
   end
 
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- local opts = {
+  --   flags = { debounce_text_changes = 200 },
+  --   capabilities = capabilities
+  -- }
 
-  lsp_installer.on_server_ready(function(server)
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local opts = {
-      flags = { debounce_text_changes = 200 },
-      capabilities = capabilities
-    }
+  lspconfig.tsserver.setup {
+    on_attach = ots_on_attach, capabilities = capabilities,
+    flags = { debounce_text_changes = 300 },
+  }
+  lspconfig.eslint.setup {
+    on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = true end,
+    settings = { format = { enable = true } },
+    flags = { debounce_text_changes = 300 },
+  }
+  lspconfig.svelte.setup { on_attach = on_attach, capabilities = capabilities }
 
-    -- print(server.name .. ' loaded')
-
-    -- (optional) Customize the options passed to the server
-    if server.name == "tsserver" then
-      opts.on_attach = ts_on_attach
-        -- opts.root_dir = function() ... end
-    elseif server.name == "eslint" then
-      opts.on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = true end
-      opts.settings = { format = { enable = true } }
-      opts.flags = { debounce_text_changes = 300 }
-    end
-
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-  end)
-  -- on_server_ready end
+  -- print(server.name .. ' loaded')
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
@@ -628,7 +623,7 @@ function M.config_null_ls()
       null_ls.builtins.formatting.prettier,
     },
   })
-  require("lspconfig")["null-ls"].setup({})
+  -- require("lspconfig")["null-ls"].setup({})
 end
 
 return M

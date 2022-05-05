@@ -8,8 +8,9 @@ local startup = function()
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
 
   -- lsp
-  use { 'neovim/nvim-lspconfig', config = config.config_lsp }
-  use { 'williamboman/nvim-lsp-installer' }
+  -- use { 'williamboman/nvim-lsp-installer' }
+  use { 'neovim/nvim-lspconfig', config = config.config_lsp,
+    requires = 'williamboman/nvim-lsp-installer'}
   -- use { 'nvim-lua/lsp-status.nvim', disable = true }
   use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
   use {
