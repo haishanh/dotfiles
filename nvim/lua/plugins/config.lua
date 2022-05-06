@@ -456,21 +456,19 @@ function M.config_lsp()
       vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
         signs = true,
-        -- delay update diagnostics
-        -- update_in_insert = false,
       }
     )
 
     -- https://en.wikipedia.org/wiki/Box-drawing_character
     local border = {
-          {"┌", "FloatBorder"},
-          {"─", "FloatBorder"},
-          {"┐", "FloatBorder"},
-          {"│", "FloatBorder"},
-          {"┘", "FloatBorder"},
-          {"─", "FloatBorder"},
-          {"└", "FloatBorder"},
-          {"│", "FloatBorder"},
+      {"┌", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"┐", "FloatBorder"},
+      {"│", "FloatBorder"},
+      {"┘", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"└", "FloatBorder"},
+      {"│", "FloatBorder"},
     }
 
     -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=NONE cterm=NONE]]
@@ -488,7 +486,7 @@ function M.config_lsp()
   -- }
 
   lspconfig.tsserver.setup {
-    on_attach = ots_on_attach, capabilities = capabilities,
+    on_attach = ts_on_attach, capabilities = capabilities,
     flags = { debounce_text_changes = 300 },
   }
   lspconfig.eslint.setup {

@@ -823,7 +823,7 @@ command! -nargs=0 Bye :Sayonara
 command! -nargs=0 Noh  :nohlsearch
 
 """ https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-" autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 command! -nargs=0 Rename :TSLspRenameFile
 
