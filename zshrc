@@ -1,9 +1,3 @@
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
-
 #-
 # zinit update  : to update zinit
 #-
@@ -29,7 +23,7 @@ PURE_PROMPT_SYMBOL="$"
 # added by travis gem
 # [ -f /Users/haishan/.travis/travis.sh ] && source /Users/haishan/.travis/travis.sh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # unalias gm
 
@@ -137,8 +131,6 @@ bindkey -e
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/repo/o/z.lua/z.lua ] && eval "$(lua ~/repo/o/z.lua/z.lua --init zsh)"
-
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/local/bin/terraform terraform
 
@@ -155,8 +147,8 @@ export PATH="/Users/HHan13/.deta/bin:$PATH"
 export MANPAGER='nvim +Man!'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$HOME/.rvm/gems/ruby-2.7.2/bin:$PATH"
+# export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$HOME/.rvm/gems/ruby-2.7.2/bin:$PATH"
 
 export PATH="$PATH:/Users/HHan13/.foundry/bin"
 
@@ -165,3 +157,6 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# precmd () {print -Pn "\e]0;%~\a"}
+# PROMPT_COMMAND=hello

@@ -431,8 +431,8 @@ function M.config_lsp()
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[x', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']x', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '[x', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']x', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>h', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
@@ -490,30 +490,20 @@ function M.config_lsp()
     flags = { debounce_text_changes = 300 },
   }
   lspconfig.eslint.setup {
-    on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = true end,
+    on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = false end,
     settings = { format = { enable = true } },
     flags = { debounce_text_changes = 300 },
   }
   lspconfig.svelte.setup { on_attach = on_attach, capabilities = capabilities }
 
   -- print(server.name .. ' loaded')
-
-  -- Use a loop to conveniently call 'setup' on multiple servers and
-  -- map buffer local keybindings when the language server attaches
-  --
-  -- local servers = { 'tsserver', 'eslint', 'svelte', 'cssls', 'bashls' }
-  -- for _, lsp in ipairs(servers) do
-  --   nvim_lsp[lsp].setup {
-  --     on_attach = on_attach,
-  --     flags = {
-  --       debounce_text_changes = 150,
-  --     }
-  --   }
-  -- end
 end
 
 function M.config_cmp()
   local cmp = require'cmp'
+  local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  end
   local kind_icons = {
     Text = "",
     Method = "",
@@ -544,6 +534,20 @@ function M.config_cmp()
   }
 
   cmp.setup({
+    experimental = {
+      -- native_menu = false,
+      ghost_text = false,
+    },
+
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+
+    -- view = {
+    --   entries = 'native'
+    -- },
+
     -- completion = {
     --   autocomplete = false
     -- },
@@ -555,11 +559,12 @@ function M.config_cmp()
     formatting = {
       format = function(entry, vim_item)
         -- Kind icons
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
         -- Source
         vim_item.menu = ({
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
+          buffer = "[]",
+          nvim_lsp = "[◍]",
           luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
           latex_symbols = "[LaTeX]",
@@ -570,29 +575,107 @@ function M.config_cmp()
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      -- ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ['<Tab>'] = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        -- elseif luasnip.expand_or_jumpable() then
-        --   luasnip.expand_or_jump()
-        else
-          fallback()
-        end
-      end,
-      ['<S-Tab>'] = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        -- elseif luasnip.jumpable(-1) then
-        --   luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end,
-
+      ["<Tab>"] = cmp.mapping({
+          c = function()
+              if cmp.visible() then
+                  cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+              else
+                  cmp.complete()
+              end
+          end,
+          i = function(fallback)
+              if cmp.visible() then
+                  cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+              elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                  vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+              else
+                  fallback()
+              end
+          end,
+          s = function(fallback)
+              if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                  vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+              else
+                  fallback()
+              end
+          end
+      }),
+      ["<S-Tab>"] = cmp.mapping({
+          c = function()
+              if cmp.visible() then
+                  cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+              else
+                  cmp.complete()
+              end
+          end,
+          i = function(fallback)
+              if cmp.visible() then
+                  cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+              elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                  return vim.api.nvim_feedkeys( t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+              else
+                  fallback()
+              end
+          end,
+          s = function(fallback)
+              if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                  return vim.api.nvim_feedkeys( t("<Plug>(ultisnips_jump_backward)"), 'm', true)
+              else
+                  fallback()
+              end
+          end
+      }),
+      ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+      ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+      ['<C-n>'] = cmp.mapping({
+          c = function()
+              if cmp.visible() then
+                  cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+              else
+                  vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+              end
+          end,
+          i = function(fallback)
+              if cmp.visible() then
+                  cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+              else
+                  fallback()
+              end
+          end
+      }),
+      ['<C-p>'] = cmp.mapping({
+          c = function()
+              if cmp.visible() then
+                  cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+              else
+                  vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+              end
+          end,
+          i = function(fallback)
+              if cmp.visible() then
+                  cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+              else
+                  fallback()
+              end
+          end
+      }),
+      -- ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+      -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-f>'] = cmp.mapping({ i = cmp.mapping.scroll_docs(4), c = cmp.mapping.scroll_docs(4) }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+      ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+      ['<CR>'] = cmp.mapping({
+          i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+          -- c = function(fallback)
+          --     if cmp.visible() then
+          --         cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+          --     else
+          --         fallback()
+          --     end
+          -- end
+      }),
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -601,24 +684,42 @@ function M.config_cmp()
       { name = 'buffer' }, { name = "dictionary", keyword_length = 2 }
     })
   })
+
   -- cmp.setup.cmdline('/', {
   --   sources = { { name = 'buffer' } },
   --   view = { entries = {name = 'wildmenu', separator = '|' } }
   -- })
-  -- cmp.setup.cmdline(':', {
-  --   sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }}),
-  --   view = { entries = {name = 'wildmenu', separator = '|' } }
-  -- })
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline" },
+    }),
+  })
 end
 
 function M.config_null_ls()
   local null_ls = require("null-ls")
+  local with_root_file = function(...)
+      local files = { ... }
+      return function(utils)
+          return utils.root_has_file(files)
+      end
+  end
+
   null_ls.setup({
     -- filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
     sources = {
       -- null_ls.builtins.formatting.stylua,
       -- null_ls.builtins.completion.spell,
       null_ls.builtins.formatting.prettier,
+      null_ls.builtins.diagnostics.eslint_d.with {
+        condition = with_root_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" },
+      },
+      null_ls.builtins.code_actions.eslint_d.with {
+        condition = with_root_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" },
+      },
     },
   })
   -- require("lspconfig")["null-ls"].setup({})

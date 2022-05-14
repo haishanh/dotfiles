@@ -145,8 +145,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 " Closes brackets only when after pressing `Enter`
 Plug 'rstacruz/vim-closer'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 set updatetime=300
 """ Theme

@@ -6,9 +6,9 @@ local ts_config = require("nvim-treesitter.configs")
 ts_config.setup {
   -- supported langs https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
   ensure_installed = {
-    "typescript","javascript","html","css","svelte",
+    "typescript","javascript","html","css","scss","svelte",
     "dockerfile",
-    "bash","markdown","toml","zig"
+    "bash","markdown","toml","zig","yaml"
   },
   highlight = {
     enable = true,
