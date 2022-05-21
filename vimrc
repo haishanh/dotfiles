@@ -94,6 +94,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 let g:mkdp_markdown_css = expand('$HOME/md.css')
 
+let g:home = expand('$HOME')
+
 " Plug 'liuchengxu/vista.vim'
 
 " Plug 'ludovicchabant/vim-gutentags'
