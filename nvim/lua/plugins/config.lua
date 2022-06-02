@@ -504,13 +504,15 @@ function M.config_cmp()
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
+  local icons = require "nvim-nonicons"
   local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
+    Text = icons.get("text"),
+    Method = icons.get("package"),
+    -- Method = "",
+    Function = '',
     Constructor = "",
     Field = "",
-    Variable = "",
+    Variable = icons.get("code-square"),
     Class = "ﴯ",
     Interface = "",
     Module = "",

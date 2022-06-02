@@ -82,6 +82,10 @@ alias see='hub browse'
 alias f="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 alias d='dirs -v | head -10'
+alias 2..='cd ../..'
+alias 3..='cd ../../..'
+alias 4..='cd ../../../..'
+alias 5..='cd ../../../../..'
 # alias 1='cd -'
 # alias 2='cd -2'
 # alias 3='cd -3'

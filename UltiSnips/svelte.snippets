@@ -23,7 +23,7 @@ snippet sv "svelte-template"
 endsnippet
 
 snippet each "each"
-{#each items as item, i}
+{#each items as item, i (item.id)}
 	<li>{i + 1}: {item.name} x {item.qty}</li>
 {/each}
 endsnippet

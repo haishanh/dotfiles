@@ -261,6 +261,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " colorscheme
 " Plug '$HOME/repo/h/zephyr-nvim'
 Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+" Plug 'glepnir/zephyr-nvim'
 Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
 Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
 " Plug 'wuelnerdotexe/vim-enfocado'
