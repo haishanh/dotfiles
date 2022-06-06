@@ -511,7 +511,8 @@ function M.config_cmp()
     -- Method = "",
     Function = '',
     Constructor = "",
-    Field = "",
+    -- Field = "",
+    Field = icons.get("field"),
     Variable = icons.get("code-square"),
     Class = "ﴯ",
     Interface = "",
@@ -528,8 +529,8 @@ function M.config_cmp()
     Reference = "",
     Folder = "",
     EnumMember = "",
-    Constant = "",
-    Struct = "",
+    Constant = icons.get("constant"),
+    Struct = icons.get("struct"),
     Event = "",
     Operator = "",
     TypeParameter = ""
@@ -561,8 +562,8 @@ function M.config_cmp()
     formatting = {
       format = function(entry, vim_item)
         -- Kind icons
-        -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-        vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        -- vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
         -- Source
         vim_item.menu = ({
           buffer = "[]",
@@ -680,10 +681,9 @@ function M.config_cmp()
       }),
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'ultisnips' }, { name = 'nvim_lsp_signature_help' },
+      { name = 'nvim_lsp' }, { name = 'ultisnips' }, { name = 'nvim_lsp_signature_help' }, { name = 'buffer' }
     }, {
-      { name = 'buffer' }, { name = "dictionary", keyword_length = 2 }
+      { name = "dictionary", keyword_length = 2 }
     })
   })
 

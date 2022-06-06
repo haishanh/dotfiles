@@ -9,9 +9,8 @@ function M.setup_nvim_tree()
     disable_netrw = true,
     hijack_netrw = true,
     hijack_cursor = true,
-    -- follow = true,
     update_focused_file = {
-      enable = false,
+      enable = true,
     },
     view = {
       width = 40,
