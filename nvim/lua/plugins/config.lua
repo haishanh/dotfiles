@@ -522,7 +522,7 @@ function M.config_cmp()
     Value = "",
     Enum = "",
     Keyword = "",
-    Snippet = "",
+    Snippet = icons.get("snippet"),
     Color = "",
     -- File = "",
     File = "",
