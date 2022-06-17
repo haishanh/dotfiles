@@ -42,6 +42,9 @@ vim.opt.fillchars:append({
 })
 
 require('plugins/packer')
+vim.schedule(function()
+  require('haishan')
+end)
 
 -- vim.api.nvim_create_autocmd('ColorScheme', {
 --   pattern = 'onedark',
