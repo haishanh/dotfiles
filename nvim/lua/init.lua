@@ -43,7 +43,7 @@ vim.opt.fillchars:append({
 
 require('plugins/packer')
 vim.schedule(function()
-  require('haishan')
+  require('haishan').setup()
 end)
 
 -- vim.api.nvim_create_autocmd('ColorScheme', {
