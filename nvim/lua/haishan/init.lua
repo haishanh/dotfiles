@@ -1,3 +1,7 @@
+-- I'm a lua noop
+-- https://replit.com/languages/lua
+-- https://learnxinyminutes.com/docs/lua/
+
 local M = {}
 local utils = require('haishan.utils')
 local actions = {}
@@ -8,7 +12,7 @@ local prompt = {}
 local a0 = vim.api
 local api = vim.api
 
-local prompt_prefix = '🌵 '
+local prompt_prefix = ' '
 
 local action_tbl = {
   a = { label = 'hello', fn = 'hello', },
@@ -87,7 +91,6 @@ function actions.close()
 end
 
 function M.setup()
-  -- https://replit.com/languages/lua
   a0.nvim_create_user_command("Haishan", function(opts)
     -- print(opts.fargs)
     -- print(opts.fargs[0])
@@ -104,14 +107,22 @@ function M.setup()
     local preview_line = math.floor((vim.o.lines - 15 ) / 2)
     local prompt_line = math.floor((vim.o.lines + 15 ) / 2 + 2)
 
+    -- sort keys in action_tbl
+    local action_tbl_keys = {}
+    for k in pairs(action_tbl) do
+      table.insert(action_tbl_keys, k)
+    end
+    table.sort(action_tbl_keys)
     local preview_cnt = {}
-    for k, v in pairs(action_tbl) do
-      local s = string.format("%s\t%s", k, v.label)
+    for idx, key_name in ipairs(action_tbl_keys) do
+      local v = action_tbl[key_name]
+      -- print(k, vim.inspect(v))
+      local s = string.format("%s\t%s", key_name, v.label)
       table.insert(preview_cnt, s)
     end
     -- print(vim.inspect(preview_cnt))
 
-    preview.buf, preview.win = win0(popup, { title = 'Hello', minheight = 15, line = preview_line, col = col, })
+    preview.buf, preview.win = win0(popup, { title = '', minheight = 15, line = preview_line, col = col, })
     api.nvim_buf_set_lines(preview.buf, 0, -1, false, preview_cnt)
     api.nvim_buf_set_option(preview.buf, 'modifiable', false)
 
