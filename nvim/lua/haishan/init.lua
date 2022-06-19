@@ -4,6 +4,7 @@
 
 local M = {}
 local utils = require('haishan.utils')
+local icons = require "nvim-nonicons"
 local actions = {}
 
 local preview = {}
@@ -15,9 +16,9 @@ local api = vim.api
 local prompt_prefix = ' '
 
 local action_tbl = {
-  a = { label = 'hello', fn = 'hello', },
-  b = { label = 'close', fn = 'close', },
-  c = { label = 'github link', fn = 'github_link', }
+  q = { label = icons.get('x-circle') .. ' close', fn = 'close', },
+  -- a = { label = 'hello', fn = 'hello', },
+  c = { label = icons.get('mark-github') .. ' github link', fn = 'github_link', }
 }
 
 function set_mappings(buf)

@@ -148,4 +148,7 @@ alias gt1="git tag -l --sort=-v:refname --format='%(HEAD) %(color:yellow)%(refna
 # use neovim for man pager
 export MANPAGER='nvim +Man!'
 
-export DOCKER_HOST="unix://${HOME}/.lima/default/sock/docker.sock"
+# export DOCKER_HOST="unix://${HOME}/.lima/default/sock/docker.sock"
+export DOCKER_HOST="unix://${HOME}/.docker/run/docker.sock"
+# docker context list
+# docker context use xxx
