@@ -13,7 +13,7 @@ local prompt = {}
 local a0 = vim.api
 local api = vim.api
 
-local prompt_prefix = ' '
+local prompt_prefix = '  '
 
 local action_tbl = {
   q = { label = icons.get('x-circle') .. ' close', fn = 'close', },
