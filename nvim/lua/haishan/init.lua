@@ -18,7 +18,8 @@ local prompt_prefix = '  '
 local action_tbl = {
   q = { label = icons.get('x-circle') .. ' close', fn = 'close', },
   -- a = { label = 'hello', fn = 'hello', },
-  c = { label = icons.get('mark-github') .. ' github link', fn = 'github_link', }
+  c = { label = icons.get('mark-github') .. ' github link', fn = 'github_link', },
+  p = { label = icons.get('browser') .. ' project mgmt', fn = 'project_mgmt', },
 }
 
 function set_mappings(buf)
@@ -79,6 +80,16 @@ function actions.github_link()
 
   print(url)
   utils.open_in_browser(url)
+end
+
+-- local telescope_project_extension_loaded = false
+function actions.project_mgmt()
+  -- if not telescope_project_extension_loaded then
+  --   telescope_project_extension_loaded = true
+  --   require'telescope'.load_extension('project')
+  -- end
+
+  require'telescope'.extensions.project.project{}
 end
 
 function actions.hello()

@@ -18,6 +18,8 @@ local startup = function()
     end
   }
 
+  use { 'charludo/projectmgr.nvim' }
+
   -- lsp
   -- use { 'williamboman/nvim-lsp-installer' }
   use { 'neovim/nvim-lspconfig', config = config.config_lsp,
@@ -42,7 +44,7 @@ local startup = function()
     requires = {
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
-      {'fannheyward/telescope-coc.nvim'},
+      -- {'fannheyward/telescope-coc.nvim'},
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-symbols.nvim'}
     },
@@ -50,6 +52,8 @@ local startup = function()
     config = config.config_telescope,
     cmd = 'Telescope'
   }
+
+  use {'nvim-telescope/telescope-project.nvim'}
 
   use {
     'prettier/vim-prettier',
