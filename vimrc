@@ -221,6 +221,7 @@ imap <c-e> <Plug>(fzf-complete-word)
 " fzf in floating window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
+
 " Plug 'junegunn/gv.vim'
 
 " Golang
@@ -778,9 +779,8 @@ endif
 " has to defer the the highlight
 " not sure what's the exact issue
 " probably coc will overrides our changes after it's loaded
-autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighlight cterm=NONE gui=NONE')})
-autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocUnderline cterm=NONE gui=NONE')})
-" CocUnderline   xxx cterm=underline gui=underline
+" autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocWarningHighlight cterm=NONE gui=NONE')})
+" autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocUnderline cterm=NONE gui=NONE')})
 
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
 
@@ -829,6 +829,8 @@ command! -nargs=0 Noh  :nohlsearch
 autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 command! -nargs=0 Rename :TSLspRenameFile
+command! -nargs=0 Project lua require'telescope'.extensions.project.project{ display_type = 'full' }
+nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 
 " autocmd FileType typescript lua require'cmp'.setup.buffer {
 " \   sources = {

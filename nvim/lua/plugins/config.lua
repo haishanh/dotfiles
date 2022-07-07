@@ -40,7 +40,7 @@ function M.config_telescope()
   }
   require('telescope').load_extension('fzy_native')
   -- require('telescope').load_extension('coc')
-  require('telescope').load_extension('project')
+  -- require('telescope').load_extension('coc')
   -- require'telescope'.load_extension('dotfiles')
   -- require'telescope'.load_extension('gosource')
 
@@ -230,7 +230,8 @@ function M.config_galaxyline()
   i = i + 1;
   gls.left[i] = {
     FileName = {
-      provider = {"FileName", "FileSize"},
+      -- provider = {"FileName", "FileSize"},
+      provider = {"FilePath", "FileSize"},
       condition = buffer_not_empty,
       highlight = {colors.fg, colors.lightbg}
     }
@@ -404,7 +405,7 @@ function M.config_lsp()
   local lspconfig = require('lspconfig')
 
   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-  vim.diagnostic.config({ virtual_text = true, signs = true, underline = false })
+  vim.diagnostic.config({ virtual_text = false, signs = true, underline = false })
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
@@ -500,6 +501,11 @@ function M.config_lsp()
   -- print(server.name .. ' loaded')
 end
 
+function M.config_lspsaga()
+  local saga = require 'lspsaga'
+  saga.init_lsp_saga()
+end
+
 function M.config_cmp()
   local cmp = require'cmp'
   local t = function(str)
@@ -525,22 +531,20 @@ function M.config_cmp()
     Keyword = "",
     Snippet = icons.get("snippet"),
     Color = "",
-    -- File = "",
-    File = "",
+    File = icons.get("file"),
     Reference = "",
-    Folder = "",
+    Folder = icons.get("file-directory"),
     EnumMember = "",
     Constant = icons.get("constant"),
     Struct = icons.get("struct"),
-    Event = "",
+    Event = icons.get("zap"),
     Operator = "",
     TypeParameter = ""
   }
 
   cmp.setup({
     experimental = {
-      -- native_menu = false,
-      ghost_text = false,
+      ghost_text = true,
     },
 
     window = {
@@ -572,6 +576,7 @@ function M.config_cmp()
           luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
           latex_symbols = "[LaTeX]",
+          dictionary = icons.get("repo"),
         })[entry.source.name]
         return vim_item
       end
@@ -682,11 +687,36 @@ function M.config_cmp()
       }),
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, { name = 'ultisnips' }, { name = 'nvim_lsp_signature_help' }, { name = 'buffer' }
+      { name = 'nvim_lsp' }, { name = 'ultisnips' }, { name = 'nvim_lsp_signature_help' },
+      {
+        -- https://github.com/hrsh7th/cmp-buffer
+        name = 'buffer',
+        option = {
+          get_bufnrs = function()
+            -- return { vim.api.nvim_get_current_buf() }
+            -- all buffers
+            return vim.api.nvim_list_bufs()
+            -- local buf = vim.api.nvim_get_current_buf()
+            -- local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+            -- if byte_size > 1024 * 1024 then -- 1 Megabyte max
+            --   return {}
+            -- end
+            -- return { buf }
+          end,
+        }
+      },
     }, {
       { name = "dictionary", keyword_length = 2 }
     })
   })
+
+  require("cmp_dictionary").setup({
+    dic = {
+      ["*"] = { "/usr/share/dict/words" },
+    }
+  })
+
+  require('cmp_buffer')
 
   -- cmp.setup.cmdline('/', {
   --   sources = { { name = 'buffer' } },
@@ -726,6 +756,19 @@ function M.config_null_ls()
     },
   })
   -- require("lspconfig")["null-ls"].setup({})
+end
+
+function M.config_icons()
+  -- require("nvim-web-devicons").set_default_icon('', '#6d8086')
+  -- local icons = require "nvim-nonicons"
+  -- require("nvim-web-devicons").set_icon {
+  --   ["svelte"] = {
+  --     icon = icons.get("svelte"),
+  --     color = "#ff3e00",
+  --     cterm_color = "202",
+  --     name = "Svelte",
+  --   },
+  -- }
 end
 
 return M

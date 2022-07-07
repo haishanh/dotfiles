@@ -41,6 +41,11 @@ vim.opt.fillchars:append({
   verthoriz = '╋',
 })
 
+vim.g.symbols_outline = {
+  auto_preview = false,
+  position = 'left',
+}
+
 require('plugins/packer')
 vim.schedule(function()
   require('haishan').setup()

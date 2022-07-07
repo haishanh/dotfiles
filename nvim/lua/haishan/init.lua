@@ -17,6 +17,7 @@ local prompt_prefix = '  '
 
 local action_tbl = {
   q = { label = icons.get('x-circle') .. ' close', fn = 'close', },
+  x = { label = icons.get('svelte') .. ' close', fn = 'close', },
   -- a = { label = 'hello', fn = 'hello', },
   c = { label = icons.get('mark-github') .. ' github link', fn = 'github_link', },
   p = { label = icons.get('browser') .. ' project mgmt', fn = 'project_mgmt', },
@@ -57,6 +58,7 @@ end
 
 function actions.github_link()
   close_wins()
+  local linenr = vim.api.nvim_win_get_cursor(0)[1]
   local full_path = vim.api.nvim_buf_get_name(0) -- 0 means the current buffer
   local result = utils.run_cli_cmd('git', {'rev-parse', '--show-toplevel'})[1]
   local file_path = string.sub(full_path, #result + 1);
@@ -76,7 +78,7 @@ function actions.github_link()
   end
 
   -- file_path has a leading '/'
-  url = string.format('https://github.com/%s/%s/blob/%s%s', org, repo, branch, file_path);
+  url = string.format('https://github.com/%s/%s/blob/%s%s#L%s', org, repo, branch, file_path, linenr);
 
   print(url)
   utils.open_in_browser(url)

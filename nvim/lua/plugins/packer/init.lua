@@ -18,12 +18,16 @@ local startup = function()
     end
   }
 
-  use { 'charludo/projectmgr.nvim' }
+  use { 'charludo/projectmgr.nvim', disable = true }
 
   -- lsp
   -- use { 'williamboman/nvim-lsp-installer' }
-  use { 'neovim/nvim-lspconfig', config = config.config_lsp,
-    requires = 'williamboman/nvim-lsp-installer'}
+  use { 'neovim/nvim-lspconfig', config = config.config_lsp, requires = 'williamboman/nvim-lsp-installer'}
+  use {
+    'glepnir/lspsaga.nvim',
+    config = config.config_lspsaga,
+    cmd = 'Lspsaga',
+  }
   -- use { 'nvim-lua/lsp-status.nvim', disable = true }
   use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
   use {
@@ -90,19 +94,23 @@ local startup = function()
   -- }
   use {
     -- depends on the font https://github.com/yamatsum/nonicons
-    'yamatsum/nvim-nonicons',
+    '~/h/nvim-nonicons',
+    -- 'yamatsum/nvim-nonicons',
+    config = config.config_icons,
     requires = {'kyazdani42/nvim-web-devicons'}
   }
   -- use {'p00f/nvim-ts-rainbow', disable = true }
   use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
   use {
     -- 'NTBBloodbath/galaxyline.nvim',
-    'dsych/galaxyline.nvim',
-    -- 'glepnir/galaxyline.nvim',
-    branch = 'bugfix/diagnostics',
+    -- 'dsych/galaxyline.nvim',
+    -- branch = 'bugfix/diagnostics',
+    'glepnir/galaxyline.nvim',
     config = config.config_galaxyline,
-    -- requires = {'kyazdani42/nvim-web-devicons'}
     -- requires = {'kyazdani42/nvim-web-devicons', 'yamatsum/nvim-web-nonicons'}
+  }
+  use {
+    'simrat39/symbols-outline.nvim'
   }
   use {
     'norcalli/nvim-colorizer.lua',
@@ -144,7 +152,7 @@ local startup = function()
   -- use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
 
   -- use 'projekt0n/github-nvim-theme'
-  use {"folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end, event = 'BufEnter'}
+  use {"folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end, event = 'ZenMode'}
 
   -- :Twilight - toggle twilight
   use {"folke/twilight.nvim", config = function() require("twilight").setup {} end, event = 'BufEnter'}
