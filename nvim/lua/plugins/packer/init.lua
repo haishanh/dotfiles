@@ -88,6 +88,8 @@ local startup = function()
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
     config = function() require('plugins/treesitter/config') end,
   }
+  use {'nvim-treesitter/nvim-treesitter-textobjects'}
+  use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
   -- use {
   --   '~/h/nvim-nonicons',
   --   requires = {'kyazdani42/nvim-web-devicons'}
@@ -100,7 +102,6 @@ local startup = function()
     requires = {'kyazdani42/nvim-web-devicons'}
   }
   -- use {'p00f/nvim-ts-rainbow', disable = true }
-  use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
   use {
     -- 'NTBBloodbath/galaxyline.nvim',
     -- 'dsych/galaxyline.nvim',
