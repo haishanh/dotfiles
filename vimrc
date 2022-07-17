@@ -108,31 +108,6 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 " da=  delete after =
 " ya=  yank after =
 
-""" syntax highlight
-" Plug 'sheerun/vim-polyglot'  " A collection of language packs
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-" Plug 'niftylettuce/vim-jinja', { 'for': 'jinja' }
-" Plug 'posva/vim-vue'
-" Plug 'digitaltoad/vim-pug'
-
-""" syntax - JS
-" Plug 'othree/yajs.vim'
-" Plug 'pangloss/vim-javascript'
-" let g:javascript_plugin_jsdoc = 1
-" " 'mxw/vim-jsx' has been deprecated
-" Plug 'yuezk/vim-js'
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-
-" Plug 'vim/killersheep'
-
-" Plug 'Yggdroot/indentLine'
-" let g:indentLine_enabled = 0
-" let g:indentLine_char_list = ['|', '⎸', '┆', '┊']
-" let g:indentLine_char_list = ['⎸']
-" Plug 'lukas-reineke/indent-blankline.nvim'
-
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
@@ -155,14 +130,13 @@ set updatetime=300
 " Plug 'dracula/vim'
 " Plug 'haishanh/vim-dracula'
 " Plug 'haishanh/night-owl.vim'
-Plug 'Mofiqul/adwaita.nvim'
-Plug 'navarasu/onedark.nvim'
+" Plug 'Mofiqul/adwaita.nvim'
+" Plug 'navarasu/onedark.nvim'
 "Plug '$HOME/repo/h/night-owl.vim'
 " Plug 'iCyMind/NeoSolarized'
 " Plug 'lifepillar/vim-gruvbox8'
 " Plug 'morhetz/gruvbox'
 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -220,7 +194,6 @@ imap <c-e> <Plug>(fzf-complete-word)
 
 " fzf in floating window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
 
 " Plug 'junegunn/gv.vim'
 
@@ -387,14 +360,14 @@ Plug 'beloglazov/vim-textobj-quotes'
 " Plug 'NieTiger/halcyon-neovim'
 
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
+" Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
 " Plug 'mogelbrod/vim-jsonpath'
 " svelte
 " Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Plug 'leafOfTree/vim-svelte-plugin'
 
-Plug 'neoclide/jsonc.vim'
-Plug 'tomlion/vim-solidity'
+" Plug 'neoclide/jsonc.vim'
+" Plug 'tomlion/vim-solidity'
 
 " plug_end
 call plug#end()
