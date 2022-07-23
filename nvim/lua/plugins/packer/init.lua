@@ -189,6 +189,14 @@ local startup = function()
       -- vim.api.nvim_set_keymap("n", "<leader>x", ":ToggleTerm<CR>", {})
     end
   }
+
+  use { 'tpope/vim-scriptease' }
+  use { 'tpope/vim-fugitive' }
+  use { 'tpope/vim-rhubarb' }
+  -- use { 'tpope/vim-eunuch' }
+  use { 'tpope/vim-surround' }
+  use { 'tpope/vim-endwise', commit = '79a339' }
+  -- use { 'rstacruz/vim-closer' }
 end
 
 return require('packer').startup(startup)

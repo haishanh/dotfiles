@@ -77,14 +77,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
-Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-eunuch'
-" Plug 'rizzatti/dash.vim'
-" Plug 'skywind3000/asyncrun.vim'
-" Plug 'voldikss/vim-floaterm'
-
 " ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
 
 " :Tocv => open TOC in a vertical split
@@ -112,18 +104,6 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 " <c-y>,
 
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
-
-" Plug 'xavierchow/vim-sequence-diagram', { 'for': 'seq' }
-" nmap <unique> <leader>sq <Plug>GenerateDiagram
-
-" surround
-" Plug 'machakann/vim-sandwich'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
-" Closes brackets only when after pressing `Enter`
-Plug 'rstacruz/vim-closer'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 
 set updatetime=300
 """ Theme
