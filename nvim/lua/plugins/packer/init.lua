@@ -162,6 +162,7 @@ local startup = function()
   use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
 
   -- theme / colorscheme
+  use {'Yazeed1s/minimal.nvim'}
   use { 'rose-pine/neovim', disable = true, as = 'rose-pine',
     config = function()
       vim.g.rose_pine_variant = 'moon'
@@ -197,6 +198,8 @@ local startup = function()
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-endwise', commit = '79a339' }
   -- use { 'rstacruz/vim-closer' }
+
+  use { 'ldelossa/buffertag' }
 end
 
 return require('packer').startup(startup)

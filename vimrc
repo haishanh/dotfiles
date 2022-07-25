@@ -355,7 +355,8 @@ call plug#end()
 " colorscheme dracula
 " set background=dark
 " colorscheme bluewery
-colorscheme zephyr    " 8/10
+" colorscheme zephyr    " 8/10
+colorscheme minimal    " test
 " colorscheme onedark
 
 " set background=dark
