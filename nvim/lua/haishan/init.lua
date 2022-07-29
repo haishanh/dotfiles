@@ -21,7 +21,7 @@ local action_tbl = {
   -- a = { label = 'hello', fn = 'hello', },
   c = { label = icons.get('mark-github') .. ' github link', fn = 'github_link', },
   p = { label = icons.get('browser') .. ' project mgmt', fn = 'project_mgmt', },
-  b = { label = icons.get('browser') .. 'buffertag', fn = 'b0', },
+  b = { label = icons.get('browser') .. ' buffertag', fn = 'b0', },
 }
 
 function set_mappings(buf)
@@ -95,8 +95,10 @@ function actions.project_mgmt()
   require'telescope'.extensions.project.project{}
 end
 
-function b0()
+function actions.b0()
+  print('buffertag')
   require('buffertag').enable()
+  close_wins()
 end
 
 function actions.hello()
