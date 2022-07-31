@@ -27,7 +27,6 @@ local startup = function()
     'glepnir/lspsaga.nvim',
     config = config.config_lspsaga,
     cmd = 'Lspsaga',
-    after = 'nvim-lspconfig'
   }
   -- use { 'nvim-lua/lsp-status.nvim', disable = true }
   use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
