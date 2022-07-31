@@ -399,8 +399,8 @@ end
 
 
 function M.config_lsp()
-  local lsp_installer = require("nvim-lsp-installer")
-  lsp_installer.setup {}
+  -- local lsp_installer = require("nvim-lsp-installer")
+  -- lsp_installer.setup {}
 
   local lspconfig = require('lspconfig')
 
@@ -508,10 +508,10 @@ end
 
 function M.config_cmp()
   local cmp = require'cmp'
+  local icons = require "nvim-nonicons"
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
-  local icons = require "nvim-nonicons"
   local kind_icons = {
     Text = icons.get("text"),
     Method = icons.get("package"),
