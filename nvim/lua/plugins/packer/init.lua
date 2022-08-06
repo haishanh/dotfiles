@@ -6,7 +6,6 @@ local startup = function()
   use {'wbthomason/packer.nvim', opt = true}
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
-
   use {'SirVer/ultisnips',
     requires = {{'honza/vim-snippets', rtp = '.'}},
     config = function()

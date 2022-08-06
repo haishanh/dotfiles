@@ -9,29 +9,16 @@ function M.setup_nvim_tree()
     disable_netrw = true,
     hijack_netrw = true,
     hijack_cursor = true,
-    update_focused_file = {
-      enable = true,
-    },
-    view = {
-      width = 40,
-      side = 'right',
-    },
-    git = {
-      enable = false,
-    },
-    trash = {
-      cmd = "trash",
-      require_confirm = true,
-    },
+    update_focused_file = { enable = true },
+    view = { width = 40, side = 'right' },
+    git = { enable = false },
+    trash = { cmd = "trash", require_confirm = true },
     renderer = {
       add_trailing = true,
       indent_markers = {
         enable = true,
-        icons = {
-          corner = "└ ",
-          edge = "│ ",
-          none = "  ",
-        },
+        -- icons = { corner = "└", edge = "│ ", none = "  " },
+        icons = { corner = "╰", edge = "│ ", none = " " },
       },
       icons = {
         show = { git = true, folder_arrow = false, },
