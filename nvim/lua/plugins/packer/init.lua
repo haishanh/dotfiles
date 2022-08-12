@@ -199,6 +199,9 @@ local startup = function()
   -- use { 'rstacruz/vim-closer' }
 
   use { 'ldelossa/buffertag' }
+
+  -- https://www.reddit.com/r/neovim/comments/wl7413/winpicknvim_plugin_for_picking_a_window/
+  use { 'gbrlsnchs/winpick.nvim', config = config.config_winpick }
 end
 
 return require('packer').startup(startup)

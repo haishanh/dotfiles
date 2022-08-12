@@ -772,4 +772,18 @@ function M.config_icons()
   -- }
 end
 
+function M.config_winpick()
+  local winpick = require "winpick"
+  winpick.setup({ border = 'rounded' })
+  winpick.__select = function()
+    local winid, bufnr = winpick.select()
+    if winid then
+        vim.api.nvim_set_current_win(winid)
+        print(bufnr)
+    end
+  end
+  -- vim.api.nvim_set_keymap('n', '<c-w>', '<cmd>lua require("winpick").select()<CR>', {})
+  vim.api.nvim_set_keymap('n', '<c-w>', '<cmd>lua require("winpick").__select()<CR>', {})
+end
+
 return M
