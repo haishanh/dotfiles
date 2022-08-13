@@ -783,7 +783,7 @@ function M.config_winpick()
     end
   end
   -- vim.api.nvim_set_keymap('n', '<c-w>', '<cmd>lua require("winpick").select()<CR>', {})
-  vim.api.nvim_set_keymap('n', '<c-w>', '<cmd>lua require("winpick").__select()<CR>', {})
+  vim.api.nvim_set_keymap('n', '<c-;>', '<cmd>lua require("winpick").__select()<CR>', {})
 end
 
 return M
