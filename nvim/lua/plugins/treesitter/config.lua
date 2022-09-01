@@ -18,10 +18,10 @@ ts_config.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental = '<TAB>',
-      node_decremental = '<S-TAB>',
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
     },
   },
   -- https://github.com/p00f/nvim-ts-rainbow

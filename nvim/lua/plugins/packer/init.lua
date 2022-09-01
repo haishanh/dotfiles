@@ -102,12 +102,8 @@ local startup = function()
   }
   -- use {'p00f/nvim-ts-rainbow', disable = true }
   use {
-    -- 'NTBBloodbath/galaxyline.nvim',
-    -- 'dsych/galaxyline.nvim',
-    -- branch = 'bugfix/diagnostics',
     'glepnir/galaxyline.nvim',
-    config = config.config_galaxyline,
-    -- requires = {'kyazdani42/nvim-web-devicons', 'yamatsum/nvim-web-nonicons'}
+    config = require('plugins/galaxyline/config'),
   }
   use {
     'simrat39/symbols-outline.nvim'
