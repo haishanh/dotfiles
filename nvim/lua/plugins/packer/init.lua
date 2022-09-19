@@ -147,12 +147,6 @@ local startup = function()
   }
   -- use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
 
-  -- use 'projekt0n/github-nvim-theme'
-  use {"folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end, disable = true, event = 'BufEnter'}
-
-  -- :Twilight - toggle twilight
-  use {"folke/twilight.nvim", config = function() require("twilight").setup {} end, event = 'BufEnter'}
-
   -- use {'beloglazov/vim-textobj-quotes', event = 'BufEnter'}
   use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
 
