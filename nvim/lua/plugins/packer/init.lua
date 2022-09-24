@@ -42,6 +42,8 @@ local startup = function()
   use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
   use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
 
+  use { 'mbbill/undotree', cmd = 'UndotreeToggle', config = config.config_undotree  }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {

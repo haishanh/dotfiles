@@ -74,8 +74,8 @@ endif
 let g:plug_pwindow = 'vertical belowright new'
 call plug#begin('~/.vim/bundle')
 
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
+" Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+" nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
 " ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
 

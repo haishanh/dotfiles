@@ -457,4 +457,9 @@ function M.config_winpick()
   vim.api.nvim_set_keymap('n', '<c-;>', '<cmd>lua require("winpick").__select()<CR>', {})
 end
 
+function M.config_undotree()
+  -- nnoremap <leader>u :UndotreeToggle<cr>
+  vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<cr>', { noremap = true })
+end
+
 return M
