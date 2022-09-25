@@ -16,6 +16,7 @@ local api = vim.api
 local prompt_prefix = '  '
 
 local action_tbl = {
+
   q = { label = icons.get('x-circle') .. ' close', fn = 'close', },
   x = { label = icons.get('svelte') .. ' close', fn = 'close', },
   -- a = { label = 'hello', fn = 'hello', },
@@ -112,6 +113,8 @@ function actions.close()
 end
 
 function M.setup()
+  utils.setup();
+
   a0.nvim_create_user_command("Haishan", function(opts)
     -- print(opts.fargs)
     -- print(opts.fargs[0])

@@ -53,7 +53,7 @@ function M.config_sunjon_shade()
   })
 end
 
-function M.config_hop() 
+function M.config_hop()
   require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 
   vim.api.nvim_set_keymap('', 'f', ':HopChar1<CR>', {})
@@ -70,17 +70,35 @@ end
 
 
 function M.config_lsp()
-  local lsp_installer = require("nvim-lsp-installer")
-  lsp_installer.setup {}
+  -- local lsp_installer = require("nvim-lsp-installer")
+  -- lsp_installer.setup {}
+  require("mason").setup()
+  require("mason-lspconfig").setup()
 
   local lspconfig = require('lspconfig')
+
+  local sign = function(opts)
+    vim.fn.sign_define(opts.name, {
+      texthl = opts.name,
+      text = opts.text,
+      numhl = ''
+    })
+  end
+
+
+  local sign_icon =  { error = '✘', warn = '▲', hint = '⚑', info = '' }
+
+  sign({name = 'DiagnosticSignError', text = sign_icon.error})
+  sign({name = 'DiagnosticSignWarn', text = sign_icon.warn})
+  sign({name = 'DiagnosticSignHint', text = sign_icon.hint})
+  sign({name = 'DiagnosticSignInfo', text = sign_icon.info})
 
   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
   vim.diagnostic.config({ virtual_text = false, signs = true, underline = false })
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
-  local on_attach = function(client, bufnr)
+  local on_attach = function(_client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -123,16 +141,28 @@ function M.config_lsp()
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", { silent = true })
     vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", { silent = true })
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", { silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", { silent = true }) 
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", { silent = true })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
         signs = true,
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+          focusable = false,
+          style = 'minimal',
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
       }
     )
 
     -- https://en.wikipedia.org/wiki/Box-drawing_character
+    -- also check https://github.com/nvim-telescope/telescope.nvim/blob/30e2dc5232d0dd63709ef8b44a5d6184005e8602/lua/telescope/themes.lua#L91
     local border = {
       {"┌", "FloatBorder"},
       {"─", "FloatBorder"},
@@ -149,7 +179,6 @@ function M.config_lsp()
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
       vim.lsp.handlers.hover, {border = border}
     )
-
   end
 
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -163,11 +192,25 @@ function M.config_lsp()
     flags = { debounce_text_changes = 300 },
   }
   lspconfig.eslint.setup {
-    on_attach = function (client, bufnr) client.resolved_capabilities.document_formatting = false end,
+    on_attach = function (client, _bufnr) client.resolved_capabilities.document_formatting = false end,
     settings = { format = { enable = true } },
     flags = { debounce_text_changes = 300 },
   }
+  lspconfig.cssls.setup { on_attach = on_attach, capabilities = capabilities }
   lspconfig.svelte.setup { on_attach = on_attach, capabilities = capabilities }
+
+  require("mason-lspconfig").setup_handlers({
+    ["sumneko_lua"] = function ()
+      lspconfig.sumneko_lua.setup {
+        on_attach = on_attach,
+        settings = {
+          Lua = {
+            diagnostics = {globals = {"vim", "use"}}
+          }
+        }
+      }
+    end,
+  })
 
   -- print(server.name .. ' loaded')
 end
@@ -401,6 +444,13 @@ function M.config_cmp()
     }, {
         { name = "cmdline" },
     }),
+  })
+
+  cmp.setup.filetype({'nvimtree'}, {
+    -- enabled = false
+    completion = {
+      autocomplete = false
+    }
   })
 end
 

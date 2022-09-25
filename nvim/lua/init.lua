@@ -1,4 +1,5 @@
 local disable_distribution_plugins= function()
+  vim.g.loaded                   = 1
   vim.g.loaded_gzip              = 1
   vim.g.loaded_tar               = 1
   vim.g.loaded_tarPlugin         = 1
@@ -47,9 +48,9 @@ vim.g.symbols_outline = {
 }
 
 require('plugins/packer')
-vim.schedule(function()
-  require('haishan').setup()
-end)
+-- vim.schedule(function()
+--   require('haishan').setup()
+-- end)
 
 -- vim.api.nvim_create_autocmd('ColorScheme', {
 --   pattern = 'onedark',

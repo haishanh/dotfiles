@@ -1,7 +1,11 @@
 local utils = {}
 
 local api = vim.api
-local job = require("plenary.job")
+local job
+
+function utils.setup()
+  job = require("plenary.job")
+end
 
 function utils.assign(t0, t1)
   for k,v in pairs(t1) do t0[k] = v end
