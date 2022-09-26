@@ -195,7 +195,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 """ https://github.com/prettier/vim-prettier
 " nnoremap <silent> gp :PrettierAsync<CR>
 " use null-ls
-nnoremap <silent> gp :lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gp :lua vim.lsp.buf.format({ async = false })<CR>
 
 " use `:Oi` for organize import of current buffer
 command! -nargs=0 Oi :CocCommand editor.action.organizeImport

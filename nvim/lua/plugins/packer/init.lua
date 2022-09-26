@@ -3,11 +3,11 @@ vim.cmd [[packadd packer.nvim]]
 local config = require('plugins/config')
 
 local startup = function(use)
-  use {'wbthomason/packer.nvim', opt = true}
-  use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-  use {'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end}
-  use {'SirVer/ultisnips',
-    requires = {{'honza/vim-snippets', rtp = '.'}},
+  use { 'wbthomason/packer.nvim', opt = true }
+  use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+  use { 'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end }
+  use { 'SirVer/ultisnips',
+    requires = { { 'honza/vim-snippets', rtp = '.' } },
     config = function()
       vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
       vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
@@ -17,39 +17,11 @@ local startup = function(use)
     end
   }
 
-
   use { 'charludo/projectmgr.nvim', disable = true }
 
-  -- use {
-  --   'VonHeikemen/lsp-zero.nvim',
-  --   config = function () 
-  --     local lsp = require('lsp-zero')
-  --     lsp.preset('recommended')
-  --     lsp.setup()
-  --   end,
-		-- requires = {
-			-- -- LSP Support
-			-- {'neovim/nvim-lspconfig'},
-			-- {'williamboman/mason.nvim'},
-			-- {'williamboman/mason-lspconfig.nvim'},
-
-			-- -- Autocompletion
-			-- {'hrsh7th/nvim-cmp'},
-			-- {'hrsh7th/cmp-buffer'},
-			-- {'hrsh7th/cmp-path'},
-			-- {'saadparwaiz1/cmp_luasnip'},
-			-- {'hrsh7th/cmp-nvim-lsp'},
-			-- {'hrsh7th/cmp-nvim-lua'},
-
-			-- -- Snippets
-			-- {'L3MON4D3/LuaSnip'},
-			-- {'rafamadriz/friendly-snippets'},
-		-- }
-  -- }
-
   -- lsp
-  use {'williamboman/mason.nvim'}
-  use {'williamboman/mason-lspconfig.nvim'}
+  use { 'williamboman/mason.nvim' }
+  use { 'williamboman/mason-lspconfig.nvim' }
   use { 'neovim/nvim-lspconfig', config = config.config_lsp }
   use {
     'glepnir/lspsaga.nvim',
@@ -60,7 +32,8 @@ local startup = function(use)
   use {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
-    requires = 'hrsh7th/nvim-cmp' }
+    requires = 'hrsh7th/nvim-cmp'
+  }
   use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
@@ -71,35 +44,35 @@ local startup = function(use)
   use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
   use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
 
-  use { 'mbbill/undotree', cmd = 'UndotreeToggle', config = config.config_undotree  }
+  use { 'mbbill/undotree', cmd = 'UndotreeToggle', config = config.config_undotree }
 
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
       -- {'fannheyward/telescope-coc.nvim'},
-      {'nvim-telescope/telescope-fzy-native.nvim'},
-      {'nvim-telescope/telescope-symbols.nvim'}
+      { 'nvim-telescope/telescope-fzy-native.nvim' },
+      { 'nvim-telescope/telescope-symbols.nvim' }
     },
     setup = config.setup_telescope,
     config = config.config_telescope,
     cmd = 'Telescope'
   }
 
-  use {'nvim-telescope/telescope-project.nvim'}
+  use { 'nvim-telescope/telescope-project.nvim' }
 
   use {
     'prettier/vim-prettier',
     run = 'yarn',
   }
 
-  use {'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade}
+  use { 'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade }
 
   use 'tpope/vim-commentary'
   use {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    requires = {'nvim-treesitter/nvim-treesitter'}
+    requires = { 'nvim-treesitter/nvim-treesitter' }
   }
 
   use {
@@ -111,7 +84,7 @@ local startup = function(use)
   }
 
   use { 'nvim-treesitter/nvim-treesitter', config = require('plugins/treesitter/config').config_treesitter }
-  use {'nvim-treesitter/playground', cmd = {'TSPlaygroundToggle'}}
+  use { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle' } }
   -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 
   use {
@@ -119,7 +92,7 @@ local startup = function(use)
     '~/h/nvim-nonicons',
     -- 'yamatsum/nvim-nonicons',
     -- config = config.config_icons,
-    requires = {'kyazdani42/nvim-web-devicons'}
+    requires = { 'kyazdani42/nvim-web-devicons' }
   }
   -- use {'p00f/nvim-ts-rainbow', disable = true }
   use {
@@ -136,7 +109,7 @@ local startup = function(use)
   }
   use {
     'lewis6991/gitsigns.nvim',
-    requires = {'nvim-lua/plenary.nvim'},
+    requires = { 'nvim-lua/plenary.nvim' },
     config = [[require('plugins/gitsigns/config')]],
     event = 'BufEnter'
   }
@@ -169,10 +142,10 @@ local startup = function(use)
   -- use {'phaazon/hop.nvim', as = 'hop', config = config.config_hop}
 
   -- use {'beloglazov/vim-textobj-quotes', event = 'BufEnter'}
-  use {'lukas-reineke/indent-blankline.nvim', event = 'BufEnter'}
+  use { 'lukas-reineke/indent-blankline.nvim', event = 'BufEnter' }
 
   -- theme / colorscheme
-  use {'Yazeed1s/minimal.nvim'}
+  use { 'Yazeed1s/minimal.nvim' }
   use { 'rose-pine/neovim', disable = true, as = 'rose-pine',
     config = function()
       vim.g.rose_pine_variant = 'moon'
@@ -184,7 +157,7 @@ local startup = function(use)
   use { "rebelot/kanagawa.nvim",
     disable = true,
     config = function()
-      require'kanagawa'.setup({ dimInactive = true, globalStatus = true })
+      require 'kanagawa'.setup({ dimInactive = true, globalStatus = true })
       vim.cmd("colorscheme kanagawa")
     end
   }
@@ -193,7 +166,7 @@ local startup = function(use)
     "akinsho/toggleterm.nvim",
     disable = true,
     config = function()
-      require("toggleterm").setup{
+      require("toggleterm").setup {
         open_mapping = [[<c-\>]],
         shell = '/bin/zsh'
       }
