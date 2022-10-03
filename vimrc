@@ -195,7 +195,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 """ https://github.com/prettier/vim-prettier
 " nnoremap <silent> gp :PrettierAsync<CR>
 " use null-ls
-nnoremap <silent> gp :lua vim.lsp.buf.format({ async = false })<CR>
+nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
 
 " use `:Oi` for organize import of current buffer
 command! -nargs=0 Oi :CocCommand editor.action.organizeImport
@@ -802,4 +802,7 @@ nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 " \   },
 " \ }
 
-
+" new in neovim 0.8
+set winbar=%f
+" in newovim 0.8" this now only check comments
+set spell

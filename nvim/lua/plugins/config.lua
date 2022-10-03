@@ -48,9 +48,7 @@ function M.config_telescope()
 end
 
 function M.config_sunjon_shade()
-  require('shade').setup({
-    overlay_opacity = 85,
-  })
+  require('shade').setup({ overlay_opacity = 85 })
 end
 
 function M.config_hop()
@@ -84,8 +82,8 @@ function M.config_lsp()
     })
   end
 
-
-  local sign_icon = { error = '๏', warn = '▲', hint = '⚑', info = '' }
+  -- https://www.compart.com/en/unicode/category/So
+  local sign_icon = { error = '↬', warn = '▲', hint = '⚑', info = '' }
 
   sign({ name = 'DiagnosticSignError', text = sign_icon.error })
   sign({ name = 'DiagnosticSignWarn', text = sign_icon.warn })
@@ -125,7 +123,7 @@ function M.config_lsp()
     buf_set_keymap('n', '[x', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']x', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<space>h', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    -- buf_set_keymap('n', '<space>h', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
 
   local ts_on_attach = function(client, bufnr)
@@ -166,19 +164,14 @@ function M.config_lsp()
     -- https://en.wikipedia.org/wiki/Box-drawing_character
     -- also check https://github.com/nvim-telescope/telescope.nvim/blob/30e2dc5232d0dd63709ef8b44a5d6184005e8602/lua/telescope/themes.lua#L91
     local border = {
-      { "┌", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "┐", "FloatBorder" },
-      { "│", "FloatBorder" },
-      { "┘", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "└", "FloatBorder" },
-      { "│", "FloatBorder" },
+      { "┌", "FloatBorder" }, { "─", "FloatBorder" }, { "┐", "FloatBorder" }, { "│", "FloatBorder" },
+      { "┘", "FloatBorder" }, { "─", "FloatBorder" }, { "└", "FloatBorder" }, { "│", "FloatBorder" },
     }
 
     -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=NONE cterm=NONE]]
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    -- vim.lsp.handlers.hover, { border = "single" }
       vim.lsp.handlers.hover, { border = border }
     )
   end
@@ -232,18 +225,15 @@ function M.config_cmp()
   local kind_icons = {
     Text = icons.get("text"),
     Method = icons.get("package"),
-    -- Method = "",
     Function = '',
     Constructor = "",
-    -- Field = "",
     Field = icons.get("field"),
     Variable = icons.get("code-square"),
     Class = "ﴯ",
     Interface = "",
     Module = "",
-    -- Property = "ﰠ",
     Property = icons.get("tag"),
-    Unit = "",
+    Unit = "U",
     Value = "",
     Enum = "",
     Keyword = "",
@@ -256,8 +246,8 @@ function M.config_cmp()
     Constant = icons.get("constant"),
     Struct = icons.get("struct"),
     Event = icons.get("zap"),
-    Operator = "",
-    TypeParameter = ""
+    Operator = "O",
+    TypeParameter = "T"
   }
 
   cmp.setup({
@@ -302,6 +292,8 @@ function M.config_cmp()
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      -- ['<C-f>'] = cmp.mapping({ i = cmp.mapping.scroll_docs(4), c = cmp.mapping.scroll_docs(4) }),
       ["<Tab>"] = cmp.mapping({
         c = function()
           if cmp.visible() then
@@ -386,11 +378,6 @@ function M.config_cmp()
           end
         end
       }),
-      -- ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
-      -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-f>'] = cmp.mapping({ i = cmp.mapping.scroll_docs(4), c = cmp.mapping.scroll_docs(4) }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
       ['<CR>'] = cmp.mapping({
@@ -424,15 +411,15 @@ function M.config_cmp()
         }
       },
     }, {
-      { name = "dictionary", keyword_length = 2 }
+      -- { name = "dictionary", keyword_length = 2 }
     })
   })
 
-  require("cmp_dictionary").setup({
-    dic = {
-      ["*"] = { "/usr/share/dict/words" },
-    }
-  })
+  -- require("cmp_dictionary").setup({
+  --   dic = {
+  --     ["*"] = { "/usr/share/dict/words" },
+  --   }
+  -- })
 
   require('cmp_buffer')
 
@@ -440,17 +427,21 @@ function M.config_cmp()
   --   sources = { { name = 'buffer' } },
   --   view = { entries = {name = 'wildmenu', separator = '|' } }
   -- })
+
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
+    -- sources = cmp.config.sources({
+    --   { name = "path" },
+    -- }, {
+    --   { name = "cmdline" },
+    -- }),
     sources = cmp.config.sources({
-      { name = "path" },
-    }, {
       { name = "cmdline" },
     }),
   })
 
   cmp.setup.filetype({ 'nvimtree' }, {
-    -- enabled = false
+    enabled = false,
     completion = {
       autocomplete = false
     }

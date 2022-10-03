@@ -104,6 +104,7 @@ local startup = function(use)
   }
   use {
     'norcalli/nvim-colorizer.lua',
+    disable = true,
     config = function() require('colorizer').setup() end,
     event = 'BufEnter'
   }

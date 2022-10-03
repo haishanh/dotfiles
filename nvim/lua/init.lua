@@ -26,10 +26,14 @@ local options = {
   termguicolors = true,
   laststatus = 3,
   pumheight = 10,
+  -- last status
+  ls = 0,
+  -- command height
+  ch = 0
 }
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  vim.o[k] = v
 end
 
 vim.opt.fillchars:append({
