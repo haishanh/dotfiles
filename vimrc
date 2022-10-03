@@ -805,4 +805,4 @@ nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 " new in neovim 0.8
 set winbar=%f
 " in newovim 0.8" this now only check comments
-set spell
+" set spell

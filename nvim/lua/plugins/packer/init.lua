@@ -4,6 +4,7 @@ local config = require('plugins/config')
 
 local startup = function(use)
   use { 'wbthomason/packer.nvim', opt = true }
+  use { "almo7aya/openingh.nvim" }
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
   use { 'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end }
   use { 'SirVer/ultisnips',
