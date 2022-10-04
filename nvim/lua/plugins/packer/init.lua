@@ -117,7 +117,7 @@ local startup = function(use)
   }
   use {
     'windwp/nvim-autopairs',
-    commit = 'fdeb794ee7c4b',
+    -- commit = 'fdeb794ee7c4b',
     config = function() require('nvim-autopairs').setup() end,
     event = 'BufEnter'
   }
