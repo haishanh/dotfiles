@@ -188,6 +188,27 @@ local startup = function(use)
 
   -- https://www.reddit.com/r/neovim/comments/wl7413/winpicknvim_plugin_for_picking_a_window/
   use { 'gbrlsnchs/winpick.nvim', config = config.config_winpick }
+
+  -- colorscheme
+  use {
+    -- 8/10
+    'haishanh/zephyr-nvim',
+    branch = 'haishan',
+    config = function()
+      vim.cmd [[colorscheme zephyr]]
+    end
+  }
+  use {
+    -- 7/10
+    'catppuccin/nvim',
+    as = 'catppuccin',
+    disable = true,
+    config = function()
+      vim.g.catppuccin_flavour = "macchiato"
+      require("catppuccin").setup()
+      vim.cmd [[colorscheme catppuccin]]
+    end
+  }
 end
 
 return require('packer').startup(startup)

@@ -462,7 +462,11 @@ function M.config_null_ls()
     sources = {
       -- null_ls.builtins.formatting.stylua,
       -- null_ls.builtins.completion.spell,
-      null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.prettier.with({
+        -- enable for all filetypes
+        filetypes = {}
+        -- filetypes = { "javascript", "typescript", "html", "json", "yaml", "markdown" },
+      }),
       null_ls.builtins.diagnostics.eslint_d.with {
         condition = with_root_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" },
       },

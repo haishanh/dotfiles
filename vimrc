@@ -214,7 +214,7 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'AGhost-7/critiq.vim'
 " colorscheme
 " Plug '$HOME/repo/h/zephyr-nvim'
-Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
+" Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
 " Plug 'glepnir/zephyr-nvim'
 Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
 Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
@@ -355,7 +355,7 @@ call plug#end()
 " colorscheme dracula
 " set background=dark
 " colorscheme bluewery
-colorscheme zephyr    " 8/10
+" colorscheme zephyr    " 8/10
 " colorscheme minimal    " 7/10
 " colorscheme onedark
 
