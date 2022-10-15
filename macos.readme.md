@@ -15,7 +15,7 @@ brew install pgcli
 # for git diff
 brew install git-delta
 
-go get -u github.com/nikitavoloboev/gitupdate
+go install github.com/nikitavoloboev/gitupdate@latest
 
 brew install sqlite-utils
 
