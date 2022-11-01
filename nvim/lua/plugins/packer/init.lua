@@ -191,6 +191,13 @@ local startup = function(use)
 
   -- colorscheme
   use {
+    'shaunsingh/nord.nvim',
+    disable = true,
+    config = function()
+      vim.cmd [[colorscheme nord]]
+    end
+  }
+  use {
     -- 8/10
     'haishanh/zephyr-nvim',
     branch = 'haishan',

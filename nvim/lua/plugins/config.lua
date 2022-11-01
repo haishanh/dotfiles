@@ -195,6 +195,7 @@ function M.config_lsp()
   }
   lspconfig.cssls.setup { on_attach = on_attach, capabilities = capabilities }
   lspconfig.svelte.setup { on_attach = on_attach, capabilities = capabilities }
+  lspconfig.rust_analyzer.setup { on_attach = on_attach }
 
   require("mason-lspconfig").setup_handlers({
     ["sumneko_lua"] = function()
@@ -236,14 +237,14 @@ function M.config_cmp()
     Property = icons.get("tag"),
     Unit = "U",
     Value = "",
-    Enum = "",
+    Enum = "E",
     Keyword = "",
     Snippet = icons.get("snippet"),
     Color = "",
     File = icons.get("file"),
     Reference = "",
     Folder = icons.get("file-directory"),
-    EnumMember = "",
+    EnumMember = icons.get("field"),
     Constant = icons.get("constant"),
     Struct = icons.get("struct"),
     Event = icons.get("zap"),

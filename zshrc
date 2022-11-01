@@ -164,3 +164,4 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 
 export PNPM_HOME="$HOME/.pnpm0"
 export PATH="$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin"
