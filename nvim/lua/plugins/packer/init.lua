@@ -4,6 +4,8 @@ local config = require('plugins/config')
 
 local startup = function(use)
   use { 'wbthomason/packer.nvim', opt = true }
+
+
   use { "almo7aya/openingh.nvim" }
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
   use { 'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end }
@@ -47,6 +49,7 @@ local startup = function(use)
 
   use { 'mbbill/undotree', cmd = 'UndotreeToggle', config = config.config_undotree }
 
+  use { 'stevearc/dressing.nvim' }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -163,6 +166,15 @@ local startup = function(use)
       vim.cmd("colorscheme kanagawa")
     end
   }
+
+  use { 'mrjones2014/legendary.nvim', config = function()
+    require('legendary').setup({
+      commands = {
+        -- easily create user commands
+        { ':SayHello', function() print('hello world!') end, description = 'Say hello as a command' },
+      },
+    });
+  end }
 
   use {
     "akinsho/toggleterm.nvim",

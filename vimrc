@@ -780,7 +780,8 @@ command! -nargs=0 Bye :Sayonara
 command! -nargs=0 Noh  :nohlsearch
 
 """ https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+" autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+" vim.lsp.buf.format({ async = true })
 
 command! -nargs=0 Rename :TSLspRenameFile
 command! -nargs=0 Project lua require'telescope'.extensions.project.project{ display_type = 'full' }

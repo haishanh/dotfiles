@@ -189,7 +189,7 @@ function M.config_lsp()
   }
   lspconfig.eslint.setup {
     -- on_attach = function (client, _bufnr) client.resolved_capabilities.document_formatting = false end,
-    on_attach = function(client, _bufnr) client.server_capabilities.document_formatting = false end,
+    on_attach = function(client, _bufnr) client.server_capabilities.document_formatting = true end,
     settings = { format = { enable = true } },
     flags = { debounce_text_changes = 300 },
   }
