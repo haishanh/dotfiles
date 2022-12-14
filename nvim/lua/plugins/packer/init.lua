@@ -18,33 +18,73 @@ local startup = function(use)
       vim.g.UltiSnipsRemoveSelectModeMappings = 0
     end
   }
-
   use { 'charludo/projectmgr.nvim', disable = true }
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    requires = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
+    },
+    config = function()
+      local lsp = require('lsp-zero')
+      lsp.preset('recommended')
+      lsp.on_attach(function(_client, bufnr)
+        local opts = { buffer = bufnr, remap = false }
+        local bind = vim.keymap.set
+
+        bind('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        bind('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      end)
+      lsp.ensure_installed({ 'tsserver', 'eslint', 'sumneko_lua', 'cssls', 'svelte', 'rust_analyzer' })
+      lsp.nvim_workspace()
+      lsp.setup()
+      -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = '●',
+        },
+        signs = true, underline = false
+      })
+    end
+  }
 
   -- lsp
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
-  use { 'neovim/nvim-lspconfig', config = config.config_lsp }
-  use {
-    'glepnir/lspsaga.nvim',
-    config = config.config_lspsaga,
-    cmd = 'Lspsaga',
-  }
-  use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
-  use {
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    requires = 'hrsh7th/nvim-cmp'
-  }
-  use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
-  use { 'uga-rosa/cmp-dictionary', requires = 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
-
-  use { 'onsails/lspkind-nvim' }
-  use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
-  use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
+  -- use { 'williamboman/mason.nvim' }
+  -- use { 'williamboman/mason-lspconfig.nvim' }
+  -- use { 'neovim/nvim-lspconfig', config = config.config_lsp }
+  -- use {
+  --   'glepnir/lspsaga.nvim',
+  --   config = config.config_lspsaga,
+  --   cmd = 'Lspsaga',
+  -- }
+  -- use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'hrsh7th/nvim-cmp' }
+  -- use {
+  --   'hrsh7th/cmp-path',
+  --   'hrsh7th/cmp-nvim-lsp-signature-help',
+  --   requires = 'hrsh7th/nvim-cmp'
+  -- }
+  -- use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'uga-rosa/cmp-dictionary', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/nvim-cmp', config = config.config_cmp }
+  -- use { 'onsails/lspkind-nvim' }
+  -- use { 'jose-elias-alvarez/nvim-lsp-ts-utils' }
+  -- use { 'jose-elias-alvarez/null-ls.nvim', config = config.config_null_ls }
 
   use { 'mbbill/undotree', cmd = 'UndotreeToggle', config = config.config_undotree }
 
@@ -209,9 +249,17 @@ local startup = function(use)
     end
   }
   use {
+    'kvrohit/mellow.nvim',
+    disable = true,
+    config = function()
+      vim.g.mellow_italic_comments = false
+      vim.cmd [[colorscheme mellow]]
+    end
+  }
+  use {
     -- 8/10
-    'haishanh/zephyr-nvim',
-    branch = 'haishan',
+    'glepnir/zephyr-nvim',
+    -- branch = 'haishan',
     config = function()
       vim.cmd [[colorscheme zephyr]]
     end
