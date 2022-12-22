@@ -128,7 +128,7 @@ local startup = function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', config = require('plugins/treesitter/config').config_treesitter }
   use { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle' } }
-  -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 
   use {
     -- depends on the font https://github.com/yamatsum/nonicons
