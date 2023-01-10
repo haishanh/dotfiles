@@ -55,7 +55,7 @@ local startup = function(use)
       -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
       vim.diagnostic.config({
         virtual_text = {
-          prefix = '●',
+          prefix = '○',
         },
         signs = true, underline = false
       })
@@ -100,7 +100,7 @@ local startup = function(use)
     },
     setup = config.setup_telescope,
     config = config.config_telescope,
-    cmd = 'Telescope'
+    -- cmd = 'Telescope'
   }
 
   use { 'nvim-telescope/telescope-project.nvim' }
@@ -153,6 +153,7 @@ local startup = function(use)
   }
   use {
     'lewis6991/gitsigns.nvim',
+
     requires = { 'nvim-lua/plenary.nvim' },
     config = [[require('plugins/gitsigns/config')]],
     event = 'BufEnter'

@@ -428,10 +428,12 @@ inoremap <C-s>     <C-O>:update<cr>
 nnoremap <C-s>     :update<cr>
 
 " Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>l
-" inoremap <C-j> <C-o>j
-" inoremap <C-k> <C-o>k
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-j> <C-o>gj
+inoremap <C-k> <C-o>gk
+" inoremap <C-h> <C-o>h
+" inoremap <C-l> <C-o>l
 " inoremap <C-^> <C-o><C-^>
 
 set autoread
@@ -531,12 +533,13 @@ set visualbell
 set cmdheight=2
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+
+" if has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
 
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup

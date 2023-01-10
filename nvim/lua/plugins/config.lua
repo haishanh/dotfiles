@@ -44,7 +44,9 @@ function M.config_telescope()
   -- require'telescope'.load_extension('dotfiles')
   -- require'telescope'.load_extension('gosource')
 
-  -- vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+
+  -- vim.keymap.set('n', '<leader>sf', [[<cmd>Telescope find_files<cr>]], { desc = '[S]earch [F]iles' })
+  vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 end
 
 function M.config_sunjon_shade()
@@ -60,10 +62,11 @@ function M.config_hop()
 end
 
 function M.setup_telescope()
-  vim.api.nvim_set_keymap('n', '<c-a>', [[<cmd>Telescope buffers show_all_buffers=true<cr>]], { silent = true })
-  vim.api.nvim_set_keymap('n', '<c-s>', [[<cmd>Telescope git_files<cr>]], { silent = true })
-  vim.api.nvim_set_keymap('n', '<c-d>', [[<cmd>Telescope find_files<cr>]], { silent = true })
-  vim.api.nvim_set_keymap('n', '<c-g>', [[<cmd>Telescope live_grep<cr>]], { silent = true })
+  -- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+  -- vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>Telescope find_files<cr>]], { silent = true,  })
+  -- vim.api.nvim_set_keymap('n', '<c-a>', [[<cmd>Telescope buffers show_all_buffers=true<cr>]], { silent = true })
+  -- vim.api.nvim_set_keymap('n', '<c-s>', [[<cmd>Telescope git_files<cr>]], { silent = true })
+  -- vim.api.nvim_set_keymap('n', '<c-g>', [[<cmd>Telescope live_grep<cr>]], { silent = true })
 end
 
 function M.config_lsp()

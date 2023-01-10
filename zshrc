@@ -49,8 +49,8 @@ autoload -Uz _zinit
 ### End of Zinit installer's chunk
 
 
-zinit ice pick"async.zsh" src"pure.zsh"
-zinit light sindresorhus/pure
+# zinit ice pick"async.zsh" src"pure.zsh"
+# zinit light sindresorhus/pure
 
 # lucid causes the under-prompt message saying
 # Loaded zsh-users/zsh-autosuggestions that normally
@@ -165,3 +165,5 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 export PNPM_HOME="$HOME/.pnpm0"
 export PATH="$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
+
+eval "$(starship init zsh)"
