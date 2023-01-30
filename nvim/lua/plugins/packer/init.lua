@@ -126,6 +126,7 @@ local startup = function(use)
     event = 'BufEnter'
   }
 
+  use { 'mrjones2014/nvim-ts-rainbow' }
   use { 'nvim-treesitter/nvim-treesitter', config = require('plugins/treesitter/config').config_treesitter }
   use { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle' } }
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }

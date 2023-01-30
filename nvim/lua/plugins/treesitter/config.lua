@@ -24,7 +24,7 @@ function M.config_treesitter()
         node_decremental = "grm",
       },
     },
-    -- https://github.com/p00f/nvim-ts-rainbow
+    -- https://github.com/mrjones2014/nvim-ts-rainbow
     rainbow = {enable = true},
     -- https://github.com/nvim-treesitter/playground
     playground = {enable = true},
