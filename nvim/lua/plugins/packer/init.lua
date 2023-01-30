@@ -260,9 +260,18 @@ local startup = function(use)
   use {
     -- 8/10
     'glepnir/zephyr-nvim',
+    disable = true,
     -- branch = 'haishan',
     config = function()
       vim.cmd [[colorscheme zephyr]]
+    end
+  }
+  -- current
+  use {
+    'JoosepAlviste/palenightfall.nvim',
+    config = function()
+      require('palenightfall').setup()
+      -- vim.cmd [[colorscheme palenightfall]]
     end
   }
   use {

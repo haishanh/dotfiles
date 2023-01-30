@@ -534,6 +534,9 @@ set cmdheight=2
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
+set number relativenumber
+set nu rnu
+
 " if has("patch-8.1.1564")
 "   " Recently vim can merge signcolumn and number column into one
 "   set signcolumn=number
@@ -762,6 +765,8 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
 " set signcolumn=number
 
+" highlight DiagnosticVirtualTextError guifg='#fff1ac' guibg=#07242c
+"
 " highlight DiffAdd    guifg='#00ff00' guibg=#07242c
 " highlight DiffChange guifg='#fff1ac' guibg=#07242c
 " highlight DiffDelete guifg='#fc6195' guibg=#07242c
