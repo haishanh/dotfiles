@@ -24,10 +24,11 @@ disable_distribution_plugins()
 
 local options = {
   termguicolors = true,
+  -- 3 means toggle global statusline
   laststatus = 3,
   pumheight = 10,
   -- last status
-  ls = 0,
+  -- ls = 0,
   -- command height
   ch = 0
 }

@@ -5,6 +5,19 @@ local config = require('plugins/config')
 local startup = function(use)
   use { 'wbthomason/packer.nvim', opt = true }
 
+  use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+  use { 'ibhagwan/fzf-lua', config = function()
+    require('fzf-lua').setup {
+      winopts = {
+        height = 0.6,
+        width = 0.9,
+        border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+      },
+      fzf_opts = {
+        ['--layout'] = 'default',
+      }
+    }
+  end }
   use { "almo7aya/openingh.nvim" }
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
   use { 'kyazdani42/nvim-tree.lua', config = function() require('plugins/nvim-tree').setup_nvim_tree() end }
@@ -42,7 +55,7 @@ local startup = function(use)
     config = function()
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
-      lsp.on_attach(function(_client, bufnr)
+      lsp.on_attach(function(_ --[[ client ]] , bufnr)
         local opts = { buffer = bufnr, remap = false }
         local bind = vim.keymap.set
 
@@ -164,11 +177,6 @@ local startup = function(use)
     -- commit = 'fdeb794ee7c4b',
     config = function() require('nvim-autopairs').setup() end,
     event = 'BufEnter'
-  }
-  use {
-    'akinsho/nvim-bufferline.lua', disable = true,
-    -- requires = {'kyazdani42/nvim-web-devicons','yamatsum/nvim-nonicons'},
-    config = function() require('plugins/bufferline') end,
   }
   use {
     "folke/trouble.nvim",

@@ -159,13 +159,18 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 " Ctrl+P
-nnoremap <silent> <c-p> :Files<CR>
-nnoremap <silent> <c-l> :Buffers<CR>
+" nnoremap <silent> <c-p> :Files<CR>
+" nnoremap <silent> <c-l> :Buffers<CR>
+
+nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <silent> <c-l> <cmd>lua require('fzf-lua').buffers()<CR>
+nnoremap <silent> <leader>g <cmd>lua require('fzf-lua').grep_cword()<CR>
+
 " nnoremap <silent> <leader>b :Buffers<CR>
 " assigned to vista
 " nnoremap <silent> <leader>t :Tags<CR>
 " see https://github.com/junegunn/fzf.vim/issues/50
-nnoremap <silent> <leader>g :Ag <C-R><C-W><CR>
+" nnoremap <silent> <leader>g :Ag <C-R><C-W><CR>
 nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
 nnoremap <silent> <leader><Enter> :Buffers<CR>
 
@@ -793,6 +798,9 @@ command! -nargs=0 Noh  :nohlsearch
 
 command! -nargs=0 Rename :TSLspRenameFile
 command! -nargs=0 Project lua require'telescope'.extensions.project.project{ display_type = 'full' }
+command! -nargs=0 BufOnly :%bd|e#
+command! -nargs=0 DeleteThisFile :call delete(expand('%'))
+
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 
 " autocmd FileType typescript lua require'cmp'.setup.buffer {

@@ -8,6 +8,7 @@ function config_galaxyline()
 
   local fileinfo = require('galaxyline.provider_fileinfo')
   local vcs = require('galaxyline.provider_vcs')
+  local buffer_not_empty = require('galaxyline.condition').buffer_not_empty
 
   local colors = {
     bg = "#282c34",
@@ -190,6 +191,7 @@ function config_galaxyline()
   gls.left[i] = {
     teech = {
       provider = providers.round.right,
+      condition = buffer_not_empty,
       separator = " ",
       highlight = {colors.lightbg}
     }
