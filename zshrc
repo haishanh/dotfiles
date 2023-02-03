@@ -162,8 +162,8 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-export PNPM_HOME="$HOME/.pnpm0"
-export PATH="$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PNPM_HOME="$HOME/.pnpm0"
+# export PATH="$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 eval "$(starship init zsh)"

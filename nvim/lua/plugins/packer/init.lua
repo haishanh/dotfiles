@@ -9,8 +9,7 @@ local startup = function(use)
   use { 'ibhagwan/fzf-lua', config = function()
     require('fzf-lua').setup {
       winopts = {
-        height = 0.6,
-        width = 0.9,
+        height = 0.6, width = 0.9,
         border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
       },
       fzf_opts = {
