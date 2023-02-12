@@ -1,0 +1,22 @@
+{
+  "sleep": {
+    "prefix": "sleep",
+    "body": [
+      "const sleep = (t: number) => new Promise((r) => setTimeout(r, t));"
+    ],
+    "description": "Create a sleep function"
+  },
+  "eslint": {
+    "prefix": "eslint",
+    "body": [
+      "// eslint-disable-next-line no-console",
+      "// eslint-disable-next-line no-shadow",
+      "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
+      "// eslint-disable-next-line import/prefer-default-export"
+    ]
+  },
+  "iife": {
+    "prefix": "iife",
+    "body": ["(async () => {", "})();"]
+  }
+}

@@ -12,7 +12,6 @@ function M.config_treesitter()
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
-      -- use_languagetree = true,
     },
     indent = {enable = true},
     incremental_selection = {
@@ -37,20 +36,6 @@ function M.config_treesitter()
         }
       }
     },
-    -- textobjects = {
-    --   select = {
-    --     enable = true,
-    --     -- Automatically jump forward to textobj, similar to targets.vim
-    --     lookahead = true,
-    --     keymaps = {
-    --       -- You can use the capture groups defined in textobjects.scm
-    --       ["af"] = "@function.outer",
-    --       ["if"] = "@function.inner",
-    --       ["ac"] = "@class.outer",
-    --       ["ic"] = "@class.inner",
-    --     },
-    --   },
-    -- },
   }
 end
 

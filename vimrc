@@ -94,7 +94,7 @@ let g:home = expand('$HOME')
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " let g:tagbar_iconchars = ['+', '-']
 Plug 'junegunn/vim-after-object'
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+" autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 " va=  visual after =
 " ca=  change after =
 " da=  delete after =

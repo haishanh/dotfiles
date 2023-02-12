@@ -30,3 +30,9 @@ call plug#begin('~/.vim/bundle')
 ```
 note -> /Users/haishan/nutstore/50-note
 ```
+
+vscode snippets via `L3MON4D3/LuaSnip`
+
+```
+ln -s ~/dotfiles/nvim/vscode-snips ~/.config/nvim/vscode-snips
+```
