@@ -32,8 +32,13 @@ return {
           lsp.nvim_workspace()
           lsp.setup()
           -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-          vim.diagnostic.config({ virtual_text = { prefix = '○' }, signs = true, underline = false })
-
+          vim.diagnostic.config({
+              virtual_text = { spacing = 4, prefix = '○' },
+              update_in_insert = false,
+              severity_sort = true,
+              signs = true,
+              underline = false,
+          })
           -- load snippets from path/of/your/nvim/config/my-cool-snippets
           require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./vscode-snips" } })
         end,
