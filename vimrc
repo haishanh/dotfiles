@@ -79,135 +79,27 @@ call plug#begin('~/.vim/bundle')
 
 " ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
 
-" :Tocv => open TOC in a vertical split
-" Plug 'junegunn/goyo.vim', { 'for': 'markdown', 'on': 'Goyo' }
-" autocmd! User goyo.vim echom 'Goyo is now loaded!'
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 let g:mkdp_markdown_css = expand('$HOME/md.css')
 
 let g:home = expand('$HOME')
 
-" Plug 'liuchengxu/vista.vim'
-
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-" let g:tagbar_iconchars = ['+', '-']
-Plug 'junegunn/vim-after-object'
-" autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
-" va=  visual after =
-" ca=  change after =
-" da=  delete after =
-" ya=  yank after =
 
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
-" <c-y>,
-
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
-set updatetime=300
-""" Theme
-" Plug 'dracula/vim'
-" Plug 'haishanh/vim-dracula'
-" Plug 'haishanh/night-owl.vim'
-" Plug 'Mofiqul/adwaita.nvim'
-" Plug 'navarasu/onedark.nvim'
-"Plug '$HOME/repo/h/night-owl.vim'
-" Plug 'iCyMind/NeoSolarized'
-" Plug 'lifepillar/vim-gruvbox8'
-" Plug 'morhetz/gruvbox'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-let g:fzf_tags_command = 'ctags --exclude=node_modules -R'
-
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-" vertical split :Colors
-command! -bang Colors
-  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 10%,0'}, <bang>0)
-
-" autocmd VimEnter *
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-" to use ripgrep
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-" Ctrl+P
-" nnoremap <silent> <c-p> :Files<CR>
-" nnoremap <silent> <c-l> :Buffers<CR>
+" set updatetime=300
 
 nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <silent> <c-l> <cmd>lua require('fzf-lua').buffers()<CR>
 nnoremap <silent> <leader>g <cmd>lua require('fzf-lua').grep_cword()<CR>
 
-" nnoremap <silent> <leader>b :Buffers<CR>
-" assigned to vista
-" nnoremap <silent> <leader>t :Tags<CR>
-" see https://github.com/junegunn/fzf.vim/issues/50
-" nnoremap <silent> <leader>g :Ag <C-R><C-W><CR>
-nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
-nnoremap <silent> <leader><Enter> :Buffers<CR>
+" nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
+" nnoremap <silent> <leader><Enter> :Buffers<CR>
 
-imap <c-x><c-l> <plug>(fzf-complete-line)
-imap <c-e> <Plug>(fzf-complete-word)
 
-" fzf in floating window
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-" Plug 'junegunn/gv.vim'
-
-" Golang
-" Plug 'fatih/vim-go', { 'for': 'go' }
-" let g:go_fmt_command = "goimports"
-
-" parser options: flow|babylon|typescript|css|less|scss|json|graphql|markdown
-" let g:prettier#config#parser = 'babylon'
-" nnoremap <leader>p :PrettierAsync<CR>
-" vnoremap <leader>p :PrettierAsync<CR>
-
-" coc-prettier
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" nnoremap <silent> gp :Prettier<CR>
-" vmap <leader>ps <Plug>(coc-format-selected)
-" nmap <leader>ps <Plug>(coc-format-selected)
-
-""" https://github.com/prettier/vim-prettier
-" nnoremap <silent> gp :PrettierAsync<CR>
 " use null-ls
 nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
-
-" use `:Oi` for organize import of current buffer
-command! -nargs=0 Oi :CocCommand editor.action.organizeImport
-" coc-eslint
-command! -nargs=0 LintFix :CocCommand eslint.executeAutofix
-command! -nargs=0 LintProject :CocCommand eslint.lintProject
-command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Plug 'fleischie/vim-styled-components'
@@ -223,128 +115,19 @@ command! -nargs=0 LintShow :CocCommand eslint.showOutputChannel
 " Plug 'glepnir/zephyr-nvim'
 Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
 Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
-" Plug 'wuelnerdotexe/vim-enfocado'
-" Plug 'catppuccin/nvim'
-" Plug 'EdenEast/nightfox.nvim'
-" Plug 'relastle/bluewery.vim'
-" Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" set completeopt=menuone,noinsert,noselect
 
 " for hrsh7th/nvim-cmp
-set completeopt=menu,menuone,noselect
+" "set completeopt=menu,menuone,noselect
 
-" breakdown --startuptime output
-Plug 'tweekmonster/startuptime.vim'
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" if has('nvim')
-"   inoremap <silent><expr> <c-space> coc#refresh()
-" else
-"   inoremap <silent><expr> <c-@> coc#refresh()
-" endif
-
-" nmap <silent> [x <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]x <Plug>(coc-diagnostic-next)
-
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" nmap [g <Plug>(coc-git-prevchunk)
-" nmap ]g <Plug>(coc-git-nextchunk)
-" nmap gs <Plug>(coc-git-chunkinfo)
-
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-" function! s:show_documentation()
-"   if &filetype == 'vim'
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-" """" Highlight symbol under cursor on CursorHold
-" """" autocmd CursorHold * silent call CocActionAsync('highlight')
-" """" Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
-" """" Applying codeAction to the selected region.
-" """" Example: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-" """" Remap keys for applying codeAction to the current buffer.
-" nmap <leader>ac  <Plug>(coc-codeaction)
-" """" Apply AutoFix to problem on the current line.
-" nmap <leader>qf  <Plug>(coc-fix-current)
-" """" Map function and class text objects
-" """" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" xmap ic <Plug>(coc-classobj-i)
-" omap ic <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
-
-" nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-" nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-" inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-" inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-" vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-" vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-
-" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-
-" """" https://github.com/neoclide/coc-sources
-" let g:coc_global_extensions = [
-"   \ 'coc-tsserver',
-"   \ 'coc-prettier',
-"   \ 'coc-git',
-"   \ 'coc-word',
-"   \ 'coc-syntax',
-"   \ 'coc-dictionary',
-"   \ 'coc-ultisnips',
-"   \ 'coc-json',
-"   \ 'coc-css',
-"   \ 'coc-svelte',
-"   \ 'coc-emoji',
-"   \ 'coc-eslint',
-"   \ 'coc-actions'
-"   \ ]
-
-
-Plug 'tpope/vim-repeat'
-" Plug 'easymotion/vim-easymotion'
-" Plug 'dstein64/vim-startuptime'
-Plug 'hashivim/vim-terraform'
-
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent' " ai/ii/aI/iI for indented lines
-Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
-Plug 'jceb/vim-textobj-uri'    " au/iu for uri
-Plug 'beloglazov/vim-textobj-quotes'
+" Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-indent' " ai/ii/aI/iI for indented lines
+" Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
+" Plug 'jceb/vim-textobj-uri'    " au/iu for uri
+" Plug 'beloglazov/vim-textobj-quotes'
 
 " Plug 'NieTiger/halcyon-neovim'
 
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+" Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 " Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
 " Plug 'mogelbrod/vim-jsonpath'
 " svelte
@@ -552,26 +335,7 @@ set nu rnu
 " sw -> shiftwidth, ts -> tabstop, sts -> softtabstop
 augroup configgroup
   autocmd!
-  " autocmd VimEnter * highlight clear SignColumn
   autocmd FileType python                  setlocal sw=4 ts=4 sts=4
-  autocmd BufEnter Makefile                setlocal noexpandtab
-  autocmd FileType go                      setlocal nolist
-  autocmd BufEnter *.zsh-theme             setlocal filetype=zsh
-  " sequence diagram
-  autocmd BufEnter *.seq                   setlocal filetype=seq
-  autocmd BufNewFile,BufRead Dockerfile*   setlocal filetype=dockerfile
-  autocmd BufEnter *babelrc                setlocal filetype=json
-  " wechat miniapp
-  autocmd BufEnter *.wxss                  setlocal filetype=css
-  autocmd BufEnter *.wxml                  setlocal filetype=html
-  autocmd BufEnter *.svx                  setlocal filetype=html
-  " jsonc
-  autocmd FileType json syntax match Comment +\/\/.\+$+
-
-  autocmd FileType gitcommit               setlocal spell
-  " disable auto indent for pug files
-  " noautoindent nocindent, nosmartindent, indentexpr=
-  autocmd FileType pug                     setlocal noai nocin nosi inde=
   autocmd FileType beancount inoremap <Tab> <c-x><c-o>
 augroup END
 
@@ -642,19 +406,6 @@ let g:vista#renderer#icons = {
       \ 'property': '◇',
       \ }
 
-" instead of having ~/.vim/coc-settings.json
-let s:LSP_CONFIG = {}
-
-let s:languageservers = {}
-for [lsp, config] in items(s:LSP_CONFIG)
-  let s:not_empty_cmd = !empty(get(config, 'command'))
-  if s:not_empty_cmd | let s:languageservers[lsp] = config | endif
-endfor
-
-if !empty(s:languageservers)
-  call coc#config('languageserver', s:languageservers)
-endif
-
 " for neovim-qt
 if has('gui_running')
   " set guifont=JetBrains\ Mono:h15
@@ -701,7 +452,7 @@ command! -nargs=0 Render :CocCommand mdr.render
 
 " skywind3000 asyncrun.vim
 " command -nargs=* D :AsyncRun <args>
-command -nargs=* D :Dispatch <args>
+" command -nargs=* D :Dispatch <args>
 
 " tpope vim-fugitive
 command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
@@ -807,13 +558,6 @@ nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 " \   sources = {
 " \     { name = 'nvim_lsp' },
 " \     { name = 'ultisnips' },
-" \     { name = 'buffer' },
-" \     { name = 'dictionary', keyword_length = 2 },
-" \   },
-" \ }
-
-" autocmd FileType json,yaml lua require'cmp'.setup.buffer {
-" \   sources = {
 " \     { name = 'buffer' },
 " \     { name = 'dictionary', keyword_length = 2 },
 " \   },
