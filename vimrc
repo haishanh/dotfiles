@@ -419,19 +419,6 @@ set linespace=6
 let $FZF_DEFAULT_COMMAND = 'fd --type file --color=always'
 let $FZF_DEFAULT_OPTS = '--ansi'
 
-" function to preserve cursor position after execute the command
-function! Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
 " <line1> is the first line of the range
 " <line2> is the last line ...
 " the `e` flag is used in the substitute command so no error is shown if trailing whitespace is not found
@@ -480,14 +467,6 @@ set runtimepath^=/Users/hhan13/h/mdr-priv/packages/coc-mdr
 "= coc-swagger
 command -nargs=0 Swagger :CocCommand swagger.render
 
-" hashivim/vim-terraform config
-let g:terraform_fmt_on_save=1
-
-" fix for macvim
-if exists('&pythonthreedll')
-  set pythonthreedll=/usr/local/Cellar/python@3.9/3.9.0_1/Frameworks/Python.framework/Versions/3.9/Python
-endif
-
 " coc highlight overrides
 " hi CocUnderline cterm=NONE gui=NONE
 
@@ -501,18 +480,6 @@ endif
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
 
 lua require'init'
-
-let g:surround_no_mappings = 1
-nmap ds       <Plug>Dsurround
-nmap cs       <Plug>Csurround
-nmap cS       <Plug>CSurround
-nmap ys       <Plug>Ysurround
-nmap yS       <Plug>YSurround
-nmap yss      <Plug>Yssurround
-nmap ySs      <Plug>YSsurround
-nmap ySS      <Plug>YSsurround
-xmap gs       <Plug>VSurround
-xmap gS       <Plug>VgSurround
 
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 
@@ -536,8 +503,6 @@ augroup eslint8
   autocmd!
   autocmd BufEnter *.ts,*.tsx,*.js  set runtimepath^=~/tmp/coc-eslint
 augroup END
-
-let g:coc_disable_transparent_cursor = 1
 
 " make it short since i keep forgeting this
 command! -nargs=0 Bye :Sayonara
