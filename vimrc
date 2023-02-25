@@ -61,9 +61,9 @@ let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 " pip3 install pynvim
 
-if has('termguicolors')
-  set termguicolors
-endif
+" if has('termguicolors')
+"   set termguicolors
+" endif
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -83,7 +83,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 let g:mkdp_markdown_css = expand('$HOME/md.css')
 
 let g:home = expand('$HOME')
-
 
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
@@ -119,46 +118,19 @@ Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
 " for hrsh7th/nvim-cmp
 " "set completeopt=menu,menuone,noselect
 
-" Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-indent' " ai/ii/aI/iI for indented lines
-" Plug 'kana/vim-textobj-syntax' " ay/iy for a syntax-highlighted item
-" Plug 'jceb/vim-textobj-uri'    " au/iu for uri
-" Plug 'beloglazov/vim-textobj-quotes'
-
-" Plug 'NieTiger/halcyon-neovim'
-
-" Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-" Plug 'kynan/dokuvimki', {'on': 'DokuVimKi'}
-" Plug 'mogelbrod/vim-jsonpath'
-" svelte
-" Plug 'evanleck/vim-svelte', {'branch': 'main'}
-" Plug 'leafOfTree/vim-svelte-plugin'
-
-" Plug 'neoclide/jsonc.vim'
-" Plug 'tomlion/vim-solidity'
-
 " plug_end
 call plug#end()
 
-" colorscheme dracula
 " set background=dark
-" colorscheme bluewery
 " colorscheme zephyr    " 8/10
-" colorscheme minimal    " 7/10
-" colorscheme onedark
 
 " set background=dark
 " colorscheme adwaita
 
 " let g:enfocado_style = "neon"
 " autocmd VimEnter * ++nested colorscheme enfocado
-" colorscheme catppuccin    " 7/10
-" colorscheme nightfox  " 8/10
-" set background=light
 " colorscheme night-owl
 " set background=light
-" colorscheme tokyonight
-" colorscheme base16-onedark
 
 " highlight Comment cterm=italic
 
@@ -178,16 +150,6 @@ if has('nvim')
   nnoremap <A-j> <c-w>j
   nnoremap <A-k> <c-w>k
   nnoremap <A-l> <c-w>l
-  " " Insert mode
-  " inoremap <A-h> <Esc><c-w>h
-  " inoremap <A-j> <Esc><c-w>j
-  " inoremap <A-k> <Esc><c-w>k
-  " inoremap <A-l> <Esc><c-w>l
-  " " Visual mode
-  " vnoremap <A-h> <Esc><c-w>h
-  " vnoremap <A-j> <Esc><c-w>j
-  " vnoremap <A-k> <Esc><c-w>k
-  " vnoremap <A-l> <Esc><c-w>l
 endif
 
 """" common key binding
