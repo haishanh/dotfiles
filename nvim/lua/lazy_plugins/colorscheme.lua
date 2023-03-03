@@ -3,9 +3,9 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    enabled = false,
+    -- enabled = false,
     priority = 1000,
-    opts = { style = "moon" },
+    -- opts = { style = "moon" },
     config = function()
       vim.cmd([[colorscheme tokyonight]])
     end,
@@ -14,7 +14,7 @@ return {
   -- catppuccin
   {
     "catppuccin/nvim",
-    -- enabled = false,
+    enabled = false,
     name = "catppuccin",
     lazy = false,
     priority = 1000,
