@@ -23,6 +23,8 @@ end
 disable_distribution_plugins()
 
 local options = {
+    signcolumn = 'number',
+
     termguicolors = true,
     -- 3 means toggle global statusline
     laststatus = 3,
