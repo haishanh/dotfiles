@@ -91,7 +91,8 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <silent> <c-l> <cmd>lua require('fzf-lua').buffers()<CR>
-nnoremap <silent> <leader>g <cmd>lua require('fzf-lua').grep_cword()<CR>
+nnoremap <silent> <leader>ga <cmd>lua require('fzf-lua').grep_cword()<CR>
+nnoremap <silent> <leader>gb <cmd>lua require('fzf-lua').grep()<CR>
 
 " nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
 " nnoremap <silent> <leader><Enter> :Buffers<CR>

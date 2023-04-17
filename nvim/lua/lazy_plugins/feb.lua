@@ -17,4 +17,9 @@ return {
       useDefaultKeymaps = true,
     },
   },
+
+  {
+    'tpope/vim-fugitive',
+    event = 'VeryLazy',
+  }
 }

@@ -1,7 +1,10 @@
 return {
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
+    -- default mapping
+    -- https://github.com/nvim-tree/nvim-tree.lua/blob/d1410cb0896a3aad5d84ddc54284774a627c6d63/doc/nvim-tree-lua.txt#L1689
     opts = {
+      filters = { custom = { "^.git$" } },
       disable_netrw = true,
       hijack_netrw = true,
       hijack_cursor = true,
@@ -65,6 +68,7 @@ return {
         -- topdelete = {hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr"},
         -- changedelete = {hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr"}
       },
+      attach_to_untracked = false,
       keymaps = {
         -- Default keymap options
         noremap = true,
