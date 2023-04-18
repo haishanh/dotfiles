@@ -102,6 +102,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    enhanced = false,
     opts = {
       -- char = "▏",
       char = "│",
