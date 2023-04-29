@@ -3,7 +3,7 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme tokyonight]])
@@ -14,6 +14,7 @@ return {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
     lazy = false,
+    enabled = false,
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme moonfly]])
