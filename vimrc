@@ -476,7 +476,8 @@ command! -nargs=0 Noh  :nohlsearch
 " vim.lsp.buf.format({ async = true })
 
 command! -nargs=0 Rename :TSLspRenameFile
-command! -nargs=0 Project lua require'telescope'.extensions.project.project{ display_type = 'full' }
+" https://github.com/nvim-telescope/telescope-project.nvim
+command! -nargs=0 Proj lua require'telescope'.extensions.project.project{ display_type = 'full' }
 command! -nargs=0 BufOnly :%bd|e#
 command! -nargs=0 DeleteThisFile :call delete(expand('%'))
 
