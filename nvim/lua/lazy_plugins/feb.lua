@@ -30,7 +30,8 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' }
   },
 
-  { "Cassin01/wf.nvim",
+  {
+    "Cassin01/wf.nvim",
     version = "*",
     config = function()
       require("wf").setup()
