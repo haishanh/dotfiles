@@ -27,7 +27,10 @@ return {
         local bind = vim.keymap.set
 
         bind('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-        bind('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        -- bind('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        bind('n', '<space>ca', '<cmd>:Lspsaga code_action<CR>', opts)
+        -- bind('n', 'gp', vim.lsp.buf.format({ async = true }), opts)
+        bind('n', 'gp', function() vim.lsp.buf.format({ async = true }) end, opts)
       end)
       lsp.ensure_installed({ 'tsserver', 'eslint', 'cssls', 'svelte', 'rust_analyzer' })
       lsp.nvim_workspace()

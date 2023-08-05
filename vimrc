@@ -70,7 +70,7 @@ nnoremap <silent> <leader>gb <cmd>lua require('fzf-lua').grep()<CR>
 
 
 " use null-ls
-nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
+" nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
 
 " Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
 " Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
@@ -225,10 +225,10 @@ augroup configgroup
 augroup END
 
 " restore last cursor position
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
+" autocmd BufReadPost *
+"   \ if line("'\"") > 1 && line("'\"") <= line("$") |
+"   \   exe "normal! g'\"" |
+"   \ endif
 
 if has('persistent_undo')
   " set noswapfile
