@@ -161,17 +161,11 @@ set expandtab
 set smarttab
 " make backspace work like most other apps
 set backspace=2
-" display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-" set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 " windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set ignorecase
 " turn off search highlight
 " nnoremap <silent> <leader><space> :nohlsearch<CR>
 nnoremap <silent> <leader>h :nohlsearch<CR>
@@ -229,15 +223,6 @@ augroup END
 "   \ if line("'\"") > 1 && line("'\"") <= line("$") |
 "   \   exe "normal! g'\"" |
 "   \ endif
-
-if has('persistent_undo')
-  " set noswapfile
-  set nobackup
-  set nowritebackup
-  set undodir=$HOME/.vim/undo-dir
-  set backupdir=$HOME/.vim/backup
-  set undofile
-endif
 
 " tmp
 " nnoremap <c-j> gggqG

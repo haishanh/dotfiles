@@ -22,23 +22,48 @@ end
 
 disable_distribution_plugins()
 
-local options = {
-  scrolloff      = 6,   --  keep some more lines for scope
-  showcmd        = true, --  show command in bottom bar
-  wildmenu       = true, -- visual autocomplete for command menu
-  showmatch      = true, -- highlight matching brackets
-  lazyredraw     = true,
-  -- number        = 'relativenumber',
-  signcolumn     = 'number',
+vim.o.hidden = true
+-- if has('persistent_undo')
+--   set nobackup
+--   set nowritebackup
+--   set undodir=$HOME/.vim/undo-dir
+--   set backupdir=$HOME/.vim/backup
+--   set undofile
+-- endif
+vim.o.swapfile = false
+vim.o.undofile = true
+vim.o.undodir = vim.fn.expand('~/.vim/undo-dir')
+-- case insensitive search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.infercase = true
+-- search
+vim.o.hlsearch = true  -- highlight matches
+vim.o.incsearch = true -- search as characters are entered
+vim.o.inccommand = "split"
 
-  termguicolors  = true,
+-- show invisibles
+-- set list listchars=tab:»·,trail:·,nbsp:·
+vim.opt.listchars = { tab = "  ", trail = "·", extends = "»", precedes = "«", nbsp = "░" }
+vim.opt.list = true
+
+local options = {
+  scrolloff     = 6,    --  keep some more lines for scope
+  showcmd       = true, --  show command in bottom bar
+  wildmenu      = true, -- visual autocomplete for command menu
+  showmatch     = true, -- highlight matching brackets
+  lazyredraw    = true,
+  -- number        = 'relativenumber',
+  signcolumn    = 'number',
+
+  termguicolors = true,
   -- 3 means toggle global statusline
-  laststatus     = 3,
-  pumheight      = 10,
+  laststatus    = 3,
+  pumheight     = 10,
   -- last status
   -- ls = 0,
   -- command height
-  ch             = 0
+  ch            = 0
 }
 
 for k, v in pairs(options) do

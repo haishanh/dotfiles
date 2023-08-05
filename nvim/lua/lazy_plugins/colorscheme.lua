@@ -1,8 +1,17 @@
 return {
   {
+    "xero/miasma.nvim",
+    lazy = false,
+    priority = 1000,
+    enabled = true,
+    config = function()
+      vim.cmd("colorscheme miasma")
+    end,
+  },
+  {
     "felipeagc/fleet-theme-nvim",
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000,
     config = function() vim.cmd("colorscheme fleet") end
   },
