@@ -1,5 +1,13 @@
 return {
   {
+    'nvimdev/lspsaga.nvim',
+    cmd = {'Lspsaga'}
+  },
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
+  {
     "famiu/bufdelete.nvim",
     cmd = { "Bdelete", "Bwipeout" },
   },

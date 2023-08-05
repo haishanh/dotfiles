@@ -4,7 +4,8 @@ return {
     dependencies = {
       "mrjones2014/nvim-ts-rainbow"
     },
-    version = false, -- last release is way too old
+    commit = 'ee107fc759647293a84ad42b867f518331364fbe',
+    -- version = false, -- last release is way too old
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<c-space>", desc = "Increment selection" },

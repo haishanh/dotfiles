@@ -33,25 +33,7 @@
 set nocompatible
 let mapleader=" "
 
-" disable default plugins
-let g:loaded_gzip              = 1
-let g:loaded_tar               = 1
-let g:loaded_tarPlugin         = 1
-let g:loaded_zip               = 1
-let g:loaded_zipPlugin         = 1
-let g:loaded_getscript         = 1
-let g:loaded_getscriptPlugin   = 1
-let g:loaded_vimball           = 1
-let g:loaded_vimballPlugin     = 1
-let g:loaded_matchit           = 1
-let g:loaded_matchparen        = 1
-let g:loaded_2html_plugin      = 1
-let g:loaded_logiPat           = 1
-let g:loaded_rrhelper          = 1
-let g:loaded_netrw             = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
-let g:loaded_netrwFileHandlers = 1
+lua require'init'
 
 set complete+=kspell
 set noshowmode " hide "-- INSERT --"
@@ -65,27 +47,16 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 "   set termguicolors
 " endif
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-let g:plug_pwindow = 'vertical belowright new'
-call plug#begin('~/.vim/bundle')
-
 " Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
 
 " ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-let g:mkdp_markdown_css = expand('$HOME/md.css')
-
-let g:home = expand('$HOME')
-
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
-Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+" let g:mkdp_markdown_css = expand('$HOME/md.css')
+" let g:home = expand('$HOME')
+" Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
+" Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 
 " set updatetime=300
 
@@ -101,57 +72,24 @@ nnoremap <silent> <leader>gb <cmd>lua require('fzf-lua').grep()<CR>
 " use null-ls
 nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
 
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" Plug 'fleischie/vim-styled-components'
-" Plug 'aklt/plantuml-syntax'
-" Plug 'tpope/vim-liquid' " Jeyll template
-
-" personal wiki
-" Plug 'blinry/vimboy'
-" Plug 'AGhost-7/critiq.vim'
-" colorscheme
-" Plug '$HOME/repo/h/zephyr-nvim'
 " Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
-" Plug 'glepnir/zephyr-nvim'
-Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
-Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
-
-" for hrsh7th/nvim-cmp
-" "set completeopt=menu,menuone,noselect
-
-" plug_end
-call plug#end()
-
-" set background=dark
-" colorscheme zephyr    " 8/10
-
-" set background=dark
-" colorscheme adwaita
-
-" let g:enfocado_style = "neon"
-" autocmd VimEnter * ++nested colorscheme enfocado
-" colorscheme night-owl
-" set background=light
+" Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
+" Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
 
 " highlight Comment cterm=italic
 
-if has('nvim')
-  " tnoremap => terminal noremap
-  " vs term://zsh
-  " A for ALT key
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <A-[> <Esc>
-  " Terminal mode
-  tnoremap <A-h> <c-\><c-n><c-w>h
-  tnoremap <A-j> <c-\><c-n><c-w>j
-  tnoremap <A-k> <c-\><c-n><c-w>k
-  tnoremap <A-l> <c-\><c-n><c-w>l
-  " " Normal mode
-  nnoremap <A-h> <c-w>h
-  nnoremap <A-j> <c-w>j
-  nnoremap <A-k> <c-w>k
-  nnoremap <A-l> <c-w>l
-endif
+" if has('nvim')
+"   tnoremap <Esc> <C-\><C-n>
+"   tnoremap <A-[> <Esc>
+"   tnoremap <A-h> <c-\><c-n><c-w>h
+"   tnoremap <A-j> <c-\><c-n><c-w>j
+"   tnoremap <A-k> <c-\><c-n><c-w>k
+"   tnoremap <A-l> <c-\><c-n><c-w>l
+"   nnoremap <A-h> <c-w>h
+"   nnoremap <A-j> <c-w>j
+"   nnoremap <A-k> <c-w>k
+"   nnoremap <A-l> <c-w>l
+" endif
 
 """" common key binding
 " switch to next buffer
@@ -160,12 +98,6 @@ nnoremap ]b :bn<CR>
 " switch to previous buffer
 nnoremap <leader>, :bp<CR>
 nnoremap [b :bp<CR>
-
-" inoremap kj <esc>  " kj is escape
-" inoremap jk <esc>  " jk is escape
-" save session / vim -S to restore session
-nnoremap <leader>s :mksession<CR>
-set pastetoggle=<F10>
 
 nnoremap ++ :m .+1<CR>==
 nnoremap __ :m .-2<CR>==
@@ -189,8 +121,6 @@ inoremap <C-k> <C-o>gk
 
 set autoread
 set autowriteall
-" Nvim got focus
-" autocmd FocusGained * silent! checktime
 
 " steal from https://github.com/neovim/neovim/issues/2127#issuecomment-150954047
 augroup AutoSwap
@@ -234,14 +164,6 @@ set backspace=2
 " display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 " set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-
-set number
-set showcmd " show command in bottom bar
-set wildmenu " visual autocomplete for command menu
-set showmatch " highlight matching brackets
-" set colorcolumn=79
-set scrolloff=6 " keep some more lines for scope
-set lazyredraw
 
 " windows navigation
 nnoremap <tab>   <c-w>w
@@ -410,11 +332,6 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
 
-"=== plasticboy/vim-markdown
-let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-
 " nnoremap <silent> <leader>te :FloatermToggle<cr>
 
 " https://github.com/neovim/neovim/pull/12279
@@ -441,8 +358,6 @@ command -nargs=0 Swagger :CocCommand swagger.render
 " autocmd VimEnter * call timer_start(200, { tid -> execute('hi CocUnderline cterm=NONE gui=NONE')})
 
 " set runtimepath^=~/repo/h/coc-swagger/packages/coc-swagger
-
-lua require'init'
 
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 

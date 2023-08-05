@@ -23,16 +23,22 @@ end
 disable_distribution_plugins()
 
 local options = {
-    signcolumn = 'number',
+  scrolloff      = 6,   --  keep some more lines for scope
+  showcmd        = true, --  show command in bottom bar
+  wildmenu       = true, -- visual autocomplete for command menu
+  showmatch      = true, -- highlight matching brackets
+  lazyredraw     = true,
+  -- number        = 'relativenumber',
+  signcolumn     = 'number',
 
-    termguicolors = true,
-    -- 3 means toggle global statusline
-    laststatus = 3,
-    pumheight = 10,
-    -- last status
-    -- ls = 0,
-    -- command height
-    ch = 0
+  termguicolors  = true,
+  -- 3 means toggle global statusline
+  laststatus     = 3,
+  pumheight      = 10,
+  -- last status
+  -- ls = 0,
+  -- command height
+  ch             = 0
 }
 
 for k, v in pairs(options) do
@@ -40,41 +46,49 @@ for k, v in pairs(options) do
 end
 
 vim.opt.fillchars:append({
-    horiz = '━',
-    horizup = '┻',
-    horizdown = '┳',
-    vert = '┃',
-    vertleft = '┨',
-    vertright = '┣',
-    verthoriz = '╋',
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┨',
+  vertright = '┣',
+  verthoriz = '╋',
 })
 
 vim.g.symbols_outline = {
-    auto_preview = false,
-    position = 'left',
+  auto_preview = false,
+  position = 'left',
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
-      lazypath,
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("lazy_plugins", {
-    ui = {
-        icons = {
-            cmd = "⌘", config = "🛠", event = "📅",
-            ft = "📂", init = "⚙", keys = "🗝",
-            plugin = "🔌", runtime = "💻", source = "📄",
-            start = "🚀", task = "📌", lazy = "💤 ",
-        },
+  ui = {
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
     },
+  },
 })
 
 -- require('plugins/packer')

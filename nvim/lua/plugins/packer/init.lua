@@ -278,7 +278,7 @@ local startup = function(use)
   }
   use {
       -- 8/10
-      'glepnir/zephyr-nvim',
+      'nvimdev/zephyr-nvim',
       disable = true,
       -- branch = 'haishan',
       config = function()

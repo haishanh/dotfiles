@@ -19,6 +19,7 @@ return {
       "rafamadriz/friendly-snippets",
     },
     config = function()
+      -- python: pywright
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
       lsp.on_attach(function(_ --[[ client ]], bufnr)
