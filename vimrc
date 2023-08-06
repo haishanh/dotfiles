@@ -36,16 +36,11 @@ let mapleader=" "
 lua require'init'
 
 set complete+=kspell
-set noshowmode " hide "-- INSERT --"
 
 let g:loaded_python_provider = 0
 let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 " pip3 install pynvim
-
-" if has('termguicolors')
-"   set termguicolors
-" endif
 
 " Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
@@ -140,13 +135,6 @@ endfunction
 autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
       \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
-augroup checktime
-  au!
-  if !has("gui_running")
-    autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
-  endif
-augroup END
-
 " make dash(`-`) part of a word hel$lo-world
 " 36 is `$`
 " set iskeyword+=-,36
@@ -217,12 +205,6 @@ augroup configgroup
   autocmd FileType python                  setlocal sw=4 ts=4 sts=4
   autocmd FileType beancount inoremap <Tab> <c-x><c-o>
 augroup END
-
-" restore last cursor position
-" autocmd BufReadPost *
-"   \ if line("'\"") > 1 && line("'\"") <= line("$") |
-"   \   exe "normal! g'\"" |
-"   \ endif
 
 " tmp
 " nnoremap <c-j> gggqG
@@ -318,10 +300,10 @@ command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
 " nnoremap <silent> <leader>te :FloatermToggle<cr>
 
 " https://github.com/neovim/neovim/pull/12279
-augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-augroup END
+" augroup highlight_yank
+"   autocmd!
+"   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+" augroup END
 
 " coc plugin development
 set runtimepath^=/Users/hhan13/h/mdr-priv/packages/coc-mdr

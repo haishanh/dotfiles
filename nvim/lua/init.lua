@@ -1,28 +1,5 @@
-local disable_distribution_plugins = function()
-  vim.g.loaded                   = 1
-  vim.g.loaded_gzip              = 1
-  vim.g.loaded_tar               = 1
-  vim.g.loaded_tarPlugin         = 1
-  vim.g.loaded_zip               = 1
-  vim.g.loaded_zipPlugin         = 1
-  vim.g.loaded_getscript         = 1
-  vim.g.loaded_getscriptPlugin   = 1
-  vim.g.loaded_vimball           = 1
-  vim.g.loaded_vimballPlugin     = 1
-  vim.g.loaded_matchit           = 1
-  vim.g.loaded_matchparen        = 1
-  vim.g.loaded_2html_plugin      = 1
-  vim.g.loaded_logiPat           = 1
-  vim.g.loaded_rrhelper          = 1
-  vim.g.loaded_netrw             = 1
-  vim.g.loaded_netrwPlugin       = 1
-  vim.g.loaded_netrwSettings     = 1
-  vim.g.loaded_netrwFileHandlers = 1
-end
+-- vim.o.hidden = true
 
-disable_distribution_plugins()
-
-vim.o.hidden = true
 -- if has('persistent_undo')
 --   set nobackup
 --   set nowritebackup
@@ -47,29 +24,6 @@ vim.o.inccommand = "split"
 vim.opt.listchars = { tab = "  ", trail = "·", extends = "»", precedes = "«", nbsp = "░" }
 vim.opt.list = true
 
-local options = {
-  scrolloff     = 6,    --  keep some more lines for scope
-  showcmd       = true, --  show command in bottom bar
-  wildmenu      = true, -- visual autocomplete for command menu
-  showmatch     = true, -- highlight matching brackets
-  lazyredraw    = true,
-  -- number        = 'relativenumber',
-  signcolumn    = 'number',
-
-  termguicolors = true,
-  -- 3 means toggle global statusline
-  laststatus    = 3,
-  pumheight     = 10,
-  -- last status
-  -- ls = 0,
-  -- command height
-  ch            = 0
-}
-
-for k, v in pairs(options) do
-  vim.o[k] = v
-end
-
 vim.opt.fillchars:append({
   horiz = '━',
   horizup = '┻',
@@ -85,6 +39,11 @@ vim.g.symbols_outline = {
   position = 'left',
 }
 
+require("opts")
+require("autocmd")
+require("keymaps")
+
+-- "data" usually is "~/.local/share/nvim"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
