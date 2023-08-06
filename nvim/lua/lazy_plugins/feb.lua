@@ -17,6 +17,7 @@ return {
     init = function()
       -- `matchparen.vim` needs to be disabled manually in case of lazy loading
       vim.g.loaded_matchparen = 1
+      -- vim.cmd([[ highlight MatchParen guibg=#606060 cterm=NONE gui=NONE ]])
     end,
   },
   {
