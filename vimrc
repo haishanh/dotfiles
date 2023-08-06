@@ -227,8 +227,6 @@ augroup END
 " tmp
 " nnoremap <c-j> gggqG
 nnoremap <leader>z <C-Z>
-" https://github.com/vim/vim/blob/master/runtime/plugin/matchparen.vim#L17
-let g:matchparen_insert_timeout=5
 
 " using OS clipboard
 set clipboard=unnamed
@@ -281,10 +279,10 @@ if has('gui_running')
   " set guifont=JetBrains\ Mono:h15
   " set guifont=Input\ Mono:h13
   set guifont=Iosevka:h15
+  set linespace=6
   " set guifont=SF\ Mono:h12
 endif
 
-set linespace=6
 
 let $FZF_DEFAULT_COMMAND = 'fd --type file --color=always'
 let $FZF_DEFAULT_OPTS = '--ansi'
@@ -356,6 +354,9 @@ au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
 " highlight DiffAdd    guifg='#00ff00' guibg=#07242c
 " highlight DiffChange guifg='#fff1ac' guibg=#07242c
 " highlight DiffDelete guifg='#fc6195' guibg=#07242c
+
+" highlight MatchParen guifg='#a39155' guibg='#f1e6c0' cterm=NONE gui=NONE
+highlight MatchParen guibg='#606060' cterm=NONE gui=NONE
 
 " highlight typescriptImport guifg='#111111' guibg=#fff1ac
 command! -nargs=0 Out :CocCommand workspace.showOutput

@@ -1,7 +1,38 @@
 return {
   {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {
+      -- options
+    },
+  },
+  {
+    "utilyre/sentiment.nvim",
+    version = "*",
+    event = "VeryLazy", -- keep for lazy loading
+    opts = {
+      -- config
+    },
+    init = function()
+      -- `matchparen.vim` needs to be disabled manually in case of lazy loading
+      vim.g.loaded_matchparen = 1
+    end,
+  },
+  {
+    'tamton-aquib/duck.nvim',
+    keys = {
+      { '<leader>dd', function() require("duck").hatch("🦀", 5) end },
+      { '<leader>dk', function() require("duck").cook() end },
+    }
+    -- config = function()
+    --     vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+    --     vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+    -- end
+  },
+  {
     'nvimdev/lspsaga.nvim',
-    cmd = {'Lspsaga'}
+    cmd = { 'Lspsaga' }
   },
   {
     'stevearc/overseer.nvim',

@@ -24,9 +24,13 @@ return {
           show = { git = true, folder_arrow = false, },
           glyphs = {
             folder = {
-              arrow_closed = ' ', arrow_open = ' ',
-              default = '+', open = '-', empty = '',
-              empty_open = '', symlink = '',
+              arrow_closed = ' ',
+              arrow_open = ' ',
+              default = '+',
+              open = '-',
+              empty = '',
+              empty_open = '',
+              symlink = '',
             }
           }
         },
@@ -130,11 +134,10 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enhanced = false,
     opts = {
       -- char = "▏",
       char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
     },
