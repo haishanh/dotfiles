@@ -185,7 +185,7 @@ set hidden
 set fileformats=unix,dos,mac
 set visualbell
 " Better display for messages
-set cmdheight=2
+" set cmdheight=2
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 

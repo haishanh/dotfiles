@@ -1,5 +1,9 @@
 return {
   {
+    "tpope/vim-dispatch",
+    event = "VeryLazy"
+  },
+  {
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "LspAttach",
