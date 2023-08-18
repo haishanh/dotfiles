@@ -114,52 +114,32 @@ inoremap <C-k> <C-o>gk
 " inoremap <C-l> <C-o>l
 " inoremap <C-^> <C-o><C-^>
 
-set autoread
-set autowriteall
-
 " steal from https://github.com/neovim/neovim/issues/2127#issuecomment-150954047
-augroup AutoSwap
-  autocmd!
-  autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
-augroup END
-
-function! AS_HandleSwapfile (filename, swapname)
-  " if swapfile is older than file itself, just get rid of it
-  if getftime(v:swapname) < getftime(a:filename)
-    call delete(v:swapname)
-    let v:swapchoice = 'e'
-
-  endif
-
-endfunction
-autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-      \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+" augroup AutoSwap
+"   autocmd!
+"   autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
+" augroup END
+"
+" function! AS_HandleSwapfile (filename, swapname)
+"   " if swapfile is older than file itself, just get rid of it
+"   if getftime(v:swapname) < getftime(a:filename)
+"     call delete(v:swapname)
+"     let v:swapchoice = 'e'
+"
+"   endif
+"
+" endfunction
+" autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+"       \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
 " make dash(`-`) part of a word hel$lo-world
 " 36 is `$`
 " set iskeyword+=-,36
 set iskeyword+=-
-" number of visual spaces per TAB
-set tabstop=2
-set shiftwidth=2
-" number of spaces in tab when editing
-set softtabstop=2
-" tab to spaces
-set expandtab
-set smarttab
-" make backspace work like most other apps
-set backspace=2
 
 " windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
-
-" turn off search highlight
-" nnoremap <silent> <leader><space> :nohlsearch<CR>
-nnoremap <silent> <leader>h :nohlsearch<CR>
-
-" easy copy to system clipboard in visual mode
-" vnoremap <leader>y "*y
 
 " set foldenable " enable folding
 " unfold every fold

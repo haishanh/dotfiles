@@ -25,10 +25,10 @@ disable_distribution_plugins()
 local options = {
   hidden        = true,
   showmode      = false, -- set noshowmode, hide "-- INSERT --"
-  scrolloff     = 6,    --  keep some more lines for scope
-  showcmd       = true, --  show command in bottom bar
-  wildmenu      = true, -- visual autocomplete for command menu
-  showmatch     = true, -- highlight matching brackets
+  scrolloff     = 6,     --  keep some more lines for scope
+  showcmd       = true,  --  show command in bottom bar
+  wildmenu      = true,  -- visual autocomplete for command menu
+  showmatch     = true,  -- highlight matching brackets
   lazyredraw    = true,
   -- number        = 'relativenumber',
   signcolumn    = 'number',
@@ -36,7 +36,17 @@ local options = {
   termguicolors = true,
   laststatus    = 3,  -- 3 means toggle global statusline
   pumheight     = 10, -- pop up menu height
-  cmdheight     = 0
+  cmdheight     = 0,
+
+  autoread      = true,
+  autowriteall  = true,
+
+  tabstop       = 2,
+  shiftwidth    = 2,
+  softtabstop   = 2,
+  expandtab     = true,
+  smarttab      = true,
+  -- backspace     = 2,
 }
 
 for k, v in pairs(options) do
