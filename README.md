@@ -10,6 +10,9 @@ ln -s $PWD/kitty.conf ~/.config/kitty/kitty.conf
 ln -s $PWD/kitty/snazzy.conf ~/.config/kitty/snazzy.conf
 
 # vim - see setup
+
+# fish
+ln -sf $PWD/fish ~/.config/fish
 ```
 
 ### plugins setup

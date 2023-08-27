@@ -1,7 +1,34 @@
 return {
   {
+    'simrat39/rust-tools.nvim',
+    event = "VeryLazy",
+    config = function()
+      local rt = require("rust-tools")
+      rt.setup()
+      rt.inlay_hints.enable()
+    end
+  },
+  {
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      delete_to_trash = true,
+      trash_command = 'trash',
+      float = {
+        padding = 4,
+        max_width = 0,
+        max_height = 0,
+        border = "rounded",
+        win_options = {
+          winblend = 10,
+        },
+        -- This is the config that will be passed to nvim_open_win.
+        -- Change values here to customize the layout
+        override = function(conf)
+          return conf
+        end,
+      },
+
+    },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },

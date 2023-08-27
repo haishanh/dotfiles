@@ -3,7 +3,7 @@ return {
     "xero/miasma.nvim",
     lazy = false,
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       vim.cmd("colorscheme miasma")
     end,
@@ -28,7 +28,7 @@ return {
     -- 8/10
     'nvimdev/zephyr-nvim',
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
     -- branch = 'haishan',
     config = function()
