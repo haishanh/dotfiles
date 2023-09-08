@@ -55,10 +55,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 " set updatetime=300
 
-nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
-nnoremap <silent> <c-l> <cmd>lua require('fzf-lua').buffers()<CR>
-nnoremap <silent> <leader>ga <cmd>lua require('fzf-lua').grep_cword()<CR>
-nnoremap <silent> <leader>gb <cmd>lua require('fzf-lua').grep()<CR>
+" nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
 
 " nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
 " nnoremap <silent> <leader><Enter> :Buffers<CR>
@@ -359,3 +356,4 @@ nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 set winbar=%f
 " in newovim 0.8" this now only check comments
 " set spell
+command! -nargs=0 Fix :EslintFixAll

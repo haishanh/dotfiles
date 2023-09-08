@@ -1,5 +1,15 @@
 return {
   {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    enabled = true,
+    config = function()
+      vim.cmd("colorscheme kanagawa-wave")
+      -- vim.cmd("colorscheme kanagawa-dragon")
+    end,
+  },
+  {
     "xero/miasma.nvim",
     lazy = false,
     priority = 1000,
@@ -26,11 +36,12 @@ return {
   },
   {
     -- 8/10
-    'nvimdev/zephyr-nvim',
+    -- 'nvimdev/zephyr-nvim',
+    'haishanh/zephyr-nvim',
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000,
-    -- branch = 'haishan',
+    branch = 'haishan',
     config = function()
       vim.cmd [[colorscheme zephyr]]
     end
