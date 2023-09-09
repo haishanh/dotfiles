@@ -121,7 +121,10 @@ return {
   },
   {
     'nvimdev/lspsaga.nvim',
-    cmd = { 'Lspsaga' }
+    cmd = { 'Lspsaga' },
+    config = function()
+        require('lspsaga').setup({})
+    end,
   },
   {
     'stevearc/overseer.nvim',
