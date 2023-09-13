@@ -88,14 +88,6 @@ return {
     event = "VeryLazy"
   },
   {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = {
-      -- options
-    },
-  },
-  {
     "utilyre/sentiment.nvim",
     version = "*",
     event = "VeryLazy", -- keep for lazy loading
@@ -118,13 +110,6 @@ return {
     --     vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
     --     vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
     -- end
-  },
-  {
-    'nvimdev/lspsaga.nvim',
-    cmd = { 'Lspsaga' },
-    config = function()
-        require('lspsaga').setup({})
-    end,
   },
   {
     'stevearc/overseer.nvim',

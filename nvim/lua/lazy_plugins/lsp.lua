@@ -1,15 +1,4 @@
 return {
-  -- {
-  --   'VonHeikemen/lsp-zero.nvim',
-  --   branch = 'dev-v3',
-  --   lazy = true,
-  --   config = false,
-  --   init = function()
-  --     -- Disable automatic setup, we are doing it manually
-  --     vim.g.lsp_zero_extend_cmp = 0
-  --     vim.g.lsp_zero_extend_lspconfig = 0
-  --   end,
-  -- },
   {
     'williamboman/mason.nvim',
     lazy = false,
@@ -20,18 +9,25 @@ return {
     event = 'InsertEnter',
     dependencies = {
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       'L3MON4D3/LuaSnip',
+      --     "saadparwaiz1/cmp_luasnip",
+      --     "hrsh7th/cmp-nvim-lua",
     },
     config = function()
       local cmp = require('cmp')
       cmp.setup({
         sources = {
-          {name = 'nvim_lsp'},
-          { name = 'buffer',  keyword_length = 3 },
+          { name = 'path' },
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'buffer',                 keyword_length = 3 },
         },
         mapping = cmp.mapping.preset.insert({
           -- Enter key confirms completion item
-          ['<CR>'] = cmp.mapping.confirm({select = false}),
+          ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
           -- Ctrl + space triggers completion menu
           ['<C-Space>'] = cmp.mapping.complete(),
@@ -64,11 +60,11 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-    event = {'BufReadPre', 'BufNewFile'},
+    cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
       -- -- This is where all the LSP shenanigans will live
@@ -93,7 +89,7 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
         callback = function(event)
-          local opts = {buffer = event.buf}
+          local opts = { buffer = event.buf }
 
           vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
           vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {
@@ -107,7 +103,7 @@ return {
           vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
           vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
           vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+          vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 
           --       bind('n', '<space>ca', '<cmd>:Lspsaga code_action<CR>', opts)
           -- vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
@@ -137,20 +133,20 @@ return {
         -- see `:h mason-lspconfig.setup_handlers()`
         handlers = {
           default_setup,
-           -- ["rust_analyzer"] = function ()
-           --     require("rust-tools").setup {}
-           -- end,
-           ["lua_ls"] = function ()
-               lspconfig.lua_ls.setup {
-                   settings = {
-                       Lua = {
-                           diagnostics = {
-                               globals = { "vim" }
-                           }
-                       }
-                   }
-               }
-           end,
+          -- ["rust_analyzer"] = function ()
+          --     require("rust-tools").setup {}
+          -- end,
+          ["lua_ls"] = function()
+            lspconfig.lua_ls.setup {
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" }
+                  }
+                }
+              }
+            }
+          end,
         },
         -- handlers = {
         --   lsp_zero.default_setup,
@@ -165,8 +161,24 @@ return {
       -- lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'eslint', 'cssls', 'svelte', 'lua_ls' })
       -- -- require('lspconfig').lua_ls.setup({})
       -- -- require('lspconfig').rust_analyzer.setup({})
-
     end
+  },
+
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {
+      -- options
+    },
+  },
+
+  {
+    'nvimdev/lspsaga.nvim',
+    cmd = { 'Lspsaga' },
+    config = function()
+      require('lspsaga').setup({})
+    end,
   },
 
   -- {
