@@ -92,7 +92,6 @@ require("lazy").setup("lazy_plugins", {
 -- })
 
 -- require("nvim-lspconfig/lua")
--- require("lspkind/lua")
 
 -- requires norcalli/nvim-colorizer.lua
 -- need disable the color highlight of coc-highlight

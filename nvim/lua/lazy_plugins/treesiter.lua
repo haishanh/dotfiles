@@ -18,7 +18,7 @@ return {
       -- ensure_installed = {
       --   "typescript","javascript","html","css","scss","svelte", "dockerfile", "bash","markdown","toml","zig","yaml"
       -- },
-      auto_install = false,
+      auto_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
