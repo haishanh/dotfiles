@@ -276,17 +276,8 @@ command! -nargs=0 DeleteThisFile :call delete(expand('%'))
 
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 
-" autocmd FileType typescript lua require'cmp'.setup.buffer {
-" \   sources = {
-" \     { name = 'nvim_lsp' },
-" \     { name = 'ultisnips' },
-" \     { name = 'buffer' },
-" \     { name = 'dictionary', keyword_length = 2 },
-" \   },
-" \ }
-
 " new in neovim 0.8
 set winbar=%f
 " in newovim 0.8" this now only check comments
 " set spell
-command! -nargs=0 Fix :EslintFixAll
+" command! -nargs=0 Fix :EslintFixAll

@@ -7,6 +7,7 @@ return {
         javascript = { { "prettier" } },
         json = { { "prettier" } },
         yaml = { { "prettier" } },
+        scss = { { "prettier" } },
       },
     },
   }

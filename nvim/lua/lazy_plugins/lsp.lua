@@ -23,7 +23,10 @@ return {
           { name = 'path' },
           { name = 'nvim_lsp' },
           { name = 'nvim_lsp_signature_help' },
-          { name = 'buffer',                 keyword_length = 3 },
+          {
+            name = 'buffer',
+            keyword_length = 3
+          },
         },
         mapping = cmp.mapping.preset.insert({
           -- Enter key confirms completion item
@@ -128,6 +131,7 @@ return {
       end
 
       require('mason-lspconfig').setup({
+        automatic_installation = true,
         -- ensure_installed = {},
         ensure_installed = { 'tsserver', 'rust_analyzer', 'eslint', 'cssls', 'svelte', 'lua_ls' },
         -- see `:h mason-lspconfig.setup_handlers()`
