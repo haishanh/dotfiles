@@ -42,6 +42,7 @@ vim.g.symbols_outline = {
 require("opts")
 require("autocmd")
 require("keymaps")
+require("cmd")
 
 -- "data" usually is "~/.local/share/nvim"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

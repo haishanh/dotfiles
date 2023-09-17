@@ -1,30 +1,5 @@
 " vim: set foldmethod=marker foldlevel=0:
 
-" mapping
-" n  Normal, v  Visual and Select, s  Select, x  Visual, o  Operator-pending, !  Insert and Command-line, i  Insert
-" l  ":lmap" mappings for Insert, Command-line and Lang-Arg
-" c  Command-line
-"
-" variables
-" g:  global variables
-" b:  local buffer variables
-" w:  local window variables
-" t:  local tab page variables
-" s:  script-local variables
-" l:  local function variables
-" v:  vim variables
-" to list all global vars, run `:let g:`
-" :help internal-variables
-
-" vim variables
-" :set            - shows vars different from defaults
-" :set all        - shows all values
-" :set foo?       - shows the value of foo
-" :set foo+=opt   - add opt to the value w/o changing others
-" :set foo-=opt   - remove opt from value
-" :set foo&       - reset foo to default value
-" :setlocal foo   - only the current buffer
-
 """ startuptime debug
 " vim --startuptime vim.log
 """ with empty conf
@@ -41,47 +16,6 @@ let g:loaded_python_provider = 0
 let g:python_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 " pip3 install pynvim
-
-" Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" nnoremap <leader>u :UndotreeToggle<cr>   " toggle undotree
-
-" ≀ ∙ ⦂ ◍ ⦿ ⦰ ⦸ ⨂
-
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-" let g:mkdp_markdown_css = expand('$HOME/md.css')
-" let g:home = expand('$HOME')
-" Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
-" Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
-
-" set updatetime=300
-
-" nnoremap <silent> <c-p> <cmd>lua require('fzf-lua').files()<CR>
-
-" nnoremap <silent> <leader>rg :Rg <C-R><C-W><CR>
-" nnoremap <silent> <leader><Enter> :Buffers<CR>
-
-
-" use null-ls
-" nnoremap <silent> gp :lua vim.lsp.buf.format({ async = true })<CR>
-
-" Plug 'haishanh/zephyr-nvim', { 'branch':'haishan' }
-" Plug '$HOME/repo/h/quant-zone-priv/vim-tx'
-" Plug '$HOME/repo/h/quant-zone-priv/vim-fe'
-
-" highlight Comment cterm=italic
-
-" if has('nvim')
-"   tnoremap <Esc> <C-\><C-n>
-"   tnoremap <A-[> <Esc>
-"   tnoremap <A-h> <c-\><c-n><c-w>h
-"   tnoremap <A-j> <c-\><c-n><c-w>j
-"   tnoremap <A-k> <c-\><c-n><c-w>k
-"   tnoremap <A-l> <c-\><c-n><c-w>l
-"   nnoremap <A-h> <c-w>h
-"   nnoremap <A-j> <c-w>j
-"   nnoremap <A-k> <c-w>k
-"   nnoremap <A-l> <c-w>l
-" endif
 
 """" common key binding
 " switch to next buffer
@@ -191,7 +125,6 @@ nnoremap <leader>z <C-Z>
 set clipboard=unnamed
 " help ins-completion
 " help i_^n
-set hidden
 
 " show syntax name under the cursor
 " map <leader>x :echo "hi<"
