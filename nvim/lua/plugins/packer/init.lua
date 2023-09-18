@@ -128,11 +128,6 @@ local startup = function(use)
 
   use { 'nvim-telescope/telescope-project.nvim' }
 
-  use {
-      'prettier/vim-prettier',
-      run = 'yarn',
-  }
-
   use { 'sunjon/shade.nvim', disable = true, config = config.config_sunjon_shade }
 
   use 'tpope/vim-commentary'
@@ -218,13 +213,6 @@ local startup = function(use)
         vim.cmd('colorscheme rose-pine')
       end
   }
-  use { "rebelot/kanagawa.nvim",
-      disable = true,
-      config = function()
-        require 'kanagawa'.setup({ dimInactive = true, globalStatus = true })
-        vim.cmd("colorscheme kanagawa")
-      end
-  }
 
   use { 'mrjones2014/legendary.nvim', config = function()
     require('legendary').setup({
@@ -283,25 +271,6 @@ local startup = function(use)
       -- branch = 'haishan',
       config = function()
         vim.cmd [[colorscheme zephyr]]
-      end
-  }
-  -- current
-  use {
-      'JoosepAlviste/palenightfall.nvim',
-      config = function()
-        require('palenightfall').setup()
-        -- vim.cmd [[colorscheme palenightfall]]
-      end
-  }
-  use {
-      -- 7/10
-      'catppuccin/nvim',
-      as = 'catppuccin',
-      disable = true,
-      config = function()
-        vim.g.catppuccin_flavour = "macchiato"
-        require("catppuccin").setup()
-        vim.cmd [[colorscheme catppuccin]]
       end
   }
 end
