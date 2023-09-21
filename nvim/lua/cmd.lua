@@ -28,6 +28,11 @@ vim.api.nvim_create_user_command("Format", function(args)
   require("conform").format({ async = true, lsp_fallback = true, range = range })
 end, { range = true })
 
+-- alias
 vim.api.nvim_create_user_command("Fix", function()
   vim.cmd("EslintFixAll")
 end, { desc = "EslintFixAll" })
+
+vim.api.nvim_create_user_command("D", function()
+  vim.cmd("Dispatch")
+end, { desc = "Dispatch" })
