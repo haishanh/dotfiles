@@ -16,7 +16,7 @@
 --     description = "Description of your custom command", -- Optional, a description for the command
 -- })
 
-vim.api.nvim_create_user_command("Format", function(args)
+vim.api.nvim_create_user_command("Fo", function(args)
   local range = nil
   if args.count ~= -1 then
     local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
@@ -29,10 +29,14 @@ vim.api.nvim_create_user_command("Format", function(args)
 end, { range = true })
 
 -- alias
-vim.api.nvim_create_user_command("Fix", function()
+vim.api.nvim_create_user_command("Fi", function()
   vim.cmd("EslintFixAll")
 end, { desc = "EslintFixAll" })
 
-vim.api.nvim_create_user_command("D", function()
-  vim.cmd("Dispatch")
-end, { desc = "Dispatch" })
+vim.api.nvim_create_user_command("D", function(input)
+  local c = 'Dispatch';
+  if (input.args) then
+    c = c .. ' ' .. input.args
+  end
+  vim.cmd(c)
+end, { desc = "Dispatch", nargs = '*' })

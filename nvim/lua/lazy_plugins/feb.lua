@@ -1,5 +1,9 @@
 return {
   {
+    'simrat39/symbols-outline.nvim',
+    cmd = { "SymbolsOutline" },
+  },
+  {
     'echasnovski/mini.clue',
     version = '*',
     config = function()

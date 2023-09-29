@@ -7,14 +7,19 @@ return {
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
+    -- these dependencies will only be loaded when cmp loads
+    -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       'L3MON4D3/LuaSnip',
+      { 'kkharji/sqlite.lua',               'uga-rosa/cmp-dictionary' },
+      -- { dir = "/Users/HHan13/tmp/cmp-emoji" },
       --     "saadparwaiz1/cmp_luasnip",
       --     "hrsh7th/cmp-nvim-lua",
+      --     _hash_
     },
     config = function()
       local cmp = require('cmp')
@@ -23,9 +28,21 @@ return {
           { name = 'path' },
           { name = 'nvim_lsp' },
           { name = 'nvim_lsp_signature_help' },
+          -- { name = 'haishan' },
+          { name = "dictionary",             keyword_length = 2 },
           {
             name = 'buffer',
-            keyword_length = 3
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+                -- local buf = vim.api.nvim_get_current_buf()
+                -- local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                -- if byte_size > 1024 * 1024 then -- 1 Megabyte max
+                --   return {}
+                -- end
+                -- return { buf }
+              end
+            }
           },
         },
         mapping = cmp.mapping.preset.insert({
@@ -41,6 +58,22 @@ return {
           end,
         },
       })
+
+      local dict = require("cmp_dictionary")
+      dict.switcher({
+        filetype = {
+          lua = "~/tmp/yoman.dict",
+          -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
+        },
+        -- filepath = {
+        --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
+        --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
+        -- },
+        -- spelllang = {
+        --   en = "/path/to/english.dict",
+        -- },
+      })
+
       -- -- Here is where you configure the autocompletion settings.
       -- local lsp_zero = require('lsp-zero')
       -- lsp_zero.extend_cmp()
