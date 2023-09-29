@@ -62,7 +62,7 @@ return {
       local dict = require("cmp_dictionary")
       dict.switcher({
         filetype = {
-          lua = "~/dotfiles/nvim/dict/one.dict",
+          lua = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
           -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
         },
         -- filepath = {
