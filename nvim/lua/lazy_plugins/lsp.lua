@@ -15,7 +15,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       'L3MON4D3/LuaSnip',
-      { 'kkharji/sqlite.lua',               'uga-rosa/cmp-dictionary' },
+      'uga-rosa/cmp-dictionary',
       -- { dir = "/Users/HHan13/tmp/cmp-emoji" },
       --     "saadparwaiz1/cmp_luasnip",
       --     "hrsh7th/cmp-nvim-lua",
@@ -62,7 +62,7 @@ return {
       local dict = require("cmp_dictionary")
       dict.switcher({
         filetype = {
-          lua = "~/tmp/yoman.dict",
+          lua = "~/dotfiles/nvim/dict/one.dict",
           -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
         },
         -- filepath = {
