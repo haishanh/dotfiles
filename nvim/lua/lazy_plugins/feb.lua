@@ -89,7 +89,7 @@ return {
 
   {
     "tpope/vim-dispatch",
-    event = "VeryLazy"
+    cmd = { "Dispatch", "D" },
   },
   {
     "utilyre/sentiment.nvim",
@@ -106,7 +106,6 @@ return {
   },
   {
     'tamton-aquib/duck.nvim',
-    event = "VeryLazy",
     keys = {
       { '<leader>dd', function() require("duck").hatch("🦀", 5) end },
       { '<leader>dk', function() require("duck").cook() end },
