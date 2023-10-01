@@ -74,6 +74,31 @@ require("lazy").setup("lazy_plugins", {
       lazy = "💤 ",
     },
   },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tar",
+        "tarPlugin",
+        "zip",
+        "zipPlugin",
+        "getscript",
+        "getscriptPlugin",
+        "vimball",
+        "vimballPlugin",
+        "matchit",
+        "matchparen",
+        "2html_plugin",
+        "logiPat",
+        "rrhelper",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "tutor",
+      }
+    }
+  }
 })
 
 -- require('plugins/packer')
