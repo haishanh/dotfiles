@@ -37,7 +37,7 @@ return {
         char = "│",
       },
       scope = {
-        enabled = true,
+        enabled = false,
       },
       -- exclude = {
       --   filetypes: {''}

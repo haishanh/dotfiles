@@ -138,7 +138,7 @@ return {
           vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
           vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
           vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+          -- vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
           vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 
           --       bind('n', '<space>ca', '<cmd>:Lspsaga code_action<CR>', opts)
@@ -147,6 +147,10 @@ return {
           vim.keymap.set('n', '<leader>ca', '<cmd>:Lspsaga code_action<CR>', {
             buffer = event.buf,
             desc = "code action"
+          })
+
+          vim.keymap.set('n', '<leader>rn', '<cmd>:Lspsaga rename<CR>', {
+            desc = "rename"
           })
 
           vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
@@ -214,7 +218,12 @@ return {
     'nvimdev/lspsaga.nvim',
     cmd = { 'Lspsaga' },
     config = function()
-      require('lspsaga').setup({})
+      require('lspsaga').setup({
+        lightbulb = {
+          sign =  false,
+          debounce = 100,
+        }
+      })
     end,
   },
 
