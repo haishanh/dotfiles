@@ -15,9 +15,9 @@ return {
       trash = { cmd = "trash", require_confirm = true },
       renderer = {
         add_trailing = true,
+        group_empty = true,
         indent_markers = {
           enable = true,
-          -- icons = { corner = "└", edge = "│ ", none = "  " },
           icons = { corner = "╰", edge = "│ ", none = " " },
         },
         icons = {

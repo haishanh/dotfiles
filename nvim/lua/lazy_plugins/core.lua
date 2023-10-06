@@ -24,11 +24,6 @@ return {
     end,
   },
 
-  -- {
-  --   "prettier/vim-prettier",
-  --   cmd = { "Prettier", "PrettierAsync" },
-  --   build = "pnpm i",
-  -- },
   { "mhinz/vim-sayonara",          cmd = { "Sayonara" } },
 
   -- library used by other plugins
