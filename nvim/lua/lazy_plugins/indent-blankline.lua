@@ -28,9 +28,6 @@ return {
       vim.api.nvim_set_hl(0, "Ibl6", h0)
     end)
     require('ibl').setup({
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-      show_trailing_blankline_indent = false,
-      show_current_context = false,
       indent = {
         highlight = highlight,
         -- char = "┊",
@@ -39,9 +36,9 @@ return {
       scope = {
         enabled = false,
       },
-      -- exclude = {
-      --   filetypes: {''}
-      -- },
+      exclude = {
+        filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" }
+      },
     })
   end,
 }

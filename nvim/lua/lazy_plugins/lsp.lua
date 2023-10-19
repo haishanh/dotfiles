@@ -16,8 +16,9 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       'L3MON4D3/LuaSnip',
       'uga-rosa/cmp-dictionary',
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
       -- { dir = "/Users/HHan13/tmp/cmp-emoji" },
-      --     "saadparwaiz1/cmp_luasnip",
       --     "hrsh7th/cmp-nvim-lua",
       --     _hash_
     },
@@ -27,6 +28,7 @@ return {
         sources = {
           { name = 'path' },
           { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'nvim_lsp_signature_help' },
           -- { name = 'haishan' },
           { name = "dictionary",             keyword_length = 2 },
@@ -73,6 +75,8 @@ return {
         --   en = "/path/to/english.dict",
         -- },
       })
+
+      require("luasnip.loaders.from_vscode").load()
 
       -- -- Here is where you configure the autocompletion settings.
       -- local lsp_zero = require('lsp-zero')
