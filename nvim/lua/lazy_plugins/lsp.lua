@@ -77,6 +77,8 @@ return {
       })
 
       require("luasnip.loaders.from_vscode").load()
+      -- require("luasnip.loaders.from_lua").load({paths = "~/snippets"})
+      require("luasnip.loaders.from_vscode").lazy_load({paths = "~/dotfiles/vscodesnips"})
 
       -- -- Here is where you configure the autocompletion settings.
       -- local lsp_zero = require('lsp-zero')

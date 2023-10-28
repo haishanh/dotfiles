@@ -1,0 +1,26 @@
+{
+  "name": "haishan-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "all"
+        ],
+        "path": "./svelte.json"
+      },
+      {
+        "language": [
+          "svelte"
+        ],
+        "path": "./svelte.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "svelte"
+        ],
+        "path": "./typescript.json"
+      }
+    ]
+  }
+}
