@@ -2,25 +2,12 @@ local M = {}
 
 -- https://github.com/b3nj5m1n/kommentary
 function M.config_kommentary()
-  -- require('kommentary.config').configure_language({"typescript", "zig"}, {
-  --   prefer_single_line_comments = true,
-  --   single_line_comment_string = 'auto',
-  --   multi_line_comment_strings = 'auto',
-  --   hook_function = function()
-  --     require('ts_context_commentstring.internal').update_commentstring()
-  --   end,
-  -- })
   vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
   vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
   vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 end
 
 function M.config_telescope()
-  -- if not packer_plugins['plenary.nvim'].loaded then
-  --   vim.cmd [[packadd plenary.nvim]]
-  --   vim.cmd [[packadd popup.nvim]]
-  --   vim.cmd [[packadd telescope-fzy-native.nvim]]
-  -- end
   require('telescope').setup {
     defaults = {
       prompt_prefix = '🔭 ',
@@ -39,12 +26,6 @@ function M.config_telescope()
     }
   }
   require('telescope').load_extension('fzy_native')
-  -- require('telescope').load_extension('coc')
-  -- require('telescope').load_extension('coc')
-  -- require'telescope'.load_extension('dotfiles')
-  -- require'telescope'.load_extension('gosource')
-
-
   -- vim.keymap.set('n', '<leader>sf', [[<cmd>Telescope find_files<cr>]], { desc = '[S]earch [F]iles' })
   vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 end
@@ -148,20 +129,20 @@ function M.config_lsp()
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-      signs = true,
-      update_in_insert = false,
-      underline = true,
-      severity_sort = true,
-      float = {
-        focusable = false,
-        style = 'minimal',
-        border = 'rounded',
-        source = 'always',
-        header = '',
-        prefix = '',
-      },
-    }
+        virtual_text = false,
+        signs = true,
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+          focusable = false,
+          style = 'minimal',
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
+      }
     )
 
     -- https://en.wikipedia.org/wiki/Box-drawing_character

@@ -2,5 +2,13 @@
   "console.log": {
     "prefix": "cl",
     "body": "console.log()"
+  },
+  "sleep": {
+    "prefix": "sleep",
+    "body": "const sleep = (t: number) => new Promise(r => setTimeout(r, t));"
+  },
+  "eslint ignore": {
+    "prefix": "eslint",
+    "body": "// eslint-disable-next-line no-console\n// eslint-disable-next-line no-shadow\n// eslint-disable-next-line import/prefer-default-export"
   }
 }
