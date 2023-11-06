@@ -41,27 +41,6 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-j> <C-o>gj
 inoremap <C-k> <C-o>gk
-" inoremap <C-h> <C-o>h
-" inoremap <C-l> <C-o>l
-" inoremap <C-^> <C-o><C-^>
-
-" steal from https://github.com/neovim/neovim/issues/2127#issuecomment-150954047
-" augroup AutoSwap
-"   autocmd!
-"   autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
-" augroup END
-"
-" function! AS_HandleSwapfile (filename, swapname)
-"   " if swapfile is older than file itself, just get rid of it
-"   if getftime(v:swapname) < getftime(a:filename)
-"     call delete(v:swapname)
-"     let v:swapchoice = 'e'
-"
-"   endif
-"
-" endfunction
-" autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-"       \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
 " make dash(`-`) part of a word hel$lo-world
 " 36 is `$`
@@ -184,8 +163,6 @@ let $FZF_DEFAULT_OPTS = '--ansi'
 " the `e` flag is used in the substitute command so no error is shown if trailing whitespace is not found
 command! -range -nargs=0 StripTrailingWhitespaces :execute <line1>.','<line2>.'s:\s\+$::e'
 
-let g:asyncrun_open = 8
-
 " === ultisnips
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
@@ -206,14 +183,6 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
-
-" nnoremap <silent> <leader>te :FloatermToggle<cr>
-
-" https://github.com/neovim/neovim/pull/12279
-" augroup highlight_yank
-"   autocmd!
-"   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-" augroup END
 
 " coc plugin development
 set runtimepath^=/Users/hhan13/h/mdr-priv/packages/coc-mdr
@@ -253,12 +222,6 @@ highlight MatchParen guibg='#606060' cterm=NONE gui=NONE
 " highlight typescriptImport guifg='#111111' guibg=#fff1ac
 command! -nargs=0 Out :CocCommand workspace.showOutput
 command! -nargs=0 Push :Dispatch gitupdate .
-
-" https://github.com/neoclide/coc-eslint/pull/118
-augroup eslint8
-  autocmd!
-  autocmd BufEnter *.ts,*.tsx,*.js  set runtimepath^=~/tmp/coc-eslint
-augroup END
 
 " make it short since i keep forgeting this
 command! -nargs=0 Bye :Sayonara
