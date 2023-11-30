@@ -89,7 +89,7 @@ return {
 
   {
     "tpope/vim-dispatch",
-    cmd = { "Dispatch", "D" },
+    cmd = { "Dispatch" },
   },
   {
     "utilyre/sentiment.nvim",
@@ -129,6 +129,7 @@ return {
   {
     "chrisgrieser/nvim-various-textobjs",
     event = "VeryLazy",
+    enabled = false,
     opts = {
       useDefaultKeymaps = true,
     },
