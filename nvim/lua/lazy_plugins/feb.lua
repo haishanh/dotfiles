@@ -53,15 +53,25 @@ return {
       })
     end
   },
+  -- https://github.com/simrat39/rust-tools.nvim/issues/422
   {
     'simrat39/rust-tools.nvim',
     event = "VeryLazy",
+    ft = { 'rust' },
     config = function()
       local rt = require("rust-tools")
       rt.setup()
       rt.inlay_hints.enable()
     end
   },
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^3', -- Recommended
+  --   ft = { 'rust' },
+  --   config = function()
+  --     vim.g.rustaceanvim = {}
+  --   end
+  -- },
   {
     'stevearc/oil.nvim',
     opts = {

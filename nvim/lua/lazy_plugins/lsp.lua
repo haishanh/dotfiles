@@ -148,13 +148,19 @@ return {
       })
 
       local default_setup = function(server_name)
-        lspconfig[server_name].setup({})
+        -- print('Setting up ' .. server_name)
+        --
+        -- rust_analyzer is handled by rust-tools (or mrcjkb/rustaceanvim)
+        if server_name ~= 'rust_analyzer' then
+          -- require('rust-tools').setup({})
+          lspconfig[server_name].setup({})
+        end
       end
 
       require('mason-lspconfig').setup({
         automatic_installation = true,
         -- ensure_installed = {},
-        ensure_installed = { 'tsserver', 'rust_analyzer', 'eslint', 'cssls', 'svelte', 'lua_ls' },
+        ensure_installed = { 'tsserver', 'eslint', 'cssls', 'svelte', 'lua_ls' },
         -- see `:h mason-lspconfig.setup_handlers()`
         handlers = {
           default_setup,

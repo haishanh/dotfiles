@@ -45,15 +45,6 @@ return {
       -- rainbow = { enable = true },
       -- https://github.com/nvim-treesitter/playground
       playground = { enable = true },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-        config = {
-          zig = {
-            __default = '// %s',
-          }
-        }
-      },
       textobjects = {
         select = {
           enable = true,
