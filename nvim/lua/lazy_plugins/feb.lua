@@ -79,6 +79,7 @@ return {
   -- },
   {
     'stevearc/oil.nvim',
+    cmd = { "Oil" },
     opts = {
       delete_to_trash = true,
       trash_command = 'trash',
@@ -129,6 +130,7 @@ return {
   {
     'stevearc/overseer.nvim',
     opts = {},
+    cmd = { "OverseerRun", "OverseerToggle" }
   },
   {
     "famiu/bufdelete.nvim",
