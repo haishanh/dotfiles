@@ -78,7 +78,7 @@ return {
 
       require("luasnip.loaders.from_vscode").load()
       -- require("luasnip.loaders.from_lua").load({paths = "~/snippets"})
-      require("luasnip.loaders.from_vscode").lazy_load({paths = "~/dotfiles/vscodesnips"})
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/dotfiles/vscodesnips" })
     end
   },
   {
@@ -148,11 +148,15 @@ return {
       })
 
       local default_setup = function(server_name)
-        -- print('Setting up ' .. server_name)
-        --
-        -- rust_analyzer is handled by rust-tools (or mrcjkb/rustaceanvim)
-        if server_name ~= 'rust_analyzer' then
-          -- require('rust-tools').setup({})
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+        -- exlude markdown from tailwindcss filetypes
+        -- not sure why tailwindcss language server is cause super high CPU usage in markdown
+        if server_name == 'tailwindcss' then
+          lspconfig[server_name].setup({
+            filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+          })
+        elseif server_name ~= 'rust_analyzer' then
+          -- rust_analyzer is handled by rust-tools (or mrcjkb/rustaceanvim)
           lspconfig[server_name].setup({})
         end
       end
@@ -170,28 +174,12 @@ return {
           ["lua_ls"] = function()
             lspconfig.lua_ls.setup {
               settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" }
-                  }
-                }
+                Lua = { diagnostics = { globals = { "vim" } } }
               }
             }
           end,
         },
-        -- handlers = {
-        --   lsp_zero.default_setup,
-        --   lua_ls = function()
-        --     -- (Optional) Configure lua language server for neovim
-        --     local lua_opts = lsp_zero.nvim_lua_ls()
-        --     require('lspconfig').lua_ls.setup(lua_opts)
-        --   end,
-        -- }
       })
-
-      -- lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'eslint', 'cssls', 'svelte', 'lua_ls' })
-      -- -- require('lspconfig').lua_ls.setup({})
-      -- -- require('lspconfig').rust_analyzer.setup({})
     end
   },
 
