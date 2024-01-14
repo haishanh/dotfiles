@@ -167,3 +167,5 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 # export PATH="$PATH:$HOME/.rvm/bin"
 
 eval "$(starship init zsh)"
+
+eval "$(atuin init zsh)"
