@@ -61,20 +61,30 @@ return {
         },
       })
 
-      local dict = require("cmp_dictionary")
-      dict.switcher({
-        filetype = {
-          lua = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
-          -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
-        },
-        -- filepath = {
-        --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
-        --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
-        -- },
-        -- spelllang = {
-        --   en = "/path/to/english.dict",
+      require("cmp_dictionary").setup({
+        paths = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
+        -- exact_length = 2,
+        -- first_case_insensitive = true,
+        -- document = {
+        --   enable = true,
+        --   command = { "wn", "${label}", "-over" },
         -- },
       })
+
+      -- local dict = require("cmp_dictionary")
+      -- dict.switcher({
+      --   filetype = {
+      --     lua = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
+      --     -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
+      --   },
+      --   -- filepath = {
+      --   --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
+      --   --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
+      --   -- },
+      --   -- spelllang = {
+      --   --   en = "/path/to/english.dict",
+      --   -- },
+      -- })
 
       require("luasnip.loaders.from_vscode").load()
       -- require("luasnip.loaders.from_lua").load({paths = "~/snippets"})
