@@ -10,6 +10,7 @@ return {
     -- these dependencies will only be loaded when cmp loads
     -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
+      "nvim-lua/plenary.nvim",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
@@ -62,7 +63,7 @@ return {
       })
 
       require("cmp_dictionary").setup({
-        paths = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
+        paths = { "/Users/HHan13/repo/h/dotfiles/nvim/dict/one.dict" },
         -- exact_length = 2,
         -- first_case_insensitive = true,
         -- document = {
