@@ -39,6 +39,9 @@ vim.g.symbols_outline = {
   position = 'left',
 }
 
+-- nvim-nonicons x nvim-web-devicons
+vim.g.override_nvim_web_devicons = false
+
 require("opts")
 require("autocmd")
 require("keymaps")

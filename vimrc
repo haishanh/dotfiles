@@ -128,22 +128,7 @@ xnoremap <silent> <C-j> :move'>+<cr>gv
 " vista
 nnoremap <silent> <leader>tt :Vista!!<CR>
 nnoremap <silent> <leader>tf :Vista finder<CR>
-" let g:vista_icon_indent = ["▸ ", ""]
-" let g:vista_default_executive = 'coc'
-let g:vista_default_executive = 'ctags'
-let g:vista#renderer#enable_icon = 1
-let g:vista_executive_for = {
-      \ 'typescript': 'coc',
-      \ 'typescriptreact': 'coc',
-      \ }
-let g:vista#renderer#icons = {
-      \ 'class': '⧈',
-      \ 'method': '',
-      \ 'constant': '◍',
-      \ 'function': '',
-      \ 'variable': '∨',
-      \ 'property': '◇',
-      \ }
+
 
 " for neovim-qt
 if has('gui_running')
