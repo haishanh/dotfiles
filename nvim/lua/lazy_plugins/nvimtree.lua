@@ -1,6 +1,7 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    -- g? -> help
     -- default mapping
     -- https://github.com/nvim-tree/nvim-tree.lua/blob/d1410cb0896a3aad5d84ddc54284774a627c6d63/doc/nvim-tree-lua.txt#L1689
     opts = {
@@ -21,7 +22,7 @@ return {
           icons = { corner = "╰", edge = "│ ", none = " " },
         },
         icons = {
-          show = { git = true, folder_arrow = false, },
+          show = { git = true, folder_arrow = false, file = true },
           glyphs = {
             folder = {
               arrow_closed = ' ',

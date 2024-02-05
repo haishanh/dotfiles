@@ -25,11 +25,9 @@ return {
     end,
   },
 
-  { "mhinz/vim-sayonara",          cmd = { "Sayonara" } },
+  { "mhinz/vim-sayonara",    cmd = { "Sayonara" } },
 
   -- library used by other plugins
-  { "nvim-lua/plenary.nvim",       lazy = true },
-  { "tpope/vim-repeat",            event = "VeryLazy" },
-  { dir = "~/h/nvim-nonicons",     lazy = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "tpope/vim-repeat",      event = "VeryLazy" },
 }
