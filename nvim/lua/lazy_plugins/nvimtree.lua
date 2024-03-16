@@ -10,7 +10,7 @@ return {
       hijack_netrw = true,
       hijack_cursor = true,
       open_on_tab = false,
-      update_focused_file = { enable = true },
+      update_focused_file = { enable = false },
       view = { width = 40, side = 'right' },
       git = { enable = false },
       trash = { cmd = "trash", require_confirm = true },

@@ -1,9 +1,18 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
+    "savq/melange-nvim",
     lazy = false,
     priority = 1000,
     enabled = true,
+    config = function()
+      vim.cmd("colorscheme melange")
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    enabled = false,
     config = function()
       vim.cmd("colorscheme kanagawa-wave")
       -- vim.cmd("colorscheme kanagawa-dragon")
