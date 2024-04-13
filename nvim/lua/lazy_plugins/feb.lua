@@ -1,8 +1,21 @@
 return {
   {
-    'simrat39/symbols-outline.nvim',
-    cmd = { "SymbolsOutline" },
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      symbols = {
+        icon_fetcher = function(kind) return kind:sub(1, 1) end
+      }
+    },
   },
+  -- {
+  --   'simrat39/symbols-outline.nvim',
+  --   cmd = { "SymbolsOutline" },
+  -- },
   {
     'echasnovski/mini.clue',
     version = '*',
