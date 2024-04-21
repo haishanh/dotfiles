@@ -229,3 +229,10 @@ set winbar=%f
 " in newovim 0.8" this now only check comments
 " set spell
 " command! -nargs=0 Fix :EslintFixAll
+
+" let g:wiki_select_method = {
+"       \ 'pages': function('wiki#fzf#pages'),
+"       \ 'tags': function('wiki#fzf#tags'),
+"       \ 'toc': function('wiki#fzf#toc'),
+"       \ 'links': function('wiki#fzf#links'),
+"       \}

@@ -1,5 +1,29 @@
 return {
   {
+    "lervag/wiki.vim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, _opts)
+      vim.g.wiki_root = '~/wiki'
+      -- vim.g.wiki_select_method = {
+      --   pages = vim.fn['wiki#fzf#pages']
+      -- }
+      -- vim.g.wiki_select_method = {
+      --   pages = require("wiki.ui_select").pages,
+      --   tags = require("wiki.ui_select").tags,
+      --   toc = require("wiki.ui_select").toc,
+      --   links = require("wiki.ui_select").links,
+      -- }
+    end
+  },
+  {
+    "yorickpeterse/nvim-tree-pairs",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
+  {
     "hedyhli/outline.nvim",
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
