@@ -197,6 +197,7 @@ return {
   {
     'nvimdev/indentmini.nvim',
     event = 'BufEnter',
+    enabled = false,
     -- this is no required but if you want indent blanklink line this is needed
     dependencies = { 'nvim-treesitter/nvim-treesitter' }
   },
