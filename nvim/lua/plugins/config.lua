@@ -1,12 +1,5 @@
 local M = {}
 
--- https://github.com/b3nj5m1n/kommentary
-function M.config_kommentary()
-  vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
-  vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
-  vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
-end
-
 function M.config_telescope()
   require('telescope').setup {
     defaults = {

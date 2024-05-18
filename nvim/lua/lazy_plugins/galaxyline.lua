@@ -1,6 +1,7 @@
 return {
   {
     "glepnir/galaxyline.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-nonicons" },
     config = function()
       local gl = require("galaxyline")

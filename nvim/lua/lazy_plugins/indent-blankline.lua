@@ -11,6 +11,7 @@ local highlight = {
 return {
   "lukas-reineke/indent-blankline.nvim",
   event = { "BufReadPost", "BufNewFile" },
+  enabled = false,
   config = function()
     local hooks = require "ibl.hooks"
     local h0 = { fg = "#515151" }
