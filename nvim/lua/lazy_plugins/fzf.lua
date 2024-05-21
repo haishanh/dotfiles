@@ -14,7 +14,5 @@ return {
       }
     end
   },
-  {
-    'junegunn/fzf.vim'
-  }
+  -- { 'junegunn/fzf.vim' }
 }

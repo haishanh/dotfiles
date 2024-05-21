@@ -236,3 +236,4 @@ set winbar=%f
 "       \ 'toc': function('wiki#fzf#toc'),
 "       \ 'links': function('wiki#fzf#links'),
 "       \}
+" set rtp+=/usr/local/opt/fzf
