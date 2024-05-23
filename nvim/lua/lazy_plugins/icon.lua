@@ -483,7 +483,17 @@ return {
             color = "#cbcb41",
             name = "Js"
           },
+          ["cjs"] = {
+            icon = get("javascript"),
+            color = "#cbcb41",
+            name = "Js"
+          },
           ["json"] = {
+            icon = get("json"),
+            color = "#cbcb41",
+            name = "Json"
+          },
+          ["jsonc"] = {
             icon = get("json"),
             color = "#cbcb41",
             name = "Json"
@@ -778,6 +788,11 @@ return {
             name = "TestTs"
           },
           ["spec.ts"] = {
+            icon = get("typescript"),
+            color = "#384d54",
+            name = "SpecTs"
+          },
+          ["d.ts"] = {
             icon = get("typescript"),
             color = "#384d54",
             name = "SpecTs"
