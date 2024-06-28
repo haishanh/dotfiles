@@ -10,8 +10,10 @@ local highlight = {
 
 return {
   "lukas-reineke/indent-blankline.nvim",
+  -- enabled = false,
   -- event = { "BufReadPost", "BufNewFile" },
   event = 'VeryLazy',
+  dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     local hooks = require "ibl.hooks"
     local h0 = { fg = "#515151" }

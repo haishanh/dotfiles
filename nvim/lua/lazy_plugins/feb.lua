@@ -1,5 +1,10 @@
 return {
   {
+    "neoclide/coc.nvim",
+    enabled = false,
+    branch =  'release',
+  },
+  {
     "lervag/wiki.vim",
     lazy = true,
     event = "VeryLazy",
