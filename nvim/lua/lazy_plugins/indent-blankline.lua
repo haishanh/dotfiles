@@ -13,6 +13,7 @@ return {
   -- enabled = false,
   -- event = { "BufReadPost", "BufNewFile" },
   event = 'VeryLazy',
+  tag = 'v3.4.2',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     local hooks = require "ibl.hooks"
