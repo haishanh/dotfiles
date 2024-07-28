@@ -1,13 +1,19 @@
+```bash
+# node / fnm https://github.com/Schniz/fnm
+brew install fnm
 
-## vim
+# git config
+ln -s $PWD/gitconfig ~/.gitconfig
 
-### vimrc
+# kitty
+ln -s $PWD/kitty.conf ~/.config/kitty/kitty.conf
+ln -s $PWD/kitty/snazzy.conf ~/.config/kitty/snazzy.conf
 
-create symlink `~/.vimrc` points to `vimr` in the repo
+# vim - see setup
 
-### neovim
-
-create symlink `~/.config/nvim/init.vim` points to `~/.vimr`
+# fish
+ln -sf $PWD/fish ~/.config/fish
+```
 
 ### plugins setup
 
@@ -22,14 +28,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 call plug#begin('~/.vim/bundle')
 ```
 
-### neosnippet snippets
+## Others
 
-in `.vimrc`
-
-```vim
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-let g:neosnippet#snippets_directory='~/.vim/snips'
+```
+note -> /Users/haishan/nutstore/50-note
 ```
 
-create symlink `~/.vim/snips` points `snips` in the repo
+vscode snippets via `L3MON4D3/LuaSnip`
+
+```
+ln -s ~/dotfiles/nvim/vscode-snips ~/.config/nvim/vscode-snips
+```

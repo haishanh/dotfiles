@@ -36,9 +36,19 @@ abbr hs+for let array
     ${0:TARGET}
   }
 
+snippet forof
+abbr hs-forof
+  for (const value of iterable) {
+    // console.log(value);
+  }
+
 snippet js
-options head
+abbr JSON.stringify
   JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
+
+snippet jsc
+abbr console.log JSON.stringify
+  console.log(JSON.stringify(${1:TARGET}, null, 2));
 
 snippet jp
 options head
@@ -86,12 +96,36 @@ options head
   try {
     ${0:TARGET}
   } catch (err) {
+    // ignore
+    console.log(err);
+    throw err;
   };
 
 snippet /*
   /*
   ${0:TARGET}
   */
+
+snippet eslint
+  // eslint-disable-next-line no-console
+  // eslint-disable-next-line no-shadow
+  // eslint-disable-next-line import/prefer-default-export
+
+snippet node
+alias nodejs
+  'use strict';
+
+  const fs = require('fs');
+  const util = require('util');
+
+  const writeFile = util.promisify(fs.writeFile);
+  const readFile = util.promisify(fs.readFile);
+
+  // main
+  (async function() {
+    const c = await readFile('package.json', 'utf8');
+    console.log(c.version);
+  })();
 
 #### mocha like tests ###
 snippet     tit
@@ -179,6 +213,31 @@ snippet     react
 
   export default ${1:#:Whatever};
 
+snippet re
+abbr React Hooks
+  import React from 'react';
+  import PropTypes from 'prop-types';
+
+  const { useState, useEffect, useCallback } = React;
+
+  function ${1:#:Whatever}() {
+    const handleClick = useCallback(e => {
+      e.preventDefault();
+    }, []);
+    return (
+      <div>
+        <a onClick={handleClick}>Hello</a>
+      </div>
+    );
+  }
+
+  Whatever.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired
+  };
+
+  export default ${1:#:Whatever};
+
 snippet     cdm
 abbr        react-componentDidMount
   componentDidMount() {
@@ -212,7 +271,6 @@ options     head
         return state;
     }
   };
-
 
 
 snippet        redux

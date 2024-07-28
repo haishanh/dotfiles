@@ -2,69 +2,39 @@
 
 BASHCFG=bashrc_customized
 
-do_backup()
-{
+do_backup() {
   tod=$(date +%Y%m%d%H%M%S)
   [ -f ${1} ] && mv ${1} ${1}.${tod}
 }
 
-config_nvim() {
-  ln -s ~/.vim ~/.config/nvim
-  ln -s ~/.vimrc ~/.config/nvim/init.vim
+config_vim() {
+  ln -s $PWD/vimrc ~/.vimrc
+  ln -s $PWD/vimrc ~/.config/nvim/init.vim
+  ln -s $PWD/nvim/lua ~/.config/nvim/lua
+  ln -s $PWD/coc-settings.json ~/.config/nvim/coc-settings.json
+
+  mkdir ~/.vim 2> /dev/null
+  ln -s $PWD/UltiSnips ~/.vim/UltiSnips
+  ln -s $PWD/snips ~/.vim/snips
 }
 
-config_vim()
-{
-  if wget --no-check-certificate \
-     https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/README.md \
-     -O .m_a_gic
-     > /dev/null; then
-    rm -rf .m_a_gic
-    echo "Clone Vundle"
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  else
-    echo "Cannot clone Vundle.vim"
-    echo "You may do it manually"
-    echo "  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-  fi
-  do_backup ${HOME}/.vimrc
-  ln -sf ${PWD}/vimrc ~/.vimrc
+config_shell() {
+  ln -s $PWD/commonrc ~/.commonrc
+  ln -s $PWD/zshrc ~/.zshrc
 }
 
-
-# echo "Customizing VIM config ..."
-# if [ -d ${HOME}/.vim ]; then
-#     cp -r ${PWD}/vim/* ${HOME}/.vim/
-# else
-#     cp -r ${PWD}/vim ${HOME}/.vim
-# fi
-
-config_bash()
-{
-  echo "Customizing bash config ..."
-  # customized bashrc
-  do_backup ${HOME}/.${BASHCFG}
-  cp ${BASHCFG} ~/.${BASHCFG}
-  echo -e "\n# customized bashrc" >> ~/.bashrc
-  echo ". ~/.${BASHCFG}" >> ~/.bashrc
-  # effect immediately
-  . ~/.${BASHCFG}
-}
-
-config_tmux()
-{
+config_tmux() {
   do_backup ~/.tmux.conf
   ln -sf ${PWD}/tmux.conf ~/.tmux.conf
 }
 
-config_git()
-{
-  echo "git clobal config ..."
-  bash gitconfig.sh global
+config_git() {
+  ln -s $PWD/gitconfig ~/.gitconfig || echo "link already exists"
+  mkdir ~/.config/git 2> /dev/null
+  ln -s $PWD/commit.template ~/.config/git/commit.template || echo "link already exists"
 }
 
 config_vim
-config_bash
+config_shell
 config_tmux
 config_git
-echo "Done"
