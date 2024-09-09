@@ -1,0 +1,19 @@
+{
+	"name": "vscode-snips-haishan",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"all"
+				],
+				"path": "./all.json"
+			},
+			{
+				"language": [
+					"typescript"
+				],
+				"path": "./typescript.json"
+			}
+		]
+	}
+}

@@ -1,0 +1,14 @@
+{
+  "table": {
+    "prefix": "table",
+    "body": "| a   | b   | c   |\n| --- | --- | --- |\n| d   | e   | f   |\n"
+  },
+  "code block": {
+    "prefix": "code",
+    "body": "```\n$1\n```\n"
+  },
+  "details summary": {
+    "prefix": "summary",
+    "body": "<details>\n  <summary>.</summary>\n</details>"
+  }
+}

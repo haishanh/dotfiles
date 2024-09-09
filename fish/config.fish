@@ -1,0 +1,35 @@
+if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
+  source ~/.config/fish/custom/fzf.fish
+  fzf_key_bindings
+
+  # activate zoxide
+  # zoxide init fish | source
+  z
+
+  # https://github.com/atuinsh/atuin
+  # atuin init fish | source
+end
+
+fish_add_path $HOME/.usr/bin $HOME/.cargo/bin
+
+set -x https_proxy http://127.0.0.1:7890
+set -x http_proxy http://127.0.0.1:7890
+set -x all_proxy socks5://127.0.0.1:7890
+set -x HTTPS_PROXY http://127.0.0.1:7890
+set -x HTTP_PROXY http://127.0.0.1:7890
+set -x ALL_PROXY socks5://127.0.0.1:7890
+
+set -gx LANG en_US.UTF-8
+set -gx LC_CTYPE en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
+
+# no proxy
+# https_proxy= http_proxy= all_proxy= HTTPS_PROXY= HTTP_PROXY= ALL_PROXY=
+
+# pnpm
+set -gx PNPM_HOME "$HOME/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
+
+# maxgoedjen/secretive
+set -x SSH_AUTH_SOCK /Users/HHan13/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh

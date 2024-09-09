@@ -1,0 +1,16 @@
+{
+  "color_scheme": "auto",
+  "font_face": "JetBrains Mono",
+  "font_size": 14,
+  "line_padding_bottom": 2,
+  "line_padding_top": 2,
+  "wrap_width": 72,
+  "ignored_packages": ["Vintage"],
+  "tab_size": 2,
+  "theme": "Adaptive.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "dark_theme": "Default.sublime-theme",
+  "light_theme": "Adaptive.sublime-theme",
+  "dark_color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
+  "light_color_scheme": "Packages/Material Theme/schemes/Material-Theme-Lighter.tmTheme"
+}

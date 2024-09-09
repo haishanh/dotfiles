@@ -1,0 +1,39 @@
+{
+  "javascript.suggestionActions.enabled": false,
+  "tsserver.enableJavascript": true,
+  "eslint.options": { "cache": true },
+  "eslint.quiet": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.run": "onSave",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.changedSign.text": "▏",
+  "git.addedSign.text": "▏",
+  "git.removedSign.text": "▏",
+  "git.addGBlameToVirtualText": false,
+  "git.enableGutters": false,
+  "prettier.statusItemText": "P",
+  "prettier.singleQuote": true,
+  "coc.source.word.enable": true,
+  "coc.source.syntax.enable": true,
+  "coc.source.emoji.enable": true,
+  "coc.source.emoji.filetypes": ["markdown", "markdown.vimboy"],
+  "coc.source.emoji.triggerCharacters": [":"],
+  "diagnostic.virtualText": false,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.infoSign": "⋅",
+  "diagnostic.warningSign": "⋅",
+  "diagnostic.errorSign": "⋅",
+  "codeLens.enable": false,
+  "coc.preferences.colorSupport": false,
+  "json.schemas": [
+    {
+      "fileMatch": ["/app.json"],
+      "url": "https://newfuture.github.io/miniprogram-json-schema/app.json"
+    }
+  ],
+  "svelte.enable-ts-plugin": true
+}

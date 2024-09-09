@@ -1,0 +1,40 @@
+#!/bin/bash
+
+BASHCFG=bashrc_customized
+
+do_backup() {
+  tod=$(date +%Y%m%d%H%M%S)
+  [ -f ${1} ] && mv ${1} ${1}.${tod}
+}
+
+config_vim() {
+  ln -s $PWD/vimrc ~/.vimrc
+  ln -s $PWD/vimrc ~/.config/nvim/init.vim
+  ln -s $PWD/nvim/lua ~/.config/nvim/lua
+  ln -s $PWD/coc-settings.json ~/.config/nvim/coc-settings.json
+
+  mkdir ~/.vim 2> /dev/null
+  ln -s $PWD/UltiSnips ~/.vim/UltiSnips
+  ln -s $PWD/snips ~/.vim/snips
+}
+
+config_shell() {
+  ln -s $PWD/commonrc ~/.commonrc
+  ln -s $PWD/zshrc ~/.zshrc
+}
+
+config_tmux() {
+  do_backup ~/.tmux.conf
+  ln -sf ${PWD}/tmux.conf ~/.tmux.conf
+}
+
+config_git() {
+  ln -s $PWD/gitconfig ~/.gitconfig || echo "link already exists"
+  mkdir ~/.config/git 2> /dev/null
+  ln -s $PWD/commit.template ~/.config/git/commit.template || echo "link already exists"
+}
+
+config_vim
+config_shell
+config_tmux
+config_git

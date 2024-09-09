@@ -1,0 +1,299 @@
+snippet us
+options head
+  'use strict';
+  ${0}
+
+snippet quote
+alias q
+  '${1:TARGET}'${2}
+
+snippet quotequote
+alias qq
+  "${1:TARGET}"${2}
+
+snippet string-template
+alias ss
+  `${1:TARGET}`${2}
+
+snippet console-log
+alias cl
+  console.log(${0:TARGET});
+
+snippet console-dir
+alias cd
+options head
+  console.dir(${0:TARGET});
+
+snippet if
+options head
+  if (${1:true}) {
+    ${0:TARGET}
+  }
+
+snippet for
+abbr hs+for let array
+  for (let i = 0; i < ${1:arr}.length; i++) {
+    ${0:TARGET}
+  }
+
+snippet forof
+abbr hs-forof
+  for (const value of iterable) {
+    // console.log(value);
+  }
+
+snippet js
+abbr JSON.stringify
+  JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
+
+snippet jsc
+abbr console.log JSON.stringify
+  console.log(JSON.stringify(${1:TARGET}, null, 2));
+
+snippet jp
+options head
+  JSON.parse(${0:TARGET});
+
+snippet const-require
+alias cr
+abbr const fs = require('fs');
+options head
+  const ${1:fs} = require('${2:fs}');
+
+snippet func
+options head
+  function ${1:func_name}(${2:args}) {
+    ${0:TARGET}
+  };
+
+snippet cf
+options head
+  const f = () => {};
+
+snippet cls
+options head
+  class ${1:one} extends ${2:two} {
+    constructor(options) {
+      super(options);
+    }
+  };
+
+snippet sleep
+  const sleep = t => new Promise(r => setTimeout(r, t));
+
+snippet interval
+  setInterval(() => {
+    ${0:TARGET}
+  }, ${1:#:3000});
+
+snippet timeout
+  setTimeout(() => {
+    ${0:TARGET}
+  }, ${1:#:3000});
+
+snippet try
+options head
+  try {
+    ${0:TARGET}
+  } catch (err) {
+    // ignore
+    console.log(err);
+    throw err;
+  };
+
+snippet /*
+  /*
+  ${0:TARGET}
+  */
+
+snippet eslint
+  // eslint-disable-next-line no-console
+  // eslint-disable-next-line no-shadow
+  // eslint-disable-next-line import/prefer-default-export
+
+snippet node
+alias nodejs
+  'use strict';
+
+  const fs = require('fs');
+  const util = require('util');
+
+  const writeFile = util.promisify(fs.writeFile);
+  const readFile = util.promisify(fs.readFile);
+
+  // main
+  (async function() {
+    const c = await readFile('package.json', 'utf8');
+    console.log(c.version);
+  })();
+
+#### mocha like tests ###
+snippet     tit
+options     head
+  it('${1:#:should response 200}', () => {
+    ${0:TARGET}
+  });
+
+snippet     tdes
+options     head
+  describe('${1:#:model}', () => {
+    ${0:TARGET}
+  });
+
+#### supertest ###
+snippet     supertest200
+options     head
+  return request(app)
+    .post('/api/cat')
+    .send(JSON.stringify({
+      data
+    }))
+    .expect(200)
+    .then(res => {
+      const data = res.body.data;
+    });
+
+snippet     supertest404
+options     head
+  return request(app)
+    .post('/api/cat')
+    .send(JSON.stringify(({
+      data
+    }))
+    .then(res => {
+      const err = JSON.parse(res.error.text).error;
+      err.statusCode.should.equal(404);
+      err.code.should.equal(11404);
+      err.message.should.equal('User not found');
+
+      // 2
+      res.body.error.should.have.property('statusCode', err.statusCode);
+      res.body.error.should.have.property('message', err.message);
+    });
+
+#### Loopback ###
+snippet     remote
+options     head
+  Customer.remoteMethod('methodName', {
+    description: 'The description of this remote method',
+    http: { path: '/:id', verb: 'post', status: 200 },
+    returns: { arg: 'data', type: 'object' },
+    accepts: [{
+      arg: 'id',
+      type: 'string',
+      required: true,
+      http: { source: 'path' }
+    }]
+  });
+
+#### React ####
+snippet     react
+  import React, { Component } from 'react';
+  import PropTypes from 'prop-types';
+
+  class ${1:#:Whatever} extends Component {
+
+    static propTypes = {
+      isOpen: PropTypes.bool.isRequired,
+      onRequestClose: PropTypes.func.isRequired
+    };
+
+    handleClick = (e) => {
+      e.preventDefault();
+    }
+
+    render() {
+      return (
+        <div>
+          <a onClick={this.handleClick}>Hello</a>
+        </div>
+      );
+    }
+  }
+
+  export default ${1:#:Whatever};
+
+snippet re
+abbr React Hooks
+  import React from 'react';
+  import PropTypes from 'prop-types';
+
+  const { useState, useEffect, useCallback } = React;
+
+  function ${1:#:Whatever}() {
+    const handleClick = useCallback(e => {
+      e.preventDefault();
+    }, []);
+    return (
+      <div>
+        <a onClick={handleClick}>Hello</a>
+      </div>
+    );
+  }
+
+  Whatever.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired
+  };
+
+  export default ${1:#:Whatever};
+
+snippet     cdm
+abbr        react-componentDidMount
+  componentDidMount() {
+    ${0:TARGET}
+  }
+
+snippet     cwm
+abbr        react-componentWillMount
+  componentWillMount() {
+    ${0:TARGET}
+  }
+
+snippet     cwu
+abbr        react-componentWillUnmount
+  componentWillUnmount() {
+    ${0:TARGET}
+  }
+
+snippet     redux-reducer
+abbr        rere
+options     head
+  export default function reducer(state = {}, action) {
+    switch (action.type) {
+      case 'OPEN_MODAL': {
+        return Object.assign({}, state, {
+          isModalOpen: true
+        });
+      }
+
+      default:
+        return state;
+    }
+  };
+
+
+snippet        redux
+abbr           react-redux
+  // reduxxxxx
+  import { connect } from 'react-redux';
+  import { bindActionCreators } from 'redux';
+  import * as appActions from '../ducks/app';
+
+  function mapStateToProps(state) {
+    return {
+      app: state.app,
+      modal: state.modal
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(
+        Object.assign({}, modalActions, appActions),
+        dispatch
+      )
+    };
+  }
+
+  @connect(mapStateToProps, mapDispatchToProps)

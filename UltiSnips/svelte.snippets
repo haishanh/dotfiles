@@ -1,0 +1,23 @@
+snippet clo "clo"
+console.log();
+endsnippet
+
+# https://svelte.dev/docs#if
+snippet sv "svelte-template"
+<script context="module" lang="ts">
+  import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async (input) => {
+		return {
+			props: { v: 1 }
+		}
+	}
+</script>
+
+<script lang="ts">
+  // import { amp, browser, dev, mode, prerendering } from '$app/env';
+</script>
+
+<style lang="scss">
+</style>
+endsnippet
