@@ -78,6 +78,17 @@ font-ia-writer-mono
 brew install homebrew/cask-fonts/font-{jetbrains-mono,iosevka,input}
 ```
 
+## Other Apps
+
+- Reeder mas
+- Unread mas, RSS reading app
+- Bear mas, note app
+- 微信输入法
+- Orbstack
+- Raycast, Alfred altnative
+- Rectangle, window management
+- [Mac Mouse Fix](https://github.com/noah-nuebling/mac-mouse-fix)
+
 ### docker
 
 setup docker hub mirrors

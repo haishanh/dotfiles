@@ -169,3 +169,4 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 eval "$(starship init zsh)"
 
 eval "$(atuin init zsh)"
+. "/Users/HHan13/.deno/env"
