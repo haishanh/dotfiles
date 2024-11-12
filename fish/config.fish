@@ -12,12 +12,19 @@ end
 
 fish_add_path $HOME/.usr/bin $HOME/.cargo/bin
 
-set -x https_proxy http://127.0.0.1:7890
-set -x http_proxy http://127.0.0.1:7890
-set -x all_proxy socks5://127.0.0.1:7890
-set -x HTTPS_PROXY http://127.0.0.1:7890
-set -x HTTP_PROXY http://127.0.0.1:7890
-set -x ALL_PROXY socks5://127.0.0.1:7890
+set --global --export HOMEBREW_PREFIX "/opt/homebrew";
+set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
+set --global --export HOMEBREW_REPOSITORY "/opt/homebrew";
+fish_add_path --global --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin";
+if test -n "$MANPATH[1]"; set --global --export MANPATH '' $MANPATH; end;
+if not contains "/opt/homebrew/share/info" $INFOPATH; set --global --export INFOPATH "/opt/homebrew/share/info" $INFOPATH; end;
+
+# set -x https_proxy http://127.0.0.1:7890
+# set -x http_proxy http://127.0.0.1:7890
+# set -x all_proxy socks5://127.0.0.1:7890
+# set -x HTTPS_PROXY http://127.0.0.1:7890
+# set -x HTTP_PROXY http://127.0.0.1:7890
+# set -x ALL_PROXY socks5://127.0.0.1:7890
 
 set -gx LANG en_US.UTF-8
 set -gx LC_CTYPE en_US.UTF-8
@@ -33,3 +40,4 @@ set -gx PATH "$PNPM_HOME" $PATH
 
 # maxgoedjen/secretive
 set -x SSH_AUTH_SOCK /Users/HHan13/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+zoxide init fish | source
