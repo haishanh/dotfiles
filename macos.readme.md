@@ -1,4 +1,10 @@
+
+```bash
+mkdir ~/Developer
+```
+
 ## brew
+
 
 ```bash
 brew tap haishanh/brew

@@ -16,7 +16,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       'L3MON4D3/LuaSnip',
-      'uga-rosa/cmp-dictionary',
+      -- 'uga-rosa/cmp-dictionary',
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       -- { dir = "/Users/HHan13/tmp/cmp-emoji" },
@@ -32,7 +32,7 @@ return {
           { name = 'luasnip' },
           { name = 'nvim_lsp_signature_help' },
           -- { name = 'haishan' },
-          { name = "dictionary",             keyword_length = 2 },
+          -- { name = "dictionary",             keyword_length = 2 },
           {
             name = 'buffer',
             option = {
@@ -62,29 +62,8 @@ return {
         },
       })
 
-      require("cmp_dictionary").setup({
-        paths = { "/Users/HHan13/repo/h/dotfiles/nvim/dict/one.dict" },
-        -- exact_length = 2,
-        -- first_case_insensitive = true,
-        -- document = {
-        --   enable = true,
-        --   command = { "wn", "${label}", "-over" },
-        -- },
-      })
-
-      -- local dict = require("cmp_dictionary")
-      -- dict.switcher({
-      --   filetype = {
-      --     lua = { "~/repo/h/dotfiles/nvim/dict/one.dict" },
-      --     -- javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
-      --   },
-      --   -- filepath = {
-      --   --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
-      --   --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
-      --   -- },
-      --   -- spelllang = {
-      --   --   en = "/path/to/english.dict",
-      --   -- },
+      -- require("cmp_dictionary").setup({
+      --   paths = { "/Users/HHan13/repo/h/dotfiles/nvim/dict/one.dict" },
       -- })
 
       require("luasnip.loaders.from_vscode").load()

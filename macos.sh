@@ -1,15 +1,22 @@
 #!/bin/bash
 
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
 # Disable Slow Keys.
-defaults write com.apple.universalaccess slowKey -int 0
+# defaults write com.apple.universalaccess slowKey -int 0
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
-# defaults write NSGlobalDomain InitialKeyRepeat -int 35
-# defaults write NSGlobalDomain InitialKeyRepeat -int 30
-defaults write NSGlobalDomain InitialKeyRepeat -int 26
+defaults write NSGlobalDomain InitialKeyRepeat -int 18
+# defaults write NSGlobalDomain InitialKeyRepeat -int 26
+
+# # Set a blazingly fast keyboard repeat rate
+# defaults write NSGlobalDomain KeyRepeat -int 1
+# defaults write NSGlobalDomain InitialKeyRepeat -int 26
 
 # steal from https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # Disable automatic termination of inactive apps

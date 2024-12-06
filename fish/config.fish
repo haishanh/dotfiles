@@ -41,3 +41,6 @@ set -gx PATH "$PNPM_HOME" $PATH
 # maxgoedjen/secretive
 set -x SSH_AUTH_SOCK /Users/HHan13/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 zoxide init fish | source
+
+alias ls eza
+# alias vim nvim

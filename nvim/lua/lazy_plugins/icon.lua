@@ -1,5 +1,5 @@
 return {
-  { dir = "/Users/HHan13/h/nvim-nonicons", lazy = true },
+  { dir = "/Users/haishan/Developer/h/nvim-nonicons", lazy = true },
   -- { dir = "~/h/nvim-nonicons",     lazy = true },
   {
     "nvim-tree/nvim-web-devicons",
