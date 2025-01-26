@@ -1,0 +1,21 @@
+# font-family = "JetBrains Mono"
+# font-family = "Operator Mono Medium"
+# font-family-bold = "Operator Mono Bold"
+# font-family-italic = "Operator Mono Medium Italic"
+# font-family-bold-italic = "Operator Mono Bold Italic"
+#
+font-family = "Operator Mono"
+font-style = "Medium"
+font-size =  "12"
+adjust-cell-height = "20%"
+
+copy-on-select = true
+
+font-codepoint-map = "U+F101-U+F4A5=nonicons"
+
+keybind = "super+right=next_tab"
+keybind = "super+left=previous_tab"
+
+# window-theme = "ghostty"
+
+# custom-shader = "/Users/hhan13/Developer/o/ghostty-shaders/just-snow.glsl.glsl"
