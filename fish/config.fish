@@ -10,8 +10,12 @@ if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
   # atuin init fish | source
 end
 
+# fish_add_path: with -P we Manipulate PATH directly (not adding to ~/.config/fish/fish_variables fish_user_paths)
+fish_add_path -P ~/.usr/bin
+# go / golang
 fish_add_path -P ~/go/bin
-# fish_add_path $HOME/.usr/bin $HOME/.cargo/bin
+# rust / cargo / rustup
+fish_add_path -P ~/.cargo/bin
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
