@@ -16,6 +16,8 @@ fish_add_path -P ~/.usr/bin
 fish_add_path -P ~/go/bin
 # rust / cargo / rustup
 fish_add_path -P ~/.cargo/bin
+# python uv
+fish_add_path -P ~/.local/bin
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
