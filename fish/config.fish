@@ -10,7 +10,8 @@ if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
   # atuin init fish | source
 end
 
-fish_add_path $HOME/.usr/bin $HOME/.cargo/bin
+fish_add_path -P ~/go/bin
+# fish_add_path $HOME/.usr/bin $HOME/.cargo/bin
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
