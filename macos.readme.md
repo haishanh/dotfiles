@@ -1,16 +1,13 @@
-
 ```bash
 mkdir ~/Developer
 ```
 
 ## brew
 
-
 ```bash
-brew tap haishanh/brew
-brew install rmtrash
+brew install rmtrash the_silver_searcher jq
 
-brew install zsh git hub wget curl gh the_silver_searcher jq
+brew install zsh git hub wget curl gh
 brew install iproute2mac
 brew install diff-so-fancy
 brew install ncdu # disk usage
