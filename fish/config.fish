@@ -18,6 +18,8 @@ fish_add_path -P ~/go/bin
 fish_add_path -P ~/.cargo/bin
 # python uv
 fish_add_path -P ~/.local/bin
+# homebrew ruby
+fish_add_path -P /opt/homebrew/opt/ruby/bin
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";

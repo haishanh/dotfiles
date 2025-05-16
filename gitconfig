@@ -83,3 +83,5 @@
 	useHttpPath = true
 [credential "https://codeberg.org"]
 	provider = generic
+[credential "https://git.build.ingka.ikea.com"]
+	provider = github
