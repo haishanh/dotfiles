@@ -1,6 +1,7 @@
 return {
-  { dir = "/Users/haishan/Developer/h/nvim-nonicons", lazy = true },
+  -- { dir = "/Users/haishan/Developer/h/nvim-nonicons", lazy = true },
   -- { dir = "~/h/nvim-nonicons",     lazy = true },
+  { "ya2s/nvim-nonicons", lazy = true },
   {
     "nvim-tree/nvim-web-devicons",
     dependencies = { "nvim-nonicons" },
@@ -8,89 +9,14 @@ return {
     -- lazy = true,
     config = function(_, _opts)
       local get = require("nvim-nonicons").get;
-      -- checkout https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons/icons-default.lua 
+      -- checkout https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons/icons-default.lua
       require 'nvim-web-devicons'.setup {
         override = {
-          -- ["gruntfile"] = {
-          --   icon = "",
-          --   color = "#e37933",
-          --   name = "Gruntfile"
-          -- },
-          -- ["gulpfile"] = {
-          --   icon = "",
-          --   color = "#cc3e44",
-          --   name = "Gulpfile"
-          -- },
-          -- ["dropbox"] = {
-          --   icon = "",
-          --   color = "#0061FE",
-          --   name = "Dropbox"
-          -- },
-          -- ["xls"] = {
-          --   icon = "",
-          --   color = "#207245",
-          --   name = "Xls"
-          -- },
-          -- ["doc"] = {
-          --   icon = "",
-          --   color = "#185abd",
-          --   name = "Doc"
-          -- },
-          -- ["ppt"] = {
-          --   icon = "",
-          --   color = "#cb4a32",
-          --   name = "Ppt"
-          -- },
-          -- ["xml"] = {
-          --   icon = "謹",
-          --   color = "#e37933",
-          --   name = "Xml"
-          -- },
-          -- ["webpack"] = {
-          --   icon = "ﰩ",
-          --   color = "#519aba",
-          --   name = "Webpack"
-          -- },
-          -- [".settings.json"] = {
-          --   icon = "",
-          --   color = "#854CC7",
-          --   name = "SettingsJson"
-          -- },
-          -- ["cs"] = {
-          --   icon = "",
-          --   color = "#596706",
-          --   name = "Cs"
-          -- },
-          -- ["procfile"] = {
-          --   icon = "",
-          --   color = "#a074c4",
-          --   name = "Procfile"
-          -- },
           ["svg"] = {
             icon = get("image"),
             color = "#FFB13B",
             name = "Svg"
           },
-          -- [".bashprofile"] = {
-          --   icon = "",
-          --   color = "#89e051",
-          --   name = "BashProfile"
-          -- },
-          -- [".bashrc"] = {
-          --   icon = "",
-          --   color = "#89e051",
-          --   name = "Bashrc"
-          -- },
-          -- [".babelrc"] = {
-          --   icon = "ﬥ",
-          --   color = "#cbcb41",
-          --   name = "Babelrc"
-          -- },
-          -- [".ds_store"] = {
-          --   icon = "",
-          --   color = "#41535b",
-          --   name = "DsStore"
-          -- },
           ["git"] = {
             icon = get("git-commit"),
             color = "#F14C28",
@@ -106,16 +32,6 @@ return {
             color = "#41535b",
             name = "GitConfig"
           },
-          -- ["COMMIT_EDITMSG"] = {
-          --   icon = "",
-          --   color = "#41535b",
-          --   name = "GitCommit"
-          -- },
-          -- [".gitlab-ci.yml"] = {
-          --   icon = "",
-          --   color = "#e24329",
-          --   name = "GitlabCI"
-          -- },
           [".gvimrc"] = {
             icon = get("vim"),
             color = "#019833",

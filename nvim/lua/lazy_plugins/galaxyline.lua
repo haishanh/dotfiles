@@ -1,6 +1,7 @@
 return {
   {
     "glepnir/galaxyline.nvim",
+    enabled = false,
     event = "VeryLazy",
     dependencies = { "nvim-nonicons" },
     config = function()

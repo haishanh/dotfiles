@@ -190,12 +190,14 @@ return {
       require('local-highlight').setup()
     end
   },
+
   {
     "chrisgrieser/nvim-various-textobjs",
     event = "VeryLazy",
-    enabled = true,
     opts = {
-      useDefaultKeymaps = true,
+	  keymaps = {
+	    useDefaults = true,
+	  }
     },
   },
 
