@@ -7,7 +7,7 @@ SETUVAR --export FZF_CTRL_T_COMMAND:fd\x20\x2d\x2dtype\x20file\x20\x2d\x2dcolor\
 SETUVAR --export FZF_DEFAULT_COMMAND:fd\x20\x2d\x2dtype\x20file\x20\x2d\x2dcolor\x3dalways
 SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dansi
 SETUVAR --export VISUAL:nvim
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3800
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ereitzig/sdkman\x2dfor\x2dfish\x40v1\x2e4\x2e0
 SETUVAR _fisher_reitzig_2F_sdkman_2D_for_2D_fish_40_v1_2E_34_2E_30__files:\x7e/\x2econfig/fish/functions/sdk\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sdk\x2efish\x1e\x7e/\x2econfig/fish/completions/sdk\x2efish
