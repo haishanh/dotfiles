@@ -5,7 +5,7 @@ mkdir ~/Developer
 ## brew
 
 ```bash
-brew install rmtrash the_silver_searcher jq
+brew install rmtrash the_silver_searcher jq fd
 
 brew install zsh git hub wget curl gh
 brew install iproute2mac
