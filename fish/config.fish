@@ -61,3 +61,5 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc" ]; . "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc"; end
+
+if [ -d "$HOME/.antigravity/antigravity/bin" ]; fish_add_path "$HOME/.antigravity/antigravity/bin" ; end

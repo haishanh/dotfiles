@@ -144,8 +144,6 @@ bindkey -e
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
 
-export PATH="/Users/HHan13/.deta/bin:$PATH"
-
 # nvim as man pager
 # https://github.com/neovim/neovim/issues/14090#issuecomment-913837694
 export MANPAGER='nvim +Man!'
@@ -153,8 +151,6 @@ export MANPAGER='nvim +Man!'
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="$HOME/.rvm/gems/ruby-2.7.2/bin:$PATH"
-
-export PATH="$PATH:/Users/HHan13/.foundry/bin"
 
 # source $HOME/.cargo/env
 
@@ -169,4 +165,3 @@ export PATH="$PATH:/Users/HHan13/.foundry/bin"
 eval "$(starship init zsh)"
 
 eval "$(atuin init zsh)"
-. "/Users/HHan13/.deno/env"
