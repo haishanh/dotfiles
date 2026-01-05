@@ -2,7 +2,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            "mrjones2014/nvim-ts-rainbow",
             "nvim-treesitter/nvim-treesitter-textobjects"
         },
         -- tag = 'v0.9.0',
@@ -41,8 +40,6 @@ return {
                     scope_incremental = "gns",
                 },
             },
-            -- https://github.com/mrjones2014/nvim-ts-rainbow
-            -- rainbow = { enable = true },
             -- https://github.com/nvim-treesitter/playground
             playground = { enable = true },
             textobjects = {
@@ -72,7 +69,7 @@ return {
                     -- mapping query_strings to modes.
                     selection_modes = {
                         ['@parameter.outer'] = 'v', -- charwise
-                        ['@function.outer'] = 'V', -- linewise
+                        ['@function.outer'] = 'V',  -- linewise
                         ['@class.outer'] = '<c-v>', -- blockwise
                     },
                     -- If you set this to `true` (default is `false`) then any textobject is
