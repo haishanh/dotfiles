@@ -4,4 +4,7 @@ let mapleader=","
 set number
 set encoding=utf-8
 
+" using OS clipboard
+set clipboard=unnamed
+
 lua require'init'
