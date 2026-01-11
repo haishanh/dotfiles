@@ -6,8 +6,11 @@ if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
   # zoxide init fish | source
   z
 
+end
+
+if status is-interactive
   # https://github.com/atuinsh/atuin
-  # atuin init fish | source
+  atuin init fish | source
 end
 
 # fish_add_path: with -P we Manipulate PATH directly (not adding to ~/.config/fish/fish_variables fish_user_paths)

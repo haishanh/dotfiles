@@ -1,5 +1,10 @@
 ```bash
 mkdir ~/Developer
+
+# Add fish to shells
+echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
+# Change shell to fish
+chsh -s /opt/homebrew/bin/fish
 ```
 
 ## brew
