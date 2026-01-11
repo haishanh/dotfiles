@@ -23,6 +23,16 @@
   file-style = bold yellow ul
   file-decoration-style = none
 
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 [color]
 	ui = true
 [alias]
