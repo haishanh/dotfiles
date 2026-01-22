@@ -8,8 +8,9 @@ if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
 
 end
 
+set -gx ATUIN_SESSION (atuin uuid)
 # if status is-interactive
-#   # https://github.com/atuinsh/atuin
+# #   # https://github.com/atuinsh/atuin
 #   atuin init fish | source
 # end
 
