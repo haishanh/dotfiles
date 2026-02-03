@@ -7,9 +7,8 @@ function cs --argument-names cmd
             echo "gcloud config configurations list"
             echo "gcloud config configurations activate xxx"
         case "" -h --help
-            echo "Usage: fisher install <plugins...>  Install plugins"
-            echo "       fisher remove  <plugins...>  Remove installed plugins"
-            echo "       fisher update  <plugins...>  Update installed plugins"
+            echo "Usage: cs command  Show help for command"
+            echo "       cs gcloud"
 
         case \*
             echo "cs: Unknown command: \"$cmd\"" >&2 && return 1
