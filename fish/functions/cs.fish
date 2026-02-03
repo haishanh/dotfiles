@@ -6,9 +6,12 @@ function cs --argument-names cmd
             echo "# list and activate configurations"
             echo "gcloud config configurations list"
             echo "gcloud config configurations activate xxx"
+        case http
+            echo "# TODO"
         case "" -h --help
             echo "Usage: cs command  Show help for command"
             echo "       cs gcloud"
+            echo "       cs http"
 
         case \*
             echo "cs: Unknown command: \"$cmd\"" >&2 && return 1
