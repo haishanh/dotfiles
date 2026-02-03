@@ -24,6 +24,12 @@ fish_add_path -P ~/.cargo/bin
 fish_add_path -P ~/.local/bin
 # homebrew ruby
 fish_add_path -P /opt/homebrew/opt/ruby/bin
+# deno
+# https://deno.land/install.sh will install deno to ~/.deno/bin/deno
+# deno install script will also create ~/.deno/env.fish, which we can "source"
+# below directive should do the same
+fish_add_path -P ~/.deno/bin
+
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
