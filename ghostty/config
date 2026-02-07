@@ -24,6 +24,8 @@ copy-on-select = clipboard
 keybind = "super+right=next_tab"
 keybind = "super+left=previous_tab"
 
+shell-integration-features = sudo
+
 # window-theme = "ghostty"
 
 # custom-shader = "/Users/hhan13/Developer/o/ghostty-shaders/just-snow.glsl.glsl"
