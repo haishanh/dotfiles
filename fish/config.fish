@@ -73,3 +73,11 @@ set --export PATH $BUN_INSTALL/bin $PATH
 if [ -f "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc" ]; . "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc"; end
 
 if [ -d "$HOME/.antigravity/antigravity/bin" ]; fish_add_path "$HOME/.antigravity/antigravity/bin" ; end
+
+
+# fnm
+# fnm env --use-on-cd | source
+set FNM_PATH "/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]
+  fnm env | source
+end
