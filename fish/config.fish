@@ -30,6 +30,8 @@ fish_add_path -P /opt/homebrew/opt/ruby/bin
 # below directive should do the same
 fish_add_path -P ~/.deno/bin
 
+# turso
+if [ -f "$HOME/.turso" ]; fish_add_path -P "$HOME/.turso"; end
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
