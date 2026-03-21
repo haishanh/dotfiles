@@ -4,11 +4,11 @@ if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
 
   # activate zoxide
   # zoxide init fish | source
-  z
-
+  # z
 end
 
-set -gx ATUIN_SESSION (atuin uuid)
+# set -gx ATUIN_SESSION (atuin uuid)
+
 # if status is-interactive
 # #   # https://github.com/atuinsh/atuin
 #   atuin init fish | source
@@ -29,6 +29,10 @@ fish_add_path -P /opt/homebrew/opt/ruby/bin
 # deno install script will also create ~/.deno/env.fish, which we can "source"
 # below directive should do the same
 fish_add_path -P ~/.deno/bin
+
+# Postgres.app
+set --local t /Applications/Postgres.app/Contents/Versions/latest/bin
+if [ -d $t ]; fish_add_path -P $t; end
 
 # turso
 if [ -f "$HOME/.turso" ]; fish_add_path -P "$HOME/.turso"; end
@@ -74,12 +78,18 @@ set --export PATH $BUN_INSTALL/bin $PATH
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc" ]; . "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc"; end
 
-if [ -d "$HOME/.antigravity/antigravity/bin" ]; fish_add_path "$HOME/.antigravity/antigravity/bin" ; end
-
+set --local t "$HOME/.antigravity/antigravity/bin"
+if [ -d $t ]; fish_add_path -P $t; end
 
 # fnm
 # fnm env --use-on-cd | source
 set FNM_PATH "/opt/homebrew/opt/fnm/bin"
 if [ -d "$FNM_PATH" ]
   fnm env | source
+end
+
+# local.fish
+set --local t "$HOME/.config/fish/local.fish"
+if [ -f $t ]
+  source $t
 end
