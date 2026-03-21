@@ -35,7 +35,8 @@ set --local t /Applications/Postgres.app/Contents/Versions/latest/bin
 if [ -d $t ]; fish_add_path -P $t; end
 
 # turso
-if [ -f "$HOME/.turso" ]; fish_add_path -P "$HOME/.turso"; end
+set --local t "$HOME/.turso"
+if [ -d $t ]; fish_add_path -P $t; end
 
 set --global --export HOMEBREW_PREFIX "/opt/homebrew";
 set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
@@ -71,12 +72,14 @@ alias ls eza
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc" ]; . "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc"; end
+set --local t "$HOME/.usr/lib/google-cloud-sdk/path.fish.inc"
+if [ -f $t ]; . $t; end
 
 set --local t "$HOME/.antigravity/antigravity/bin"
 if [ -d $t ]; fish_add_path -P $t; end
