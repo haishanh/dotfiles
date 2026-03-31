@@ -1,5 +1,12 @@
 function cs --argument-names cmd
     switch "$cmd"
+        case kubectl
+            echo "kubectl config get-contexts"
+            echo "kubectl config use-context xxx"
+            echo "# restart pods in deployment"
+            echo "kubectl get deployment"
+            echo "kubectl rollout restart deployment/<deployment-name>"
+            echo "kubectl rollout status deployment/<deployment-name>"
         case gcloud
             echo "# show current config"
             echo "gcloud config list"
