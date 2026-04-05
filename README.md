@@ -10,6 +10,8 @@ ln -s $PWD/gitconfig ~/.gitconfig
 ln -s $PWD/kitty.conf ~/.config/kitty/kitty.conf
 ln -s $PWD/kitty/snazzy.conf ~/.config/kitty/snazzy.conf
 
+ln -sf $PWD/ghostty ~/.config/ghostty
+
 # vim - see setup
 
 # fish
