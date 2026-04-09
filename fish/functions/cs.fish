@@ -3,8 +3,10 @@ function cs --argument-names cmd
         case kubectl
             echo "kubectl config get-contexts"
             echo "kubectl config use-context xxx"
-            echo "# restart pods in deployment"
+            echo "# deployment"
             echo "kubectl get deployment"
+            echo "kubectl describe deployment xxx"
+            echo "# restart pods in deployment"
             echo "kubectl rollout restart deployment/<deployment-name>"
             echo "kubectl rollout status deployment/<deployment-name>"
         case gcloud
