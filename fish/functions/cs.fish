@@ -9,6 +9,8 @@ function cs --argument-names cmd
             echo "# restart pods in deployment"
             echo "kubectl rollout restart deployment/<deployment-name>"
             echo "kubectl rollout status deployment/<deployment-name>"
+            echo "# debug"
+            echo "kubectl get events --sort-by='.lastTimestamp' | grep -i fail"
         case gcloud
             echo "# show current config"
             echo "gcloud config list"
