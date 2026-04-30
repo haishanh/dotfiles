@@ -1,5 +1,8 @@
 function cs --argument-names cmd
     switch "$cmd"
+        case pnpm
+            echo "# pnpm"
+            echo "pnpm install -g @mariozechner/pi-coding-agent"
         case kubectl
             echo "kubectl config get-contexts"
             echo "kubectl config use-context xxx"
