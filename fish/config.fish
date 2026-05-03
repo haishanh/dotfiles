@@ -61,9 +61,8 @@ set -gx LC_ALL en_US.UTF-8
 
 # pnpm
 set -gx PNPM_HOME "$HOME/Library/pnpm"
-if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
-end
+fish_add_path -P $PNPM_HOME
+fish_add_path -P $PNPM_HOME/bin
 # pnpm end
 
 zoxide init fish | source
