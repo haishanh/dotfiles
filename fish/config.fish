@@ -1,10 +1,6 @@
 if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
   source ~/.config/fish/custom/fzf.fish
   fzf_key_bindings
-
-  # activate zoxide
-  # zoxide init fish | source
-  # z
 end
 
 # set -gx ATUIN_SESSION (atuin uuid)
