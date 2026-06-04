@@ -1,4 +1,14 @@
 shell-integration = fish
+
+font-family = JetBrains Mono Regular
+font-family-bold = JetBrains Mono Bold
+font-family-italic = JetBrains Mono Italic
+font-family-bold-italic = JetBrains Mono Bold Italic
+
+
+
+# font-family = "Menlo"
+
 # font-family = "JetBrains Mono"
 # font-family = "Operator Mono Medium"
 # font-family-bold = "Operator Mono Bold"
@@ -11,6 +21,7 @@ shell-integration = fish
 # font-family-bold-italic = "TX-02-Variable"
 # font-style = "Regular"
 font-size =  "12"
+# font-thicken = true
 #
 # font-family = "Operator Mono Medium"
 
