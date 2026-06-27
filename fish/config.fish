@@ -16,7 +16,7 @@ fish_add_path -P ~/.usr/bin
 fish_add_path -P ~/go/bin
 # rust / cargo / rustup
 fish_add_path -P ~/.cargo/bin
-# python uv
+# python uv / mise
 fish_add_path -P ~/.local/bin
 # homebrew ruby
 fish_add_path -P /opt/homebrew/opt/ruby/bin
@@ -93,3 +93,7 @@ set --local t "$HOME/.config/fish/local.fish"
 if [ -f $t ]
   source $t
 end
+
+# active mise
+# https://mise.jdx.dev/getting-started.html#activate-mise
+$HOME/.local/bin/mise activate fish | source
