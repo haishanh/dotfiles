@@ -81,18 +81,20 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [credential "https://codeberg.org"]
 	provider = generic
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[credential "https://git.build.ingka.ikea.com"]
+	provider = github
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 [credential "https://github.com"]
 	username = haishanh
 [include]
