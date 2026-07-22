@@ -2,5 +2,6 @@
 "github:BurntSushi/ripgrep" = "latest"
 herdr = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:agent-browser" = "latest"
 "npm:executor" = "latest"
 "npm:opensrc" = "latest"
