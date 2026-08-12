@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export AWS_PROFILE:NIKE\x2eSSO\x2eAdminRole
-SETUVAR --export AWS_REGION:cn\x2dnorthwest\x2d1
+SETUVAR --export AWS_REGION:auto
 SETUVAR --export EDITOR:nvim
 SETUVAR --export FZF_CTRL_T_COMMAND:fd\x20\x2d\x2dtype\x20file\x20\x2d\x2dcolor\x3dalways
 SETUVAR --export FZF_DEFAULT_COMMAND:fd\x20\x2d\x2dtype\x20file\x20\x2d\x2dcolor\x3dalways
