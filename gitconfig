@@ -99,3 +99,5 @@
 	username = haishanh
 [include]
     path = ~/.gitconfig-work
+[credential "https://git.chatgpt-team.site"]
+	provider = generic
