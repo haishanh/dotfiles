@@ -10,11 +10,13 @@ window-padding-y = 10
 
 # font-family = "Menlo"
 
+font-family = "JetBrains Mono"
+
 # font-family = "JetBrains Mono"
-font-family = "Operator Mono Medium"
-font-family-bold = "Operator Mono Bold"
-font-family-italic = "Operator Mono Medium Italic"
-font-family-bold-italic = "Operator Mono Bold Italic"
+# font-family = "Operator Mono Medium"
+# font-family-bold = "Operator Mono Bold"
+# font-family-italic = "Operator Mono Medium Italic"
+# font-family-bold-italic = "Operator Mono Bold Italic"
 #
 # font-family = "TX-02-Variable"
 # font-family-bold = "TX-02-Variable"
