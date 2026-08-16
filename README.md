@@ -12,6 +12,7 @@ ln -s $PWD/kitty/snazzy.conf ~/.config/kitty/snazzy.conf
 
 ln -sf $PWD/ghostty ~/.config/ghostty
 ln -s $PWD/mise ~/.config/mise
+ln -s $PWD/dotconfig/herdr/config.toml ~/.config/herdr/config.toml
 
 # vim - see setup
 
