@@ -57,7 +57,6 @@ set -gx LC_ALL en_US.UTF-8
 
 # pnpm
 set -gx PNPM_HOME "$HOME/Library/pnpm"
-fish_add_path -P $PNPM_HOME
 fish_add_path -P $PNPM_HOME/bin
 # pnpm end
 
