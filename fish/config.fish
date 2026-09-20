@@ -15,7 +15,8 @@ fish_add_path -P ~/.usr/bin
 # go / golang
 fish_add_path -P ~/go/bin
 # rust / cargo / rustup
-fish_add_path -P ~/.cargo/bin
+set --local t ~/.cargo/bin
+if [ -d $t ]; fish_add_path -P $t; end
 # python uv / mise
 fish_add_path -P ~/.local/bin
 # homebrew ruby
