@@ -27,6 +27,8 @@ fish_add_path -P /opt/homebrew/opt/ruby/bin
 # below directive should do the same
 fish_add_path -P ~/.deno/bin
 
+fish_add_path -P ~/.local/bin
+
 # Postgres.app
 set --local t /Applications/Postgres.app/Contents/Versions/latest/bin
 if [ -d $t ]; fish_add_path -P $t; end
