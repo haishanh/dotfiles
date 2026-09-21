@@ -6,6 +6,8 @@ function cs --argument-names cmd
         case kubectl
             echo "kubectl config get-contexts"
             echo "kubectl config use-context xxx"
+            echo "# yaml"
+            echo "kubectl get pod <pod> -o yaml"
             echo "# deployment"
             echo "kubectl get deployment"
             echo "kubectl describe deployment xxx"
