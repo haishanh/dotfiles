@@ -1,3 +1,7 @@
+# active mise
+# https://mise.jdx.dev/getting-started.html#activate-mise
+$HOME/.local/bin/mise activate fish | source
+
 if status is-interactive && test -f ~/.config/fish/custom/fzf.fish
   source ~/.config/fish/custom/fzf.fish
   fzf_key_bindings
@@ -95,7 +99,3 @@ set --local t "$HOME/.config/fish/local.fish"
 if [ -f $t ]
   source $t
 end
-
-# active mise
-# https://mise.jdx.dev/getting-started.html#activate-mise
-$HOME/.local/bin/mise activate fish | source
